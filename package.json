@@ -1,0 +1,25 @@
+{
+  "name": "hypatia",
+  "version": "1.0.0",
+  "description": "Load more implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Richardinho/hypatia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Richardinho/hypatia/issues"
+  },
+  "homepage": "https://github.com/Richardinho/hypatia#readme",
+  "dependencies": {
+    "Diogenes": "^1.4.0",
+    "backbone": "^1.3.3",
+    "richardUtils": "^0.6.3"
+  }
+}
