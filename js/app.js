@@ -1,7 +1,11 @@
-function App() {}
+function App(options) {
+    this.router = options.router;
+}
 
 App.prototype = {
     start : function () {
-        console.log('starting app');
+        this.router.route('', 'bookListController');
+        this.router.route('book-list', 'bookListController');
     }
 };
+App.inject = ['router'];
