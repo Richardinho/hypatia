@@ -1,11 +1,17 @@
-function Router () {
-    //this.delegate = Backbone.Router();
+function Router (options) {
+    this.delegate = new Backbone.Router();
+    this.injector = options.injector;
 }
 
 Router.prototype = {
-    route : function () {
-        console.log('route', arguments);
+    route : function (path, handler) {
+        this.delegate.route(path, '',  function () {
+
+            var controller = this.injector.get(handler);
+            controller.handleRequest.call(controller);
+
+        }.bind(this));
     }
 };
 
-Router.inject = [];
+Router.inject = ['injector'];
