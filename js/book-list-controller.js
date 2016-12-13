@@ -2,6 +2,7 @@ function BookListController(options) {
 
     this.bookListViewFactory = options.bookListViewFactory;
     this.dataService = options.dataService;
+    this.pageManager = options.pageManager;
 }
 
 BookListController.prototype = {
@@ -11,12 +12,13 @@ BookListController.prototype = {
             let bookListView = this.bookListViewFactory({
                 data : pageData
             });
-            console.log(bookListView.render().el);
+            this.pageManager.render(bookListView);
         });
     }
 };
 
 BookListController.inject = [
     'bookListViewFactory',
-    'dataService'
+    'dataService',
+    'pageManager'
 ];

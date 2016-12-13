@@ -7,6 +7,7 @@ injector.register('bookListController',  BookListController,   Diogenes.INSTANCE
 injector.register('bookPageController',  BookPageController,   Diogenes.INSTANCE);
 injector.register('bookListViewFactory', BookListView.factory, Diogenes.FACTORY);
 injector.register('dataService',         DataService,          Diogenes.CACHE_INSTANCE);
+injector.register('pageManager',         PageManager,          Diogenes.CACHE_INSTANCE, document.querySelector('#app'));
 
 injector.start('app', function (app) {
     app.start();
