@@ -21,6 +21,6 @@
     "Diogenes": "^2.0.0",
     "backbone": "^1.3.3",
     "express": "^4.14.0",
-    "richardUtils": "^0.6.3"
+    "richardUtils": "^1.0.0"
   }
 }
