@@ -4,7 +4,9 @@ DataService.prototype = {
 
     getPage : function () {
 
-        return Promise.resolve({});
+        return fetch('/data/books.json').then(response => {
+            return response.json();
+        });
     }
 };
 

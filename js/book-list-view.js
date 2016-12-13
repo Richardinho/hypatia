@@ -1,21 +1,27 @@
-function BookListView() {
 
-}
+var BookListView = Backbone.View.extend({
 
-BookListView.prototype = {
+    initialize : function (options) {
+        this.data = options.data;
+    },
 
     render : function () {
-        console.log('render book');
+        var compiledTemplate = _.template(document.querySelector('#book-list').innerHTML);
+        this.el.innerHTML = compiledTemplate({
+            books : this.data,
+            title : 'my cool books'
+        });
+        return this;
     }
-};
+});
 
 BookListView.factory = function (options) {
 
-    return function (config) {
+	return function (config) {
 
-        _.extend(options, config);
-        return new BookListView(options);
+		_.extend(options, config);
+		return new BookListView(options);
 
-    };
+	};
 }
 BookListView.factory.inject = [];

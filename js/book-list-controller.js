@@ -7,9 +7,11 @@ function BookListController(options) {
 BookListController.prototype = {
 
     handleRequest : function () {
-        this.dataService.getPage().then(() => {
-            let bookListView = this.bookListViewFactory();
-            bookListView.render();
+        this.dataService.getPage().then(pageData => {
+            let bookListView = this.bookListViewFactory({
+                data : pageData
+            });
+            console.log(bookListView.render().el);
         });
     }
 };
