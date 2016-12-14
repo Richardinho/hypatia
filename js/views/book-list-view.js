@@ -5,15 +5,15 @@ var BookListView = Backbone.View.extend({
 
 	initialize : function (options) {
 
-		this.data = options.data;
+		this.productsService = options.productsService;
 	},
 
 	render : function () {
 
-		var compiledTemplate = _.template(document.querySelector('#book-list').innerHTML);
+		let compiledTemplate = _.template(document.querySelector('#book-list').innerHTML);
 
 		this.el.innerHTML = compiledTemplate({
-			books : this.data,
+			books : this.productsService.getPage(0),
 			title : 'my cool books'
 		});
 
@@ -27,7 +27,9 @@ BookListView.factory = function (options) {
 
 		_.extend(options, config);
 		return new BookListView(options);
-
 	};
-}
-BookListView.factory.inject = [];
+};
+
+BookListView.factory.inject = [
+	'productsService'
+];

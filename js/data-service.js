@@ -2,12 +2,22 @@ function DataService() {}
 
 DataService.prototype = {
 
-    getPage : function () {
+	urls : {
 
-        return fetch('/data/books.json').then(response => {
-            return response.json();
-        });
-    }
+		BOOKS : '/data/books.json'
+	},
+
+	fetchProducts : function (queryString) {
+
+		return fetch(this._createURL(this.urls.BOOKS, queryString)).then(response => {
+			return response.json();
+		});
+	},
+
+	_createURL : function (url, queryString) {
+
+		return url + '?' + queryString;
+	}
 };
 
 DataService.inject=[];

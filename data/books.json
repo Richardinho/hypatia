@@ -1,10 +1,14 @@
-[{
-    "title" : "An introduction to modal logic",
-    "author" : "Hughes and Cresswell"
-},{
-    "title" : "Why nations fail",
-    "author" : "Acemoglu and Robinson"
-},{
-   "title" : "Euthyphro",
-  "author" : "Plato"
-}]
+{
+  "searchCriteria" : {},
+
+  "products" : [{
+      "title" : "An introduction to modal logic",
+      "author" : "Hughes and Cresswell"
+  },{
+      "title" : "Why nations fail",
+      "author" : "Acemoglu and Robinson"
+  },{
+     "title" : "Euthyphro",
+    "author" : "Plato"
+  }]
+}

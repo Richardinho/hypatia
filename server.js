@@ -1,14 +1,14 @@
-var express = require('express');
-var app = express();
+let express = require('express');
+let app = express();
 
-var port = 1314;
+let port = 1314;
 
 app.use('/js', express.static(__dirname + '/js'));
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use('/data', express.static(__dirname + '/data'));
 
-app.get('/*', function(req, res){
+app.get('*', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
