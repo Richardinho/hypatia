@@ -20,7 +20,7 @@ BookListController.prototype = {
 
 		});
 
-		this.dataService.fetchBooks(this.queryBuilder.buildAPIQueryString()).then(data => {
+		this.dataService.fetchBooks(this.queryBuilder.buildAPIQueryString(this.searchCriteriaService)).then(data => {
 
 			this.booksService.refresh(data.products);
 			//this.searchCriteriaService.update(data.searchCriteria);

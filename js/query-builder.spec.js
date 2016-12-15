@@ -1,26 +1,19 @@
 describe('queryBuilder', () => {
 
     let queryBuilder,
-        result,
-        searchCriteriaService;
+        result;
 
     describe('buildAPIQueryString()', () => {
 
         beforeEach(() => {
 
-            searchCriteriaService = new SearchCriteriaService();
+            queryBuilder = new QueryBuilder();
 
-            searchCriteriaService.refresh({
+            result = queryBuilder.buildAPIQueryString({
                 offset : 4,
                 limit : 24,
                 selectedFilters : ['c4', 'r1301', 'r259']
             });
-
-            queryBuilder = new QueryBuilder({
-                searchCriteriaService : searchCriteriaService
-            });
-
-            result = queryBuilder.buildAPIQueryString();
         });
 
         it('should generate query string from search criteria', () => {

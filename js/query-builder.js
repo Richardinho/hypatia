@@ -1,6 +1,4 @@
-function QueryBuilder(options) {
-	this.searchCriteriaService = options.searchCriteriaService;
-}
+function QueryBuilder() {}
 
 /*
 	query strings for api calls and for site links are not necessarily the same.
@@ -8,13 +6,13 @@ function QueryBuilder(options) {
 
 QueryBuilder.prototype =  {
 
-	buildAPIQueryString : function () {
+	buildAPIQueryString : function (searchCriteria) {
 
 		var result = [];
 
-		this._appendParameterIfInCriteria('offset',     result, this.searchCriteriaService['offset']);
-		this._appendParameterIfInCriteria('limit',      result, this.searchCriteriaService['limit']);
-		this._appendParametersIfInCriteria('filters[]', result, this.searchCriteriaService['selectedFilters']);
+		this._appendParameterIfInCriteria('offset',     result, searchCriteria['offset']);
+		this._appendParameterIfInCriteria('limit',      result, searchCriteria['limit']);
+		this._appendParametersIfInCriteria('filters[]', result, searchCriteria['selectedFilters']);
 
 		return result.join('&');
 	},
