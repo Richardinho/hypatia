@@ -4,14 +4,16 @@ var BookView = Backbone.View.extend({
 	className : 'book',
 
 	initialize : function (options) {
-
+		this.bookData = options.bookData;
 	},
 
 	render : function () {
 
 		var compiledTemplate = _.template(document.querySelector('#book').innerHTML);
 
-		this.el.innerHTML = compiledTemplate();
+		this.el.innerHTML = compiledTemplate({
+			book : this.bookData
+		});
 
 		return this;
 	}

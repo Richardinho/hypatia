@@ -5,7 +5,7 @@ var BookListView = Backbone.View.extend({
 
 	initialize : function (options) {
 
-		this.productsService = options.productsService;
+		this.booksService = options.booksService;
 	},
 
 	render : function () {
@@ -13,7 +13,7 @@ var BookListView = Backbone.View.extend({
 		let compiledTemplate = _.template(document.querySelector('#book-list').innerHTML);
 
 		this.el.innerHTML = compiledTemplate({
-			books : this.productsService.getPage(0),
+			books : this.booksService.getPage(0),
 			title : 'my cool books'
 		});
 
@@ -31,5 +31,5 @@ BookListView.factory = function (options) {
 };
 
 BookListView.factory.inject = [
-	'productsService'
+	'booksService'
 ];

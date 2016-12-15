@@ -4,19 +4,32 @@ DataService.prototype = {
 
 	urls : {
 
-		BOOKS : '/data/books.json'
+		BOOKS : '/data/books.json',
+		BOOK : '/data/book'
 	},
 
-	fetchProducts : function (queryString) {
+	fetchBooks : function (queryString) {
 
 		return fetch(this._createURL(this.urls.BOOKS, queryString)).then(response => {
 			return response.json();
 		});
 	},
 
-	_createURL : function (url, queryString) {
+	fetchBook : function (id) {
 
-		return url + '?' + queryString;
+		return Promise.resolve({
+			author : 'Shakespear',
+			title : 'Hamlet'
+		});
+
+	},
+
+	_createURL : function (url, queryString) {
+		if (queryString) {
+			return url + '?' + queryString;
+		} else {
+			return url;
+		}
 	}
 };
 

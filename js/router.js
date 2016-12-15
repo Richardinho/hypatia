@@ -16,8 +16,8 @@ Router.prototype = {
 
 		this.delegate.route(path, '',  function handleRequest () {
 
-			var controller = this.injector.get(handler);
-			var requestObj = this.requestObjectFactory(utils.toArray(arguments));
+			let controller = this.injector.get(handler);
+			let requestObj = this.requestObjectFactory(utils.toArray(arguments));
 			controller.handleRequest.call(controller, requestObj);
 
 		}.bind(this));

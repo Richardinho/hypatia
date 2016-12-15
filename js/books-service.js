@@ -1,9 +1,13 @@
-function ProductsService() {
+function BooksService() {
 
 	this.pages = [];
 }
 
-ProductsService.prototype = {
+BooksService.prototype = {
+
+	getNumberOfPages : function () {
+		return this.pages.length;
+	},
 
 	refresh : function (products) {
 		this.pages = [];
@@ -17,4 +21,6 @@ ProductsService.prototype = {
 	getPage : function (index) {
 		return this.pages[index];
 	}
+
+
 };

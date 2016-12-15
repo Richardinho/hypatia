@@ -4,7 +4,7 @@ function BookListController(options) {
 	this.dataService = options.dataService;
 	this.pageManager = options.pageManager;
 	this.searchCriteriaService = options.searchCriteriaService;
-	this.productsService = options.productsService;
+	this.booksService = options.booksService;
 	this.queryBuilder = options.queryBuilder;
 }
 
@@ -16,15 +16,14 @@ BookListController.prototype = {
 
 			offset : request.queryParam('offset'),
 			limit : request.queryParam('limit'),
-			filters : request.multipleQueryParams('filters[]'),
-			category : request.queryParam('category')
+			selectedFilters : request.multipleQueryParams('filters[]'),
 
 		});
 
-		this.dataService.fetchProducts(this.queryBuilder.buildAPIQueryString()).then(data => {
+		this.dataService.fetchBooks(this.queryBuilder.buildAPIQueryString()).then(data => {
 
-			this.productsService.refresh(data.products);
-			this.searchCriteriaService.update(data.searchCriteria);
+			this.booksService.refresh(data.products);
+			//this.searchCriteriaService.update(data.searchCriteria);
 
 			let bookListView = this.bookListViewFactory();
 
@@ -38,6 +37,6 @@ BookListController.inject = [
 	'dataService',
 	'pageManager',
 	'searchCriteriaService',
-	'productsService',
+	'booksService',
 	'queryBuilder'
 ];
