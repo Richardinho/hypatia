@@ -13,13 +13,16 @@ injector.register('bookPageController',      BookPageController,      Diogenes.I
 injector.register('bookListViewFactory',     BookListView.factory,    Diogenes.FACTORY);
 injector.register('requestObjectFactory',    RequestObject.factory,   Diogenes.FACTORY);
 injector.register('bookViewFactory',         BookView.factory,        Diogenes.FACTORY);
+injector.register('loadMoreFactory',         LoadMore.factory,        Diogenes.FACTORY);
 injector.register('dataService',             DataService,             Diogenes.CACHE_INSTANCE);
+injector.register('pageViewFactory',         PageView.factory,        Diogenes.FACTORY);
+injector.register('scrollManager',           ScrollManager,           Diogenes.CACHE_INSTANCE);
 injector.register(
-    'pageManager',
-    PageManager,
-    Diogenes.CACHE_INSTANCE,
-    document.querySelector('#app'));
+	'pageManager',
+	PageManager,
+	Diogenes.CACHE_INSTANCE,
+	document.querySelector('#app'));
 
 injector.start('app', function (app) {
-    app.start();
+	app.start();
 });

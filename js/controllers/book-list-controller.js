@@ -6,6 +6,8 @@ function BookListController(options) {
 	this.searchCriteriaService = options.searchCriteriaService;
 	this.booksService = options.booksService;
 	this.queryBuilder = options.queryBuilder;
+	this.scrollManager = options.scrollManager;
+	this.loadMoreFactory = options.loadMoreFactory;
 }
 
 BookListController.prototype = {
@@ -27,9 +29,16 @@ BookListController.prototype = {
 
 			let bookListView = this.bookListViewFactory();
 
+			var loadMore = this.loadMoreFactory();
+
+			this.scrollManager.addListener('load-more', loadMore);
+
+			bookListView.on('load-more', loadMore.onLoadMore, loadMore);
+
 			this.pageManager.render(bookListView);
 		});
 	}
+
 };
 
 BookListController.inject = [
@@ -38,5 +47,7 @@ BookListController.inject = [
 	'pageManager',
 	'searchCriteriaService',
 	'booksService',
-	'queryBuilder'
+	'queryBuilder',
+	'scrollManager',
+	'loadMoreFactory'
 ];

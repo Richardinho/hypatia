@@ -1,4 +1,8 @@
 
+/*
+	Responsible for setting up the first page render and general structure.
+
+*/
 var BookListView = Backbone.View.extend({
 
 	className : 'book-list',
@@ -6,19 +10,51 @@ var BookListView = Backbone.View.extend({
 	initialize : function (options) {
 
 		this.booksService = options.booksService;
+		this.pageViewFactory = options.pageViewFactory;
+	},
+
+	template : _.template(`
+
+		<h2><%= title %></h2>
+
+		<a data-internal href="list?filters[]=apple&offset=3&limit=20&filters[]=banana">hello world</a>
+		<a data-internal href="book/4">book</a>
+
+		<div id="page-container"></div>
+
+		<button data-action="load-more">load more</button>
+
+	`),
+
+	events : {
+
+		'click [data-action=load-more]' : 'handleLoadMore'
+
+	},
+
+	handleLoadMore : function () {
+
+		this.trigger('load-more');
+
 	},
 
 	render : function () {
 
-		let compiledTemplate = _.template(document.querySelector('#book-list').innerHTML);
+		this.el.innerHTML = this.template({
 
-		this.el.innerHTML = compiledTemplate({
-			books : this.booksService.getPage(0),
 			title : 'my cool books'
 		});
 
+		var page = this.pageViewFactory({
+			books : this.booksService.getPage(0)
+		});
+
+		this.el.querySelector('#page-container').appendChild(page.render());
+
 		return this;
 	}
+
+
 });
 
 BookListView.factory = function (options) {
@@ -31,5 +67,6 @@ BookListView.factory = function (options) {
 };
 
 BookListView.factory.inject = [
-	'booksService'
+	'booksService',
+	'pageViewFactory'
 ];
