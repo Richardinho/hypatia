@@ -17,7 +17,7 @@ let PageView = Backbone.View.extend({
 		<% }); %>
 	`),
 
-	render : function () {
+	render : function (books) {
 
 		this.el.innerHTML = this.template({
 			books : this.books

@@ -4,13 +4,89 @@ function BookListController(options) {
 	this.dataService = options.dataService;
 	this.pageManager = options.pageManager;
 	this.searchCriteriaService = options.searchCriteriaService;
-	this.booksService = options.booksService;
 	this.queryBuilder = options.queryBuilder;
 	this.scrollManager = options.scrollManager;
-	this.loadMoreFactory = options.loadMoreFactory;
+	this.groupsFactory = options.groupsFactory;
+	this.bookListView = this.bookListViewFactory();
+
+	this.groups = this.groupsFactory();
+}
+
+function parseDataIntoGroups(rawData) {
+
+	let items = rawData.products;
+	let itemsPerGroups = 36;
+	let result = [];
+
+	let i,j,temparray,chunk = itemsPerGroups;
+
+	for (i = 0,j = items.length; i < j; i += chunk) {
+		result.push(items.slice(i, i + chunk));
+	}
+	return result;
 }
 
 BookListController.prototype = {
+
+	onScroll : function (yScroll, scrollingDown) {
+
+		let activeGroups = this.calculateActiveGroups(yScroll);
+
+		if(!this.groups.areDisplayed(activeGroups)) {
+
+			this.groups.updateActiveGroups(activeGroups);
+
+			this.bookListView.update(activeGroups);
+
+		} else {
+
+			//  do nothing
+		}
+
+	},
+
+	calculateActiveGroups : function (scrollY) {
+
+		let offset = this.getOffset();
+
+		//  calculate active region
+		let upperLimit = scrollY - offset;
+		let lowerLimit = scrollY + this.getWindowHeight() + offset;
+
+		let containerElTop = this.getContainerElTop();
+		let groupHeight = this.getGroupHeight();
+
+		let indexOfFirstGroup = Math.floor((upperLimit - containerElTop) / groupHeight);
+		let indexOfLastGroup = Math.floor((lowerLimit - containerElTop) / groupHeight);
+
+		return {
+			indexOfFirstGroup : indexOfFirstGroup,
+			indexOfLastGroup : indexOfLastGroup
+		};
+	},
+
+	getContainerElTop : function () {
+		let containerEl = this.bookListView.getContainerEl();
+		return containerEl.getBoundingClientRect().top;
+	},
+
+	getOffset : function () {
+
+		let viewportToActiveAreaRatio = 2; // get from config
+		let offset = viewportToActiveAreaRatio / 2;
+		return (this.getWindowHeight() * offset);
+	},
+
+	getGroupHeight : function () {
+		return 300;
+	},
+
+	getWindowHeight : function () {
+
+		return window.innerHeight;
+
+	},
+
 
 	handleRequest : function (request) {
 
@@ -22,20 +98,20 @@ BookListController.prototype = {
 
 		});
 
-		this.dataService.fetchBooks(this.queryBuilder.buildAPIQueryString(this.searchCriteriaService)).then(data => {
+		this.pageManager.render(this.bookListView);
 
-			this.booksService.refresh(data.products);
+		this.dataService.fetchBooks(this.queryBuilder.buildAPIQueryString(this.searchCriteriaService))
+			.then(parseDataIntoGroups)
+			.then(initialGroups => {
+
 			//this.searchCriteriaService.update(data.searchCriteria);
 
-			let bookListView = this.bookListViewFactory();
+			this.bookListView.update(initialGroups);
 
-			var loadMore = this.loadMoreFactory();
 
-			this.scrollManager.addListener('load-more', loadMore);
 
-			bookListView.on('load-more', loadMore.onLoadMore, loadMore);
 
-			this.pageManager.render(bookListView);
+			this.scrollManager.addListener('load-more', this);
 		});
 	}
 
@@ -45,9 +121,8 @@ BookListController.inject = [
 	'bookListViewFactory',
 	'dataService',
 	'pageManager',
+	'groupsFactory',
 	'searchCriteriaService',
-	'booksService',
 	'queryBuilder',
 	'scrollManager',
-	'loadMoreFactory'
 ];

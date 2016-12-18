@@ -8,14 +8,13 @@ injector.register('queryBuilder',            QueryBuilder,            Diogenes.C
 injector.register('injector',                injector,                Diogenes.VALUE);
 injector.register('bookListController',      BookListController,      Diogenes.INSTANCE);
 injector.register('searchCriteriaService',   SearchCriteriaService,   Diogenes.CACHE_INSTANCE);
-injector.register('booksService',            BooksService,            Diogenes.CACHE_INSTANCE);
+injector.register('groupsFactory',           Groups.factory,          Diogenes.FACTORY_FUNCTION);
 injector.register('bookPageController',      BookPageController,      Diogenes.INSTANCE);
-injector.register('bookListViewFactory',     BookListView.factory,    Diogenes.FACTORY);
-injector.register('requestObjectFactory',    RequestObject.factory,   Diogenes.FACTORY);
-injector.register('bookViewFactory',         BookView.factory,        Diogenes.FACTORY);
-injector.register('loadMoreFactory',         LoadMore.factory,        Diogenes.FACTORY);
+injector.register('pageViewFactory',         PageView.factory,        Diogenes.FACTORY_FUNCTION);
+injector.register('bookListViewFactory',     BookListView.factory,    Diogenes.FACTORY_FUNCTION);
+injector.register('requestObjectFactory',    RequestObject.factory,   Diogenes.FACTORY_FUNCTION);
+injector.register('bookViewFactory',         BookView.factory,        Diogenes.FACTORY_FUNCTION);
 injector.register('dataService',             DataService,             Diogenes.CACHE_INSTANCE);
-injector.register('pageViewFactory',         PageView.factory,        Diogenes.FACTORY);
 injector.register('scrollManager',           ScrollManager,           Diogenes.CACHE_INSTANCE);
 injector.register(
 	'pageManager',

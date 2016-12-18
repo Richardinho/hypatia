@@ -9,8 +9,12 @@ var BookListView = Backbone.View.extend({
 
 	initialize : function (options) {
 
-		this.booksService = options.booksService;
 		this.pageViewFactory = options.pageViewFactory;
+	},
+
+	getContainerEl : function () {
+
+		return this.el.querySelector('#page-container');
 	},
 
 	template : _.template(`
@@ -41,17 +45,30 @@ var BookListView = Backbone.View.extend({
 	render : function () {
 
 		this.el.innerHTML = this.template({
-
 			title : 'my cool books'
 		});
 
 		var page = this.pageViewFactory({
-			books : this.booksService.getPage(0)
+			books : [
+				{
+					title : 'placholder book',
+					author : 'mr placholder'
+				}
+
+			]
 		});
 
-		this.el.querySelector('#page-container').appendChild(page.render());
+		this.el.querySelector('#page-container').appendChild(page.render([]));
 
 		return this;
+	},
+
+	update : function (activeGroups) {
+
+		//  strip out stale groups and add in active groups.
+		// Could optimise and only swap in the new groups
+
+		console.log('update');
 	}
 
 
@@ -67,6 +84,5 @@ BookListView.factory = function (options) {
 };
 
 BookListView.factory.inject = [
-	'booksService',
 	'pageViewFactory'
 ];

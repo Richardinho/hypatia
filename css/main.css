@@ -1,3 +1,10 @@
 .book-list {
     background : pink;
 }
+
+.book {
+
+    width : 30%;
+    height : 2000px;
+    border : solid 1px black;
+}
