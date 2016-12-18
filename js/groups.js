@@ -24,8 +24,18 @@ Groups.prototype = {
     },
 
     updateActiveGroups : function (activeGroups) {
+        for(let i = 0; i <= Math.max(activeGroups.indexOfLastGroup, this.groups.length -1); i++) {
 
+            if(!this.groups[i]) {
+                this.groups[i] = {};
+            }
 
+            if(i < activeGroups.indexOfFirstGroup || i > activeGroups.indexOfLastGroup) {
+                this.groups[i].displayed = false;
+            } else {
+                this.groups[i].displayed = true;
+            }
+        }
     },
 
     groupArraysAreEqual : function (groupsArrayA, groupArrayB ) {

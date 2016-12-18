@@ -2,6 +2,46 @@ describe('groups', () => {
 
 	let groups;
 
+	describe('updateActiveGroups()', () => {
+		let result,
+    		data;
+		beforeEach(() => {
+			data = [
+				{},
+				{},
+				{},
+				{ displayed : true },
+				{ displayed : true },
+				{ displayed : true },
+				{},
+				{}
+			];
+
+			groups = new Groups(data);
+
+	    	groups.updateActiveGroups({
+				indexOfFirstGroup : 4,
+				indexOfLastGroup : 9
+			});
+
+			result = groups.groups;
+
+		});
+	    it('should update display property of groups', () => {
+			expect(result.length).toBe(10);
+			expect(result[0].displayed).toBe(false);
+			expect(result[1].displayed).toBe(false);
+			expect(result[2].displayed).toBe(false);
+			expect(result[3].displayed).toBe(false);
+			expect(result[4].displayed).toBe(true);
+			expect(result[5].displayed).toBe(true);
+			expect(result[6].displayed).toBe(true);
+			expect(result[7].displayed).toBe(true);
+			expect(result[8].displayed).toBe(true);
+			expect(result[9].displayed).toBe(true);
+	    });
+	});
+
 	describe('areDisplayed()', () => {
 		let result,
 			data;
