@@ -12,5 +12,22 @@
       "id" : 3,
      "title" : "Euthyphro",
     "author" : "Plato"
-  }]
+  },
+    { "id" : 4, "title" : "Counterpath", "author" : "Catherine Malabou and Jacques Derrida" },
+    { "id" : 5, "title" : "The essence of human-computer interaction", "author" : "Christine Faulkner" },
+    { "id" : 6, "title" : "The rise of the Dutch Republic", "author" : "John Motley" },
+    { "id" : 7, "title" : "Mediaeval Europe", "author" : "Kenneth Bell" },
+    { "id" : 8, "title" : "The Age of Enlightenment", "author" : "Isaiah Berlin" },
+    { "id" : 9, "title" : "Confessions", "author" : "Saint Augustine" },
+    { "id" : 10, "title" : "Javascript Patterns", "author" : "Stoyan Stefanov" },
+    { "id" : 11, "title" : "Seven Languages in Seven Weeks", "author" : "Bruce Tate" },
+    { "id" : 12, "title" : "The History of Greek Vases", "author" : "John Boardman" },
+    { "id" : 13, "title" : "Clean Code", "author" : "Robert C. Martin" },
+    { "id" : 14, "title" : "Version Control with Git", "author" : "Jon Loeliger" },
+    { "id" : 15, "title" : "Politics", "author" : "Aristotle" },
+    { "id" : 16, "title" : "The Greek Philosophers", "author" : "Rex Warner" },
+    { "id" : 17, "title" : "Semiotics", "author" : "Daniel Chandler" },
+    { "id" : 18, "title" : "The Mobile Handbook", "author" : "Peter-Paul Koch" },
+    { "id" : 19, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" }
+  ]
 }

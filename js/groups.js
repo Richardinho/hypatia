@@ -23,6 +23,29 @@ Groups.prototype = {
         return result;
     },
 
+    /*
+
+        initialGroups is an array of arrays
+    */
+
+    initialiseGroups : function (initialGroups) {
+
+        this.groups = initialGroups.map(groupData => {
+
+            return {
+                data : groupData,
+                displayed : true
+            };
+        });
+
+        return this.groups;
+
+    },
+
+    /*
+        set active groups' 'displayed' property to TRUE
+        If groups does not exist, create it.
+    */
     updateActiveGroups : function (activeGroups) {
         for(let i = 0; i <= Math.max(activeGroups.indexOfLastGroup, this.groups.length -1); i++) {
 

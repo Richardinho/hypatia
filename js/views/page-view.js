@@ -8,6 +8,7 @@ let PageView = Backbone.View.extend({
 	initialize : function (options) {
 
 		this.books = options.books;
+		this.groupId = options.groupId;
 
 	},
 
@@ -19,6 +20,7 @@ let PageView = Backbone.View.extend({
 
 	render : function (books) {
 
+		this.el.setAttribute('data-group-id', this.groupId);
 		this.el.innerHTML = this.template({
 			books : this.books
 		});
@@ -26,13 +28,5 @@ let PageView = Backbone.View.extend({
 	}
 
 });
-
-PageView.factory = function (options) {
-	return function (config) {
-		_.extend(options, config);
-		return new PageView(options);
-	}
-};
-
 
 PageView.inject = [];

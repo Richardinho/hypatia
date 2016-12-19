@@ -7,15 +7,15 @@ function BookListController(options) {
 	this.queryBuilder = options.queryBuilder;
 	this.scrollManager = options.scrollManager;
 	this.groupsFactory = options.groupsFactory;
+	this.groups =  this.groupsFactory();
 	this.bookListView = this.bookListViewFactory();
 
-	this.groups = this.groupsFactory();
 }
 
 function parseDataIntoGroups(rawData) {
 
 	let items = rawData.products;
-	let itemsPerGroups = 36;
+	let itemsPerGroups = 3;
 	let result = [];
 
 	let i,j,temparray,chunk = itemsPerGroups;
@@ -34,9 +34,9 @@ BookListController.prototype = {
 
 		if(!this.groups.areDisplayed(activeGroups)) {
 
-			this.groups.updateActiveGroups(activeGroups);
+			//this.groups.updateActiveGroups(activeGroups);
 
-			this.bookListView.update(activeGroups);
+			//this.bookListView.update(activeGroups);
 
 		} else {
 
@@ -101,17 +101,24 @@ BookListController.prototype = {
 		this.pageManager.render(this.bookListView);
 
 		this.dataService.fetchBooks(this.queryBuilder.buildAPIQueryString(this.searchCriteriaService))
-			.then(parseDataIntoGroups)
-			.then(initialGroups => {
+			.then(data => {
 
 			//this.searchCriteriaService.update(data.searchCriteria);
 
-			this.bookListView.update(initialGroups);
+			let initialGroupsData = parseDataIntoGroups(data);
+
+			let initialGroups = this.groups.initialiseGroups(initialGroupsData);
+
+			this.bookListView.update({
+				indexOfFirstGroup : 0,
+				groups : initialGroups
+
+			});
 
 
 
 
-			this.scrollManager.addListener('load-more', this);
+			//this.scrollManager.addListener('load-more', this);
 		});
 	}
 

@@ -9,7 +9,6 @@ var BookListView = Backbone.View.extend({
 
 	initialize : function (options) {
 
-		this.pageViewFactory = options.pageViewFactory;
 	},
 
 	getContainerEl : function () {
@@ -48,29 +47,62 @@ var BookListView = Backbone.View.extend({
 			title : 'my cool books'
 		});
 
-		var page = this.pageViewFactory({
-			books : [
-				{
-					title : 'placholder book',
-					author : 'mr placholder'
-				}
 
-			]
-		});
-
-		this.el.querySelector('#page-container').appendChild(page.render([]));
 
 		return this;
 	},
 
+	createPlaceholder : function (groupId) {
+		return new PageView({
+			groupId : groupId,
+			books : [
+				{
+					title : 'placeholder book',
+					author : 'mr placeholder'
+				}
+
+			]
+		});
+	},
+
+	createGroupView : function (groupId, data) {
+
+		return new PageView({
+			groupId : groupId,
+			books : data
+		});
+	},
+
+
+	//  renders groups into the list. Gets the data from the group.
+	//  if the data does not exist, puts in a placeholder and fires a request to
+	//  the server to get some more.
+
 	update : function (activeGroups) {
 
-		//  strip out stale groups and add in active groups.
-		// Could optimise and only swap in the new groups
+		let pageContainerEl = this.getContainerEl();
 
-		console.log('update');
+		// clear out container. Crude but acceptable for the moment
+		pageContainerEl.innerHTML = '';
+
+		let frag = document.createDocumentFragment();
+
+		for(let i=0, groupIndex = activeGroups.indexOfFirstGroup; i < activeGroups.groups.length; i++, groupIndex++) {
+
+			let group = activeGroups.groups[i];
+
+			if(group.data) {
+				frag.appendChild(this.createGroupView(groupIndex, group.data).render());
+			} else {
+				frag.appendChild(this.createPlaceholder(groupIndex).render());
+				//  should fire off to server for data
+
+				// should this be done here?
+			}
+		}
+
+		pageContainerEl.appendChild(frag);
 	}
-
 
 });
 
@@ -84,5 +116,4 @@ BookListView.factory = function (options) {
 };
 
 BookListView.factory.inject = [
-	'pageViewFactory'
 ];
