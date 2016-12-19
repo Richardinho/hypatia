@@ -1,5 +1,8 @@
 {
   "searchCriteria" : {},
+  "metadata" :  {
+    "totalItems" : 300
+  },
   "products" : [{
       "id" : 1,
       "title" : "An introduction to modal logic",

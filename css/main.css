@@ -5,6 +5,9 @@
 .book {
 
     width : 30%;
-    height : 200px;
+    height : 50px;
     border : solid 1px black;
+}
+ul {
+    border : solid 2px red;
 }

@@ -9,21 +9,8 @@ function BookListController(options) {
 	this.groupsFactory = options.groupsFactory;
 	this.groups =  this.groupsFactory();
 	this.bookListView = this.bookListViewFactory();
+	this.config = options.config;
 
-}
-
-function parseDataIntoGroups(rawData) {
-
-	let items = rawData.products;
-	let itemsPerGroups = 3;
-	let result = [];
-
-	let i,j,temparray,chunk = itemsPerGroups;
-
-	for (i = 0,j = items.length; i < j; i += chunk) {
-		result.push(items.slice(i, i + chunk));
-	}
-	return result;
 }
 
 BookListController.prototype = {
@@ -44,6 +31,22 @@ BookListController.prototype = {
 		}
 
 	},
+
+	parseDataIntoGroups : function (rawData) {
+
+    	let items = rawData.products;
+    	let result = [];
+
+    	let i,
+    		j,
+    		temparray,
+    		chunk = this.config.itemsPerGroup;
+
+    	for (i = 0,j = items.length; i < j; i += chunk) {
+    		result.push(items.slice(i, i + chunk));
+    	}
+    	return result;
+    },
 
 	calculateActiveGroups : function (scrollY) {
 
@@ -72,8 +75,7 @@ BookListController.prototype = {
 
 	getOffset : function () {
 
-		let viewportToActiveAreaRatio = 2; // get from config
-		let offset = viewportToActiveAreaRatio / 2;
+		let offset = this.config.activeRegionRatio / 2;
 		return (this.getWindowHeight() * offset);
 	},
 
@@ -90,13 +92,8 @@ BookListController.prototype = {
 
 	handleRequest : function (request) {
 
-		this.searchCriteriaService.refresh({
-
-			offset : request.queryParam('offset'),
-			limit : request.queryParam('limit'),
-			selectedFilters : request.multipleQueryParams('filters[]'),
-
-		});
+		let groupsPerPage = this.config.groupsPerPage;
+		let itemsPerGroup = this.config.itemsPerGroup;
 
 		this.pageManager.render(this.bookListView);
 
@@ -105,18 +102,19 @@ BookListController.prototype = {
 
 			//this.searchCriteriaService.update(data.searchCriteria);
 
-			let initialGroupsData = parseDataIntoGroups(data);
+			let totalItems = data.metadata.totalItems;
+
+			let totalPages = totalItems / (itemsPerGroup * groupsPerPage);
+
+			let initialGroupsData = this.parseDataIntoGroups(data).slice(0, groupsPerPage);
 
 			let initialGroups = this.groups.initialiseGroups(initialGroupsData);
 
 			this.bookListView.update({
+				totalPages : totalPages,
 				indexOfFirstGroup : 0,
 				groups : initialGroups
-
 			});
-
-
-
 
 			//this.scrollManager.addListener('load-more', this);
 		});
@@ -132,4 +130,5 @@ BookListController.inject = [
 	'searchCriteriaService',
 	'queryBuilder',
 	'scrollManager',
+	'config'
 ];

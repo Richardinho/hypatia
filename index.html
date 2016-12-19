@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <title>Hypatia - load more implementation</title>
     <link href='css/main.css' rel='stylesheet'>
+
+    <script>
+        window.config = {
+
+            groupsPerPage : 2,
+            itemsPerGroup : 4,
+            activeRegionRatio : 1.5
+        };
+
+    </script>
 </head>
 <body>
 
@@ -25,6 +35,7 @@
     <script src='node_modules/underscore/underscore.js'></script>
     <script src='node_modules/backbone/backbone.js'></script>
 
+    <script src='js/config.js'></script>
     <script src='js/page-manager.js'></script>
     <script src='js/data-service.js'></script>
     <script src='js/query-builder.js'></script>

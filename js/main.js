@@ -2,6 +2,8 @@ var injector = new Diogenes();
 
 var utils = sundry; // alias utility library
 
+var config = new Config(window.config);
+
 injector.register('app',                     App,                     Diogenes.INSTANCE);
 injector.register('router',                  Router,                  Diogenes.CACHE_INSTANCE);
 injector.register('queryBuilder',            QueryBuilder,            Diogenes.CACHE_INSTANCE);
@@ -16,6 +18,7 @@ injector.register('requestObjectFactory',    RequestObject.factory,   Diogenes.F
 injector.register('bookViewFactory',         BookView.factory,        Diogenes.FACTORY_FUNCTION);
 injector.register('dataService',             DataService,             Diogenes.CACHE_INSTANCE);
 injector.register('scrollManager',           ScrollManager,           Diogenes.CACHE_INSTANCE);
+injector.register('config',                  config,                  Diogenes.VALUE);
 injector.register(
 	'pageManager',
 	PageManager,

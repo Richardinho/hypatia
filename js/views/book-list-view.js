@@ -16,6 +16,10 @@ var BookListView = Backbone.View.extend({
 		return this.el.querySelector('#page-container');
 	},
 
+	getLoadMoreButton : function () {
+		return this.el.querySelector('[data-action=load-more]');
+	},
+
 	template : _.template(`
 
 		<h2><%= title %></h2>
@@ -71,6 +75,16 @@ var BookListView = Backbone.View.extend({
 			groupId : groupId,
 			books : data
 		});
+	},
+
+	hideLoadMoreButton : function () {
+
+		this.getLoadMoreButton().style.display = 'none';
+	},
+
+	showLoadMoreButton : function () {
+
+		this.getLoadMoreButton().style.display = 'inline-block';
 	},
 
 
