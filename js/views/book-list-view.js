@@ -60,10 +60,10 @@ var BookListView = Backbone.View.extend({
 		return new PageView({
 			groupId : groupId,
 			books : [
-				{
-					title : 'placeholder book',
-					author : 'mr placeholder'
-				}
+				{ title : 'placeholder book', author : 'mr placeholder' },
+				{ title : 'placeholder book', author : 'mr placeholder' },
+				{ title : 'placeholder book', author : 'mr placeholder' },
+				{ title : 'placeholder book', author : 'mr placeholder' }
 
 			]
 		});
@@ -103,7 +103,7 @@ var BookListView = Backbone.View.extend({
 
 		for(let i=0, groupIndex = activeGroups.indexOfFirstGroup; i < activeGroups.groups.length; i++, groupIndex++) {
 
-			let group = activeGroups.groups[i];
+			let group = activeGroups.groups[i];  // where to get groups from?
 
 			if(group.data) {
 				frag.appendChild(this.createGroupView(groupIndex, group.data).render());
@@ -116,6 +116,8 @@ var BookListView = Backbone.View.extend({
 		}
 
 		pageContainerEl.appendChild(frag);
+
+		pageContainerEl.style.paddingTop = activeGroups.indexOfFirstGroup * 50 + 'px';
 	}
 
 });

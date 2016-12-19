@@ -17,17 +17,33 @@ BookListController.prototype = {
 
 	onScroll : function (yScroll, scrollingDown) {
 
+
 		let activeGroups = this.calculateActiveGroups(yScroll);
 
 		if(!this.groups.areDisplayed(activeGroups)) {
 
-			//this.groups.updateActiveGroups(activeGroups);
+			this.groups.updateActiveGroups(activeGroups);
 
-			//this.bookListView.update(activeGroups);
+			this.bookListView.update({
+				totalPages : this.totalPages,
+				indexOfFirstGroup : activeGroups.indexOfFirstGroup,
+				groups : dummyGroups(activeGroups.indexOfFirstGroup, activeGroups.indexOfLastGroup)
+			});
 
 		} else {
 
 			//  do nothing
+		}
+
+		function dummyGroups(index1, index2) {
+
+			var result = [];
+
+			for(i=index1; i <= index2; i++) {
+				result.push({});
+			}
+
+			return result;
 		}
 
 	},
@@ -52,6 +68,10 @@ BookListController.prototype = {
 
 		let offset = this.getOffset();
 
+
+		let minGroupIndex = 0;
+		let maxGroupIndex = this.maxGroupIndex;
+
 		//  calculate active region
 		let upperLimit = scrollY - offset;
 		let lowerLimit = scrollY + this.getWindowHeight() + offset;
@@ -59,8 +79,8 @@ BookListController.prototype = {
 		let containerElTop = this.getContainerElTop();
 		let groupHeight = this.getGroupHeight();
 
-		let indexOfFirstGroup = Math.floor((upperLimit - containerElTop) / groupHeight);
-		let indexOfLastGroup = Math.floor((lowerLimit - containerElTop) / groupHeight);
+		let indexOfFirstGroup = Math.max(minGroupIndex, Math.floor((upperLimit - containerElTop) / groupHeight));
+		let indexOfLastGroup =  Math.min(maxGroupIndex, Math.floor((lowerLimit - containerElTop) / groupHeight));
 
 		return {
 			indexOfFirstGroup : indexOfFirstGroup,
@@ -104,19 +124,21 @@ BookListController.prototype = {
 
 			let totalItems = data.metadata.totalItems;
 
-			let totalPages = totalItems / (itemsPerGroup * groupsPerPage);
+			this.maxGroupIndex = Math.floor(totalItems / itemsPerGroup);
+
+			this.totalPages = totalItems / (itemsPerGroup * groupsPerPage);
 
 			let initialGroupsData = this.parseDataIntoGroups(data).slice(0, groupsPerPage);
 
 			let initialGroups = this.groups.initialiseGroups(initialGroupsData);
 
 			this.bookListView.update({
-				totalPages : totalPages,
+				totalPages : this.totalPages,
 				indexOfFirstGroup : 0,
 				groups : initialGroups
 			});
 
-			//this.scrollManager.addListener('load-more', this);
+			this.scrollManager.addListener('load-more', this);
 		});
 	}
 
