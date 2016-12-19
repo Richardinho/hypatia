@@ -10,6 +10,29 @@ describe('book-list-view', () => {
 	    bookListView.render();
 	});
 
+	describe('arrangeGroups()', () => {
+
+	    let activeGroups;
+	    let displayedGroups;
+	    let result;
+
+	    describe('When passed arrays of active and displayed groups', () => {
+            beforeEach(() => {
+                activeGroups = [3, 4, 5, 6];
+                displayedGroups = [1, 2, 3];
+
+                result = BookListView.prototype.arrangeGroups.call(null, activeGroups, displayedGroups);
+            });
+            it('should return arrays of groups to remove, add, and leave', () => {
+                expect(result).toEqual({
+                    groupsToRemove : [1, 2],
+                	groupsToAdd : [4, 5, 6],
+                	groupsToLeave : [3]
+                });
+            });
+	    });
+	});
+
 	describe('update()', () => {
 	    let pageContainer,
 	        activeGroups;

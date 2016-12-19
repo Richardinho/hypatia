@@ -37,8 +37,10 @@ Groups.prototype = {
                 displayed : true
             };
         });
-
-        return this.groups;
+        //  return an array of indexes of elements just added
+        return this.groups.map((group, index) => {
+            return index;
+        });
 
     },
 

@@ -8,7 +8,9 @@ function BookListController(options) {
 	this.scrollManager = options.scrollManager;
 	this.groupsFactory = options.groupsFactory;
 	this.groups =  this.groupsFactory();
-	this.bookListView = this.bookListViewFactory();
+	this.bookListView = this.bookListViewFactory({
+		groups : this.groups
+	});
 	this.config = options.config;
 
 }
@@ -22,30 +24,20 @@ BookListController.prototype = {
 
 		if(!this.groups.areDisplayed(activeGroups)) {
 
+
+
 			this.groups.updateActiveGroups(activeGroups);
 
 			this.bookListView.update({
 				totalPages : this.totalPages,
 				indexOfFirstGroup : activeGroups.indexOfFirstGroup,
-				groups : dummyGroups(activeGroups.indexOfFirstGroup, activeGroups.indexOfLastGroup)
+				indexOfLastGroup : activeGroups.indexOfLastGroup
 			});
 
 		} else {
 
 			//  do nothing
 		}
-
-		function dummyGroups(index1, index2) {
-
-			var result = [];
-
-			for(i=index1; i <= index2; i++) {
-				result.push({});
-			}
-
-			return result;
-		}
-
 	},
 
 	parseDataIntoGroups : function (rawData) {
@@ -128,17 +120,15 @@ BookListController.prototype = {
 
 			this.totalPages = totalItems / (itemsPerGroup * groupsPerPage);
 
+			this.bookListView.totalPages = this.totalPages;
+
 			let initialGroupsData = this.parseDataIntoGroups(data).slice(0, groupsPerPage);
 
 			let initialGroups = this.groups.initialiseGroups(initialGroupsData);
 
-			this.bookListView.update({
-				totalPages : this.totalPages,
-				indexOfFirstGroup : 0,
-				groups : initialGroups
-			});
+			this.bookListView.update(initialGroups);
 
-			this.scrollManager.addListener('load-more', this);
+			//this.scrollManager.addListener('load-more', this);
 		});
 	}
 
