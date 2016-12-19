@@ -49,9 +49,9 @@ describe('book-list-view', () => {
 	    it('should render groups into page container element', () => {
 
             expect(pageContainer.querySelectorAll('.book-list').length).toBe(4);
-            expect(pageContainer.querySelectorAll('.book').length).toBe(6);
+            expect(pageContainer.querySelectorAll('.book').length).toBe(12);
             expect(pageContainer.querySelectorAll('.book').item(2).innerHTML).toContain('placeholder book by mr placeholder');
-            expect(pageContainer.querySelectorAll('.book').item(3).innerHTML).toContain('book3 by Bob Smith');
+            expect(pageContainer.querySelectorAll('.book').item(6).innerHTML).toContain('book3 by Bob Smith');
 
         });
 	});

@@ -22,10 +22,10 @@ describe('book-list-controller', () => {
 
                 setUpSpies(offset, windowHeight, headerHeight, groupHeight);
 
-                result = BookListController.prototype.calculateActiveGroups.call(BookListController.prototype, scrollY);
+                result = BookListController.prototype.calculateActiveGroups.call(_.extend(BookListController.prototype, { maxGroupIndex : 6 }), scrollY);
             });
 
-            it('should indices of first and last pages', () => {
+            it('should return indices of first and last pages', () => {
                 expect(result).toEqual({
                     indexOfFirstGroup : 1,
                     indexOfLastGroup : 5
@@ -45,10 +45,10 @@ describe('book-list-controller', () => {
 
                 setUpSpies(offset, windowHeight, headerHeight, groupHeight);
 
-                result = BookListController.prototype.calculateActiveGroups.call(BookListController.prototype, scrollY);
+                result = BookListController.prototype.calculateActiveGroups.call(_.extend(BookListController.prototype, { maxGroupIndex : 6 }), scrollY);
             });
 
-            it('should indices of first and last pages', () => {
+            it('should return indices of first and last pages', () => {
                 expect(result).toEqual({
                     indexOfFirstGroup : 2,
                     indexOfLastGroup : 5
