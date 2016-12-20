@@ -42,6 +42,7 @@ var BookListView = Backbone.View.extend({
 		let pageHeight = this.config.groupHeight * this.config.groupsPerPage;
 
 		this.getContainerEl().style.paddingBottom = pageHeight + 'px';
+		this.getContainerEl().style.paddingTop = '0px';
 
 		return this;
 	},
@@ -166,6 +167,18 @@ var BookListView = Backbone.View.extend({
 
 		});
 
+		groupsToRemoveFromFront.forEach(group => {
+			let groupEl = this.el.querySelector('[data-group-id="' + group + '"]');
+			pageContainerEl.removeChild(groupEl);
+			this.increaseTopPaddingByIncrement();
+		});
+
+		groupsToPrepend.forEach(group => {
+
+			pageContainerEl.insertBefore(this.createPlaceholder(group).render(), pageContainerEl.firstChild);
+			this.decreaseTopPaddingByIncrement();
+		});
+
 		groupsToAppend.forEach(group => {
 
 			this.getContainerEl().appendChild(this.createPlaceholder(group).render());
@@ -185,6 +198,16 @@ var BookListView = Backbone.View.extend({
 	decreaseBottomPaddingByIncrement : function () {
 		let bottomPadding = parseInt(this.getContainerEl().style.paddingBottom, 10);
 		this.getContainerEl().style.paddingBottom = bottomPadding - this.config.groupHeight + 'px';
+	},
+
+	increaseTopPaddingByIncrement : function () {
+		let topPadding = parseInt(this.getContainerEl().style.paddingTop, 10);
+		this.getContainerEl().style.paddingTop = topPadding + this.config.groupHeight + 'px';
+	},
+
+	decreaseTopPaddingByIncrement : function () {
+		let topPadding = parseInt(this.getContainerEl().style.paddingTop, 10);
+		this.getContainerEl().style.paddingTop = topPadding - this.config.groupHeight + 'px';
 	}
 
 });
