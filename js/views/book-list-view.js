@@ -8,17 +8,14 @@ var BookListView = Backbone.View.extend({
 	className : 'book-list',
 
 	initialize : function (options) {
-		// think we do need a reference to the group service here.
+
 		this.groups = options.groups;
+		this.config = options.config;
 	},
 
 	getContainerEl : function () {
 
 		return this.el.querySelector('#page-container');
-	},
-
-	getLoadMoreButton : function () {
-		return this.el.querySelector('[data-action=load-more]');
 	},
 
 	template : _.template(`
@@ -34,25 +31,17 @@ var BookListView = Backbone.View.extend({
 
 	`),
 
-	events : {
-
-		'click [data-action=load-more]' : 'handleLoadMore'
-
-	},
-
-	handleLoadMore : function () {
-
-		this.trigger('load-more');
-
-	},
-
 	render : function () {
 
 		this.el.innerHTML = this.template({
 			title : 'my cool books'
 		});
 
+		//  set page height with padding
 
+		let pageHeight = this.config.groupHeight * this.config.groupsPerPage;
+
+		this.getContainerEl().style.paddingBottom = pageHeight + 'px';
 
 		return this;
 	},
@@ -67,7 +56,6 @@ var BookListView = Backbone.View.extend({
 				{ title : 'placeholder book', author : 'mr placeholder' },
 				{ title : 'placeholder book', author : 'mr placeholder' },
 				{ title : 'placeholder book', author : 'mr placeholder' }
-
 			]
 		});
 	},
@@ -80,16 +68,6 @@ var BookListView = Backbone.View.extend({
 		});
 	},
 
-	hideLoadMoreButton : function () {
-
-		this.getLoadMoreButton().style.display = 'none';
-	},
-
-	showLoadMoreButton : function () {
-
-		this.getLoadMoreButton().style.display = 'inline-block';
-	},
-
 	/*
 		queries dom for currently displayed groups.
 		returns an array of their group ids
@@ -98,7 +76,7 @@ var BookListView = Backbone.View.extend({
 
 		return Array.from(this.el.querySelectorAll('[data-group-id]')).map(groupEl => {
 
-			return groupEl.dataset.groupId;
+			return parseInt(groupEl.dataset.groupId, 10);
 		});
 
 	},
@@ -115,14 +93,32 @@ var BookListView = Backbone.View.extend({
 			return displayedGroups.indexOf(group) === -1;
 		});
 
+		let groupsToAppend = groupsToAdd.filter(group => {
+			return displayedGroups.length ? group > (displayedGroups[displayedGroups.length - 1]): true;
+		});
+
+		let groupsToPrepend = groupsToAdd.filter(group => {
+			return displayedGroups.length ? group < displayedGroups[0] : false
+		});
+
 		// members of both
 		let groupsToLeave = displayedGroups.filter(group => {
 			return activeGroups.indexOf(group) !== -1;
 		});
 
+		let groupsToRemoveFromEnd = groupsToRemove.filter(group => {
+			return group > groupsToLeave[groupsToLeave.length - 1];
+		});
+
+		let groupsToRemoveFromFront = groupsToRemove.filter(group => {
+			return group < groupsToLeave[0];
+		});
+
 		return {
-			groupsToRemove : groupsToRemove,
-			groupsToAdd : groupsToAdd,
+			groupsToAppend : groupsToAppend,
+			groupsToPrepend : groupsToPrepend,
+			groupsToRemoveFromEnd : groupsToRemoveFromEnd,
+			groupsToRemoveFromFront : groupsToRemoveFromFront,
 			groupsToLeave : groupsToLeave
 		};
 	},
@@ -143,45 +139,52 @@ var BookListView = Backbone.View.extend({
 
 		let frag = document.createDocumentFragment();
 
-		let groupsToRemove;
-		let groupsToAdd;
+		let groupsToAppend;
+		let groupsToPrepend;
+		let groupsToRemoveFromEnd;
+		let groupsToRemoveFromFront;
 		let groupsToLeave;
 
-		console.log(activeGroups);
+		({
+			groupsToAppend,
+			groupsToPrepend,
+			groupsToRemoveFromEnd,
+			groupsToRemoveFromFront,
+			groupsToLeave
+			} = this.arrangeGroups(activeGroups, displayedGroups));
 
-		({ groupsToRemove, groupsToAdd, groupsToLeave } = this.arrangeGroups(activeGroups, displayedGroups));
 
-		/*for(let i = activeGroups.indexOfFirstGroup; i <= activeGroups.indexOfLastGroup; i++) {
+		groupsToRemoveFromEnd.forEach(group => {
 
-			let group = this.groups.groups[i];  // where to get groups from?
+			let groupEl = this.el.querySelector('[data-group-id="' + group + '"]');
 
-			if(group.el) {  //  cache elements
-				frag.appendChild(group.el);
-			} else if(group.data) {  // this will only be on page load (I think...!)
-				let groupEl = this.createGroupView(i, group.data).render();
-				frag.appendChild(groupEl);
-				// cache groupelement
-				group.el = groupEl;
-			} else {
-				frag.appendChild(this.createPlaceholder(i).render());
-				this.fetchGroup().then((group) => {
-					//
+			pageContainerEl.removeChild(groupEl);
 
-				});
-				//  should fire off to server for data
+			//  increase bottom padding
 
-				// should this be done here?
-			}
-		}*/
+			this.increaseBottomPaddingByIncrement();
+
+		});
+
+		groupsToAppend.forEach(group => {
+
+			this.getContainerEl().appendChild(this.createPlaceholder(group).render());
+
+			this.decreaseBottomPaddingByIncrement();
+		});
 
 		pageContainerEl.appendChild(frag);
 
-
 	},
 
-	fetchGroup : function () {
+	increaseBottomPaddingByIncrement : function () {
+		let bottomPadding = parseInt(this.getContainerEl().style.paddingBottom, 10);
+		this.getContainerEl().style.paddingBottom = bottomPadding + this.config.groupHeight + 'px';
+	},
 
-		return Promise.resolve({});
+	decreaseBottomPaddingByIncrement : function () {
+		let bottomPadding = parseInt(this.getContainerEl().style.paddingBottom, 10);
+		this.getContainerEl().style.paddingBottom = bottomPadding - this.config.groupHeight + 'px';
 	}
 
 });

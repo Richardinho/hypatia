@@ -8,10 +8,13 @@ function BookListController(options) {
 	this.scrollManager = options.scrollManager;
 	this.groupsFactory = options.groupsFactory;
 	this.groups =  this.groupsFactory();
-	this.bookListView = this.bookListViewFactory({
-		groups : this.groups
-	});
 	this.config = options.config;
+
+	this.bookListView = this.bookListViewFactory({
+		groups : this.groups,
+		config : this.config
+	});
+
 
 }
 
@@ -22,17 +25,18 @@ BookListController.prototype = {
 
 		let activeGroups = this.calculateActiveGroups(yScroll);
 
-		if(!this.groups.areDisplayed(activeGroups)) {
 
-
+		if (!this.groups.areDisplayed(activeGroups)) {
 
 			this.groups.updateActiveGroups(activeGroups);
 
-			this.bookListView.update({
-				totalPages : this.totalPages,
-				indexOfFirstGroup : activeGroups.indexOfFirstGroup,
-				indexOfLastGroup : activeGroups.indexOfLastGroup
-			});
+			let result = [];
+
+			for (let i = activeGroups.indexOfFirstGroup; i <= activeGroups.indexOfLastGroup; i++) {
+				result.push(i);
+			}
+
+			this.bookListView.update(result);
 
 		} else {
 
@@ -65,14 +69,17 @@ BookListController.prototype = {
 		let maxGroupIndex = this.maxGroupIndex;
 
 		//  calculate active region
-		let upperLimit = scrollY - offset;
-		let lowerLimit = scrollY + this.getWindowHeight() + offset;
+		let upperLimit = scrollY;
+		let lowerLimit = scrollY + this.getWindowHeight();
 
-		let containerElTop = this.getContainerElTop();
+		let containerElTop = this.getContainerElTop(scrollY);
+
 		let groupHeight = this.getGroupHeight();
 
 		let indexOfFirstGroup = Math.max(minGroupIndex, Math.floor((upperLimit - containerElTop) / groupHeight));
 		let indexOfLastGroup =  Math.min(maxGroupIndex, Math.floor((lowerLimit - containerElTop) / groupHeight));
+
+		indexOfFirstGroup = Math.min(indexOfFirstGroup, indexOfLastGroup);
 
 		return {
 			indexOfFirstGroup : indexOfFirstGroup,
@@ -80,9 +87,9 @@ BookListController.prototype = {
 		};
 	},
 
-	getContainerElTop : function () {
+	getContainerElTop : function (scrollY) {
 		let containerEl = this.bookListView.getContainerEl();
-		return containerEl.getBoundingClientRect().top;
+		return containerEl.getBoundingClientRect().top + scrollY ;
 	},
 
 	getOffset : function () {
@@ -92,7 +99,7 @@ BookListController.prototype = {
 	},
 
 	getGroupHeight : function () {
-		return 300;
+		return this.config.groupHeight;
 	},
 
 	getWindowHeight : function () {
@@ -116,19 +123,19 @@ BookListController.prototype = {
 
 			let totalItems = data.metadata.totalItems;
 
-			this.maxGroupIndex = Math.floor(totalItems / itemsPerGroup);
+			this.maxGroupIndex = groupsPerPage;
 
 			this.totalPages = totalItems / (itemsPerGroup * groupsPerPage);
 
 			this.bookListView.totalPages = this.totalPages;
 
-			let initialGroupsData = this.parseDataIntoGroups(data).slice(0, groupsPerPage);
+			let initialGroupsData = this.parseDataIntoGroups(data).slice(0, 2);
 
 			let initialGroups = this.groups.initialiseGroups(initialGroupsData);
 
 			this.bookListView.update(initialGroups);
 
-			//this.scrollManager.addListener('load-more', this);
+			this.scrollManager.addListener('load-more', this);
 		});
 	}
 

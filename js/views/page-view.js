@@ -14,7 +14,7 @@ let PageView = Backbone.View.extend({
 
 	template : _.template(`
 		<% _.each(books, function(book) { %>
-			<li class="book"><%= book.title %> by <%= book.author %></li>
+			<li class="book"><h2>id: <%= id %></h2><%= book.title %> by <%= book.author %></li>
 		<% }); %>
 	`),
 
@@ -22,7 +22,8 @@ let PageView = Backbone.View.extend({
 
 		this.el.setAttribute('data-group-id', this.groupId);
 		this.el.innerHTML = this.template({
-			books : this.books
+			books : this.books,
+			id : this.groupId
 		});
 		return this.el;
 	}

@@ -16,18 +16,56 @@ describe('book-list-view', () => {
 	    let displayedGroups;
 	    let result;
 
-	    describe('When passed arrays of active and displayed groups', () => {
+	    describe('When adding groups to the end', () => {
             beforeEach(() => {
-                activeGroups = [3, 4, 5, 6];
-                displayedGroups = [1, 2, 3];
+                activeGroups = [5, 6, 7];
+                displayedGroups = [3, 4, 5];
 
                 result = BookListView.prototype.arrangeGroups.call(null, activeGroups, displayedGroups);
             });
             it('should return arrays of groups to remove, add, and leave', () => {
                 expect(result).toEqual({
-                    groupsToRemove : [1, 2],
-                	groupsToAdd : [4, 5, 6],
+                    groupsToAppend : [6, 7],
+                    groupsToPrepend : [],
+                    groupsToRemoveFromEnd : [],
+                    groupsToRemoveFromFront : [3, 4],
+                	groupsToLeave : [5]
+                });
+            });
+	    });
+
+	    describe('When prepending groups', () => {
+            beforeEach(() => {
+                activeGroups = [1, 2, 3];
+                displayedGroups = [3, 4, 5];
+
+                result = BookListView.prototype.arrangeGroups.call(null, activeGroups, displayedGroups);
+            });
+            it('should return arrays of groups to remove, add, and leave', () => {
+                expect(result).toEqual({
+                    groupsToAppend : [],
+                    groupsToPrepend : [1, 2],
+                    groupsToRemoveFromEnd : [4, 5],
+                    groupsToRemoveFromFront : [],
                 	groupsToLeave : [3]
+                });
+            });
+	    });
+
+	    describe('When adding groups for first time', () => {
+            beforeEach(() => {
+                activeGroups = [0, 1, 2, 3];
+                displayedGroups = [];
+
+                result = BookListView.prototype.arrangeGroups.call(null, activeGroups, displayedGroups);
+            });
+            it('should return arrays of groups to remove, add, and leave', () => {
+                expect(result).toEqual({
+                    groupsToAppend : [0, 1, 2, 3],
+                    groupsToPrepend : [],
+                    groupsToRemoveFromEnd : [],
+                    groupsToRemoveFromFront : [],
+                	groupsToLeave : []
                 });
             });
 	    });
