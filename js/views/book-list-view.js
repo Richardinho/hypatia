@@ -156,58 +156,37 @@ var BookListView = Backbone.View.extend({
 
 
 		groupsToRemoveFromEnd.forEach(group => {
-
 			let groupEl = this.el.querySelector('[data-group-id="' + group + '"]');
-
 			pageContainerEl.removeChild(groupEl);
-
-			//  increase bottom padding
-
-			this.increaseBottomPaddingByIncrement();
-
 		});
 
 		groupsToRemoveFromFront.forEach(group => {
 			let groupEl = this.el.querySelector('[data-group-id="' + group + '"]');
 			pageContainerEl.removeChild(groupEl);
-			this.increaseTopPaddingByIncrement();
 		});
 
 		groupsToPrepend.forEach(group => {
-
 			pageContainerEl.insertBefore(this.createPlaceholder(group).render(), pageContainerEl.firstChild);
-			this.decreaseTopPaddingByIncrement();
 		});
 
 		groupsToAppend.forEach(group => {
-
 			this.getContainerEl().appendChild(this.createPlaceholder(group).render());
-
-			this.decreaseBottomPaddingByIncrement();
 		});
+
+		this.setPaddingTop(activeGroups[0]);
+		this.setPaddingBottom(activeGroups[activeGroups.length - 1]);
 
 		pageContainerEl.appendChild(frag);
 
 	},
 
-	increaseBottomPaddingByIncrement : function () {
-		let bottomPadding = parseInt(this.getContainerEl().style.paddingBottom, 10);
-		this.getContainerEl().style.paddingBottom = bottomPadding + this.config.groupHeight + 'px';
+	setPaddingTop : function (firstActiveGroup) {
+		this.getContainerEl().style.paddingTop = (firstActiveGroup * this.config.groupHeight) + 'px';
 	},
 
-	decreaseBottomPaddingByIncrement : function () {
-		let bottomPadding = parseInt(this.getContainerEl().style.paddingBottom, 10);
-		this.getContainerEl().style.paddingBottom = bottomPadding - this.config.groupHeight + 'px';
-	},
-
-	increaseTopPaddingByIncrement : function () {
-		let topPadding = parseInt(this.getContainerEl().style.paddingTop, 10);
-		this.getContainerEl().style.paddingTop = topPadding + this.config.groupHeight + 'px';
-	},
-
-	decreaseTopPaddingByIncrement : function () {
-		let topPadding = parseInt(this.getContainerEl().style.paddingTop, 10);
-		this.getContainerEl().style.paddingTop = topPadding - this.config.groupHeight + 'px';
+	setPaddingBottom : function (lastActiveGroup) {
+		let bottomPadding = this.config.groupHeight * (this.config.groupsPerPage - lastActiveGroup);
+		this.getContainerEl().style.paddingBottom = bottomPadding + 'px';
 	}
 
 });
