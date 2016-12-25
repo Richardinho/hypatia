@@ -22,7 +22,8 @@ describe('book-list-controller', () => {
 
                 setUpSpies(offset, windowHeight, headerHeight, groupHeight);
 
-                result = BookListController.prototype.calculateActiveGroups.call(_.extend(BookListController.prototype, { maxGroupIndex : 6 }), scrollY);
+                result = BookListController.prototype.calculateActiveGroups.call(
+                    _.extend(BookListController.prototype, { maxGroupIndex : 6 }), scrollY);
             });
 
             it('should return indices of first and last pages', () => {

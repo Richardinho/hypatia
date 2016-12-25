@@ -2,14 +2,6 @@ describe('book-list-view', () => {
 
 	let bookListView;
 
-	beforeEach(() => {
-	    bookListView = new BookListView({
-	        groups : Groups.factory,
-	        pageViewFactory : PageView.factory
-	    });
-	    bookListView.render();
-	});
-
 	describe('arrangeGroups()', () => {
 
 	    let activeGroups;
@@ -25,10 +17,8 @@ describe('book-list-view', () => {
             });
             it('should return arrays of groups to remove, add, and leave', () => {
                 expect(result).toEqual({
-                    groupsToAppend : [6, 7],
-                    groupsToPrepend : [],
-                    groupsToRemoveFromEnd : [],
-                    groupsToRemoveFromFront : [3, 4],
+                    groupsToAdd : [6, 7],
+                    groupsToRemove : [3, 4],
                 	groupsToLeave : [5]
                 });
             });
@@ -43,10 +33,8 @@ describe('book-list-view', () => {
             });
             it('should return arrays of groups to remove, add, and leave', () => {
                 expect(result).toEqual({
-                    groupsToAppend : [],
-                    groupsToPrepend : [1, 2],
-                    groupsToRemoveFromEnd : [4, 5],
-                    groupsToRemoveFromFront : [],
+                    groupsToAdd : [1, 2],
+                    groupsToRemove : [4, 5],
                 	groupsToLeave : [3]
                 });
             });
@@ -61,10 +49,8 @@ describe('book-list-view', () => {
             });
             it('should return arrays of groups to remove, add, and leave', () => {
                 expect(result).toEqual({
-                    groupsToAppend : [0, 1, 2, 3],
-                    groupsToPrepend : [],
-                    groupsToRemoveFromEnd : [],
-                    groupsToRemoveFromFront : [],
+                    groupsToAdd : [0, 1, 2, 3],
+                    groupsToRemove : [],
                 	groupsToLeave : []
                 });
             });

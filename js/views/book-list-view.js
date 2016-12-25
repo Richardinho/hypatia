@@ -94,32 +94,14 @@ var BookListView = Backbone.View.extend({
 			return displayedGroups.indexOf(group) === -1;
 		});
 
-		let groupsToAppend = groupsToAdd.filter(group => {
-			return displayedGroups.length ? group > (displayedGroups[displayedGroups.length - 1]): true;
-		});
-
-		let groupsToPrepend = groupsToAdd.filter(group => {
-			return displayedGroups.length ? group < displayedGroups[0] : false
-		});
-
 		// members of both
 		let groupsToLeave = displayedGroups.filter(group => {
 			return activeGroups.indexOf(group) !== -1;
 		});
 
-		let groupsToRemoveFromEnd = groupsToRemove.filter(group => {
-			return group > groupsToLeave[groupsToLeave.length - 1];
-		});
-
-		let groupsToRemoveFromFront = groupsToRemove.filter(group => {
-			return group < groupsToLeave[0];
-		});
-
 		return {
-			groupsToAppend : groupsToAppend,
-			groupsToPrepend : groupsToPrepend,
-			groupsToRemoveFromEnd : groupsToRemoveFromEnd,
-			groupsToRemoveFromFront : groupsToRemoveFromFront,
+			groupsToAdd : groupsToAdd,
+			groupsToRemove : groupsToRemove,
 			groupsToLeave : groupsToLeave
 		};
 	},
@@ -137,40 +119,12 @@ var BookListView = Backbone.View.extend({
 
 		let displayedGroups = this.getDisplayedGroups();
 
+		pageContainerEl.innerHTML = '';
 
 		let frag = document.createDocumentFragment();
 
-		let groupsToAppend;
-		let groupsToPrepend;
-		let groupsToRemoveFromEnd;
-		let groupsToRemoveFromFront;
-		let groupsToLeave;
-
-		({
-			groupsToAppend,
-			groupsToPrepend,
-			groupsToRemoveFromEnd,
-			groupsToRemoveFromFront,
-			groupsToLeave
-			} = this.arrangeGroups(activeGroups, displayedGroups));
-
-
-		groupsToRemoveFromEnd.forEach(group => {
-			let groupEl = this.el.querySelector('[data-group-id="' + group + '"]');
-			pageContainerEl.removeChild(groupEl);
-		});
-
-		groupsToRemoveFromFront.forEach(group => {
-			let groupEl = this.el.querySelector('[data-group-id="' + group + '"]');
-			pageContainerEl.removeChild(groupEl);
-		});
-
-		groupsToPrepend.forEach(group => {
-			pageContainerEl.insertBefore(this.createPlaceholder(group).render(), pageContainerEl.firstChild);
-		});
-
-		groupsToAppend.forEach(group => {
-			this.getContainerEl().appendChild(this.createPlaceholder(group).render());
+		activeGroups.forEach(group => {
+			frag.appendChild(this.createPlaceholder(group).render());
 		});
 
 		this.setPaddingTop(activeGroups[0]);

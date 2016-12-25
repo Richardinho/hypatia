@@ -69,8 +69,8 @@ BookListController.prototype = {
 		let maxGroupIndex = this.maxGroupIndex;
 
 		//  calculate active region
-		let upperLimit = scrollY;
-		let lowerLimit = scrollY + this.getWindowHeight();
+		let upperLimit = scrollY - offset;
+		let lowerLimit = scrollY + this.getWindowHeight() + offset;
 
 		let containerElTop = this.getContainerElTop(scrollY);
 
@@ -116,27 +116,24 @@ BookListController.prototype = {
 
 		this.pageManager.render(this.bookListView);
 
-		this.dataService.fetchBooks(this.queryBuilder.buildAPIQueryString(this.searchCriteriaService))
-			.then(data => {
+		//this.searchCriteriaService.update(data.searchCriteria);
 
-			//this.searchCriteriaService.update(data.searchCriteria);
+		///let totalItems = data.metadata.totalItems;
 
-			let totalItems = data.metadata.totalItems;
+		this.maxGroupIndex = groupsPerPage;
 
-			this.maxGroupIndex = groupsPerPage;
+		//this.totalPages = totalItems / (itemsPerGroup * groupsPerPage);
 
-			this.totalPages = totalItems / (itemsPerGroup * groupsPerPage);
+		//this.bookListView.totalPages = this.totalPages;
 
-			this.bookListView.totalPages = this.totalPages;
+		//let initialGroupsData = this.parseDataIntoGroups(data).slice(0, 2);
 
-			let initialGroupsData = this.parseDataIntoGroups(data).slice(0, 2);
+		//let initialGroups = this.groups.initialiseGroups(initialGroupsData);
 
-			let initialGroups = this.groups.initialiseGroups(initialGroupsData);
 
-			this.bookListView.update(initialGroups);
+		this.onScroll(window.scrollY);
 
-			this.scrollManager.addListener('load-more', this);
-		});
+		this.scrollManager.addListener('load-more', this);
 	}
 
 };
