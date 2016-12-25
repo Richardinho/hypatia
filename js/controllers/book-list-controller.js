@@ -3,7 +3,6 @@ function BookListController(options) {
 	this.bookListViewFactory = options.bookListViewFactory;
 	this.dataService = options.dataService;
 	this.pageManager = options.pageManager;
-	this.searchCriteriaService = options.searchCriteriaService;
 	this.queryBuilder = options.queryBuilder;
 	this.scrollManager = options.scrollManager;
 	this.groupsFactory = options.groupsFactory;
@@ -15,16 +14,20 @@ function BookListController(options) {
 		config : this.config
 	});
 
+	this.bookListView.on('load-more', function () {
+		this.incrementPage();
+		this.onScroll(window.scrollY);
+
+	}, this);
+
 
 }
 
 BookListController.prototype = {
 
-	onScroll : function (yScroll, scrollingDown) {
-
+	onScroll : function (yScroll) {
 
 		let activeGroups = this.calculateActiveGroups(yScroll);
-
 
 		if (!this.groups.areDisplayed(activeGroups)) {
 
@@ -38,10 +41,15 @@ BookListController.prototype = {
 
 			this.bookListView.update(result);
 
-		} else {
-
-			//  do nothing
 		}
+	},
+
+	handleRequest : function (request) {
+
+		this.pageManager.render(this.bookListView);
+		this.maxGroupIndex = this.config.groupsPerPage;
+		this.scrollManager.addListener('load-more', this);
+		this.onScroll(window.scrollY);
 	},
 
 	parseDataIntoGroups : function (rawData) {
@@ -58,6 +66,11 @@ BookListController.prototype = {
     		result.push(items.slice(i, i + chunk));
     	}
     	return result;
+    },
+
+    incrementPage : function () {
+
+    	this.maxGroupIndex += this.config.groupsPerPage;
     },
 
 	calculateActiveGroups : function (scrollY) {
@@ -106,21 +119,6 @@ BookListController.prototype = {
 
 		return window.innerHeight;
 
-	},
-
-
-	handleRequest : function (request) {
-
-		let groupsPerPage = this.config.groupsPerPage;
-		let itemsPerGroup = this.config.itemsPerGroup;
-
-		this.pageManager.render(this.bookListView);
-
-		this.maxGroupIndex = groupsPerPage;
-
-		this.onScroll(window.scrollY);
-
-		this.scrollManager.addListener('load-more', this);
 	}
 
 };
@@ -130,7 +128,6 @@ BookListController.inject = [
 	'dataService',
 	'pageManager',
 	'groupsFactory',
-	'searchCriteriaService',
 	'queryBuilder',
 	'scrollManager',
 	'config'

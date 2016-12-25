@@ -10,6 +10,18 @@ var BookListView = Backbone.View.extend({
 	initialize : function (options) {
 
 		this.config = options.config;
+		this.pageIndex = 1
+	},
+
+	events : {
+	    'click [data-action=load-more]' : 'handleLoadMore'
+	},
+
+	handleLoadMore : function () {
+
+        this.pageIndex++;
+	    this.trigger('load-more');
+
 	},
 
 	getContainerEl : function () {
@@ -42,7 +54,7 @@ var BookListView = Backbone.View.extend({
 
 		//  set page height with padding
 
-		let pageHeight = this.config.groupHeight * this.config.groupsPerPage;
+		let pageHeight = this.config.groupHeight * this.config.groupsPerPage * this.pageIndex;
 
 		this.getContainerEl().style.paddingBottom = pageHeight + 'px';
 		this.getContainerEl().style.paddingTop = '0px';
@@ -101,7 +113,7 @@ var BookListView = Backbone.View.extend({
 	},
 
 	setPaddingBottom : function (lastActiveGroup) {
-		let bottomPadding = this.config.groupHeight * (this.config.groupsPerPage - lastActiveGroup);
+		let bottomPadding = this.config.groupHeight * (this.pageIndex * this.config.groupsPerPage - lastActiveGroup);
 		this.getContainerEl().style.paddingBottom = bottomPadding + 'px';
 	}
 
