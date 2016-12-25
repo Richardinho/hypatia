@@ -1,5 +1,5 @@
 
-let PageView = Backbone.View.extend({
+let GroupView = Backbone.View.extend({
 
 	className : 'book-list',
 
@@ -30,4 +30,3 @@ let PageView = Backbone.View.extend({
 
 });
 
-PageView.inject = [];

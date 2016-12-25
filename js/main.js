@@ -12,7 +12,6 @@ injector.register('bookListController',      BookListController,      Diogenes.I
 injector.register('searchCriteriaService',   SearchCriteriaService,   Diogenes.CACHE_INSTANCE);
 injector.register('groupsFactory',           Groups.factory,          Diogenes.FACTORY_FUNCTION);
 injector.register('bookPageController',      BookPageController,      Diogenes.INSTANCE);
-injector.register('pageViewFactory',         PageView.factory,        Diogenes.FACTORY_FUNCTION);
 injector.register('bookListViewFactory',     BookListView.factory,    Diogenes.FACTORY_FUNCTION);
 injector.register('requestObjectFactory',    RequestObject.factory,   Diogenes.FACTORY_FUNCTION);
 injector.register('bookViewFactory',         BookView.factory,        Diogenes.FACTORY_FUNCTION);

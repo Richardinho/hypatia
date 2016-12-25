@@ -116,20 +116,7 @@ BookListController.prototype = {
 
 		this.pageManager.render(this.bookListView);
 
-		//this.searchCriteriaService.update(data.searchCriteria);
-
-		///let totalItems = data.metadata.totalItems;
-
 		this.maxGroupIndex = groupsPerPage;
-
-		//this.totalPages = totalItems / (itemsPerGroup * groupsPerPage);
-
-		//this.bookListView.totalPages = this.totalPages;
-
-		//let initialGroupsData = this.parseDataIntoGroups(data).slice(0, 2);
-
-		//let initialGroups = this.groups.initialiseGroups(initialGroupsData);
-
 
 		this.onScroll(window.scrollY);
 

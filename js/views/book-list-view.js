@@ -31,6 +31,10 @@ var BookListView = Backbone.View.extend({
 
 	`),
 
+	/*
+		render initial list container
+	*/
+
 	render : function () {
 
 		this.el.innerHTML = this.template({
@@ -47,17 +51,25 @@ var BookListView = Backbone.View.extend({
 		return this;
 	},
 
-	createPlaceholder : function (groupId) {
+    /*
+        renders a placeholder group
+    */
+	createPlaceholder : function (groupId, itemsPerGroup) {
 
 		//  make this dependent on the number of items per group
-		return new PageView({
+
+		let books = [];
+
+		for(let i = 0; i < itemsPerGroup; i++) {
+			books.push({
+				title : 'placeholder book',
+				author : 'mr placeholder'
+			});
+		}
+
+		return new GroupView({
 			groupId : groupId,
-			books : [
-				{ title : 'placeholder book', author : 'mr placeholder' },
-				{ title : 'placeholder book', author : 'mr placeholder' },
-				{ title : 'placeholder book', author : 'mr placeholder' },
-				{ title : 'placeholder book', author : 'mr placeholder' }
-			]
+			books : books
 		});
 	},
 
@@ -124,7 +136,7 @@ var BookListView = Backbone.View.extend({
 		let frag = document.createDocumentFragment();
 
 		activeGroups.forEach(group => {
-			frag.appendChild(this.createPlaceholder(group).render());
+			frag.appendChild(this.createPlaceholder(group, this.config.itemsPerGroup).render());
 		});
 
 		this.setPaddingTop(activeGroups[0]);
