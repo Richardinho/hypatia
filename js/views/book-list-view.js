@@ -9,7 +9,6 @@ var BookListView = Backbone.View.extend({
 
 	initialize : function (options) {
 
-		this.groups = options.groups;
 		this.config = options.config;
 	},
 
@@ -73,52 +72,6 @@ var BookListView = Backbone.View.extend({
 		});
 	},
 
-	createGroupView : function (groupId, data) {
-
-		return new PageView({
-			groupId : groupId,
-			books : data
-		});
-	},
-
-	/*
-		queries dom for currently displayed groups.
-		returns an array of their group ids
-	*/
-	getDisplayedGroups : function () {
-
-		return Array.from(this.el.querySelectorAll('[data-group-id]')).map(groupEl => {
-
-			return parseInt(groupEl.dataset.groupId, 10);
-		});
-
-	},
-
-	arrangeGroups : function (activeGroups, displayedGroups) {
-
-		//  members of displayedGroups but not of activeGroups
-		let groupsToRemove = displayedGroups.filter(group => {
-			return activeGroups.indexOf(group) === -1;
-		});
-
-		//  members of activeGroups but not of displayed group
-		let groupsToAdd = activeGroups.filter(group => {
-			return displayedGroups.indexOf(group) === -1;
-		});
-
-		// members of both
-		let groupsToLeave = displayedGroups.filter(group => {
-			return activeGroups.indexOf(group) !== -1;
-		});
-
-		return {
-			groupsToAdd : groupsToAdd,
-			groupsToRemove : groupsToRemove,
-			groupsToLeave : groupsToLeave
-		};
-	},
-
-
 	//  renders groups into the list. Gets the data from the group.
 	//  if the data does not exist, puts in a placeholder and fires a request to
 	//  the server to get some more.
@@ -128,9 +81,6 @@ var BookListView = Backbone.View.extend({
 		let pageContainerEl = this.getContainerEl();
 
 		// clear out container
-
-		let displayedGroups = this.getDisplayedGroups();
-
 		pageContainerEl.innerHTML = '';
 
 		let frag = document.createDocumentFragment();
@@ -166,5 +116,4 @@ BookListView.factory = function (options) {
 	};
 };
 
-BookListView.factory.inject = [
-];
+BookListView.factory.inject = [];
