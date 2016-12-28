@@ -9,8 +9,8 @@ var BookListView = Backbone.View.extend({
 
 	initialize : function (options) {
 
-		this.config = options.config;
-		this.pageIndex = 1
+		this.viewModel = options.viewModel;
+		this.dataService = options.dataService;
 	},
 
 	events : {
@@ -19,7 +19,7 @@ var BookListView = Backbone.View.extend({
 
 	handleLoadMore : function () {
 
-        this.pageIndex++;
+        this.viewModel.pageIndex++;
 	    this.trigger('load-more');
 
 	},
@@ -54,7 +54,7 @@ var BookListView = Backbone.View.extend({
 
 		//  set page height with padding
 
-		let pageHeight = this.config.groupHeight * this.config.groupsPerPage * this.pageIndex;
+		let pageHeight = this.viewModel.groupHeight * this.viewModel.groupsPerPage;
 
 		this.getContainerEl().style.paddingBottom = pageHeight + 'px';
 		this.getContainerEl().style.paddingTop = '0px';
@@ -72,6 +72,7 @@ var BookListView = Backbone.View.extend({
 		let books = [];
 
 		for(let i = 0; i < itemsPerGroup; i++) {
+
 			books.push({
 				title : 'placeholder book',
 				author : 'mr placeholder'
@@ -79,6 +80,7 @@ var BookListView = Backbone.View.extend({
 		}
 
 		return new GroupView({
+
 			groupId : groupId,
 			books : books
 		});
@@ -98,7 +100,30 @@ var BookListView = Backbone.View.extend({
 		let frag = document.createDocumentFragment();
 
 		activeGroups.forEach(group => {
-			frag.appendChild(this.createPlaceholder(group, this.config.itemsPerGroup).render());
+
+			let groupEl = this.viewModel.getGroupEl(group);
+
+			if (groupEl) {
+				frag.appendChild(groupEl);
+			} else {
+			    let placeholderEl = this.createPlaceholder(group, this.viewModel.itemsPerGroup).render();
+				frag.appendChild(placeholderEl);
+				this.viewModel.storeGroupEl(group, placeholderEl);
+				let offset = group * this.viewModel.itemsPerGroup;
+				let limit = this.viewModel.itemsPerGroup;
+				this.dataService.getBooks(offset, limit).then(groupData => {
+					let books = groupData.products.slice(offset, offset + limit);
+					let groupView = new GroupView({
+						groupId : group,
+						books : books
+					});
+					let el = groupView.render();
+					this.viewModel.storeGroupEl(group, el);
+					if(this.isDisplayed(placeholderEl)) {
+                        pageContainerEl.replaceChild(el, placeholderEl);
+					}
+				});
+			}
 		});
 
 		this.setPaddingTop(activeGroups[0]);
@@ -108,12 +133,20 @@ var BookListView = Backbone.View.extend({
 
 	},
 
+	isDisplayed : function (el) {
+
+	    return !!el.parentElement;
+
+	},
+
 	setPaddingTop : function (firstActiveGroup) {
-		this.getContainerEl().style.paddingTop = (firstActiveGroup * this.config.groupHeight) + 'px';
+
+		this.getContainerEl().style.paddingTop = (firstActiveGroup * this.viewModel.groupHeight) + 'px';
 	},
 
 	setPaddingBottom : function (lastActiveGroup) {
-		let bottomPadding = this.config.groupHeight * (this.pageIndex * this.config.groupsPerPage - lastActiveGroup);
+
+		let bottomPadding = this.viewModel.groupHeight * (this.viewModel.pageIndex * this.viewModel.groupsPerPage - lastActiveGroup);
 		this.getContainerEl().style.paddingBottom = bottomPadding + 'px';
 	}
 
@@ -125,7 +158,8 @@ BookListView.factory = function (options) {
 
 		_.extend(options, config);
 		return new BookListView(options);
+
 	};
 };
 
-BookListView.factory.inject = [];
+BookListView.factory.inject = ['dataService'];

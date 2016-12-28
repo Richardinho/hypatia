@@ -4,7 +4,6 @@
 
 .book {
 
-    width : 30%;
     height : 100px; /*  height of item   */
     border : solid 1px black;
 }

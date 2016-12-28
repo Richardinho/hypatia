@@ -31,6 +31,134 @@
     { "id" : 16, "title" : "The Greek Philosophers", "author" : "Rex Warner" },
     { "id" : 17, "title" : "Semiotics", "author" : "Daniel Chandler" },
     { "id" : 18, "title" : "The Mobile Handbook", "author" : "Peter-Paul Koch" },
-    { "id" : 19, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" }
+    { "id" : 19, "title" : "ASP.NET Core and Angular 2", "author" : "Valerio De Sanctis" },
+    { "id" : 20, "title" : "ng-book-2 The complete book on Angular 2", "author" : "Nate Murray and Ari Lerner" },
+    { "id" : 21, "title" : "Learning Angular 2", "author" : "Pablo Deeleman" },
+    {
+      "id" : 22,
+      "title" : "Mobile App Development with Ionic 2: Cross-Platform Apps with Ionic 2, Angular 2, and Cordova",
+      "author" : "Chris Griffin",
+      "image" : "",
+      "description" : ""
+    },
+    {
+      "id" : 23,
+      "title" : "SurviveJS - Webpack and React: From apprentice to master",
+      "author" : "Juho Vepsäläinen",
+      "image" : "",
+      "description" : ""
+    },
+    {
+      "id" : 24,
+      "title" : "Building Microservices",
+      "author" : "Sam Newman",
+      "image" : "building-microservices.jpg",
+      "description" : "Distributed systems have become more fine-grained in the past 10 years, shifting from code-heavy monolithic applications to smaller, self-contained microservices. But developing these systems brings its own set of headaches. With lots of examples and practical advice, this book takes a holistic view of the topics that system architects and administrators must consider when building, managing, and evolving microservice architectures.Microservice technologies are moving quickly. Author Sam Newman provides you with a firm grounding in the concepts while diving into current solutions for modeling, integrating, testing, deploying, and monitoring your own autonomous services. You’ll follow a fictional company throughout the book to learn how building a microservice architecture affects a single domain.Discover how microservices allow you to align your system design with your organization’s goals"
+
+    },
+    {
+      "id" : 25,
+      "title" : "CSS Master",
+      "author" : "Tiffany B. Brown",
+      "image" : "",
+      "description" : ""
+    },
+    {
+      "id" : 26,
+      "title" : "Logical Chess: Move by Move: Every Move Explained ",
+      "author" : "Irving Chernev",
+      "image" : "",
+      "description" : ""
+    },
+    {
+      "id" : 27,
+      "title" : "Unraveling Angular 2: The Ultimate Beginners Guide with over 130 Complete Samples: Volume 8 ",
+      "author" : "Istvan Novak",
+      "image" : "",
+      "description" : ""
+    },
+    {
+      "id" : 28,
+      "title" : "Developing Backbone.js Applications",
+      "author" : "Addy Osmani",
+      "image" : "",
+      "description" : ""
+    },
+    {
+      "id" : 29,
+      "title" : "Design Patterns",
+      "author" : "Gamma, Helm, Johnson, & Vlissides",
+      "image" : "",
+      "description" : ""
+    },
+    {
+      "id" : 30,
+      "title" : "Backbone.js Patterns and Best Practices",
+      "author" : "Swarnendu Du",
+      "image" : "",
+      "description" : ""
+    },
+    {
+      "id" : 31,
+      "title" : "Developing Web Components: UI from jQuery to Polymer",
+      "author" : "Jarrod Overson",
+      "image" : "",
+      "description" : ""
+    },
+    {
+      "id" : 32,
+      "title" : "Hypatia of Alexandria: Mathematician and Martyr",
+      "author" : "Michael Deakin",
+      "image" : "",
+      "description" : ""
+    },
+    {
+      "id" : 33,
+      "title" : "",
+      "author" : "",
+      "image" : "",
+      "description" : ""
+    },
+    {
+      "id" : 34,
+      "title" : "From Puritanism to Postmodernism: A History of American Literature",
+      "author" : "Malcolm Bradbury",
+      "image" : "",
+      "description" : "From a Modernist/Postmodernist perspective, this addresses questions of literary and cultural nationalism. The authors reveal that since the seventeenth century, American writing has reflected the political and historical climate of its time and helped define America's cultural and social parameters.Aboe all they argue that American literature has always been essentially \"modern\", illustrating this with a broad range of texts: from Poe and Melville to fitzgerald and Proud, to Wallace and Stevens, Gwendolyn Brooks, and Thomas Pynchon."
+    },
+    {
+      "id" : 35,
+      "title" : "",
+      "author" : "",
+      "image" : "",
+      "description" : ""
+    },
+    { "id" : 36, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 37, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 38, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 39, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 40, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 41, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 42, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 43, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 44, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 45, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 46, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 47, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 48, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 49, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 50, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 50, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 50, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 51, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 52, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 53, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 54, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 55, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 56, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 57, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 58, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 59, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" },
+    { "id" : 60, "title" : "Design Patterns", "author" : "Gamma, Helm, Johnson, & Vlissides" }
   ]
 }

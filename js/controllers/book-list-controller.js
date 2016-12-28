@@ -9,9 +9,31 @@ function BookListController(options) {
 	this.groups =  this.groupsFactory();
 	this.config = options.config;
 
+	let viewModel = {
+		pageIndex : 1,
+		groups : this.groups,
+		groupHeight : this.config.groupHeight,
+		groupsPerPage : this.config.groupsPerPage,
+		itemsPerGroup : this.config.itemsPerGroup,
+
+		getGroupEl : index => {
+
+			return this.groups.groups[index].el
+
+		},
+
+		storeGroupEl : (groupIndex, groupEl) => {
+
+			this.groups.groups[groupIndex].el = groupEl;
+
+
+		}
+	};
+	this.viewModel = viewModel;
+
 	this.bookListView = this.bookListViewFactory({
 		groups : this.groups,
-		config : this.config
+		viewModel : viewModel
 	});
 
 	this.bookListView.on('load-more', function () {
@@ -19,7 +41,6 @@ function BookListController(options) {
 		this.onScroll(window.scrollY);
 
 	}, this);
-
 
 }
 
@@ -83,11 +104,11 @@ BookListController.prototype = {
 
 		//  calculate active region
 		let upperLimit = scrollY - offset;
-		let lowerLimit = scrollY + this.getWindowHeight() + offset;
+		let lowerLimit = scrollY + window.innerHeight + offset;
 
 		let containerElTop = this.getContainerElTop(scrollY);
 
-		let groupHeight = this.getGroupHeight();
+		let groupHeight = this.config.groupHeight;
 
 		let indexOfFirstGroup = Math.max(minGroupIndex, Math.floor((upperLimit - containerElTop) / groupHeight));
 		let indexOfLastGroup =  Math.min(maxGroupIndex, Math.floor((lowerLimit - containerElTop) / groupHeight));
@@ -108,18 +129,10 @@ BookListController.prototype = {
 	getOffset : function () {
 
 		let offset = this.config.activeRegionRatio / 2;
-		return (this.getWindowHeight() * offset);
-	},
-
-	getGroupHeight : function () {
-		return this.config.groupHeight;
-	},
-
-	getWindowHeight : function () {
-
-		return window.innerHeight;
-
+		return (window.innerHeight * offset);
 	}
+
+
 
 };
 

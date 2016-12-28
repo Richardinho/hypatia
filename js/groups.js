@@ -34,7 +34,8 @@ Groups.prototype = {
 
             return {
                 data : groupData,
-                displayed : true
+                displayed : true,
+                el : null
             };
         });
         //  return an array of indexes of elements just added

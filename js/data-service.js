@@ -24,6 +24,13 @@ DataService.prototype = {
 
 	},
 
+	getBooks : function (offset, limit) {
+
+		return this.fetchBooks('').then(data => {
+			return data;
+		});
+	},
+
 	_createURL : function (url, queryString) {
 		if (queryString) {
 			return url + '?' + queryString;
