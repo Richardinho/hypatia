@@ -20,8 +20,7 @@ module.exports = function(config) {
       'node_modules/jquery/dist/jquery.min.js',
       'node_modules/underscore/underscore.js',
       'node_modules/backbone/backbone.js',
-      'shared-js/**/*.js',
-      'version2/js/**/*.js'
+      'js/**/*.js'
     ],
 
 
