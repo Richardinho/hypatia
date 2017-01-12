@@ -21,7 +21,15 @@ ProductListController.prototype = {
 
 	handleRequest : function (request) {
 
+		/*
+			render out the basic containing structure of the product list page.
+		*/
+
 		this.pageManager.render(this.productListView);
+
+		/*
+			The total number of products is the first piece of information that we need.
+		*/
 
 		this.dataService.getTotalProducts().then((data) => {
 
@@ -34,6 +42,12 @@ ProductListController.prototype = {
 				this.onScroll(window.scrollY);
 
 			}, this);
+
+			/*
+				The 'placeholder-created' event is fired when the view renders a placeholder
+				group to the page. We then make a call to the server for the actual data
+				to make the real group.
+			*/
 
 			this.productListView.on('placeholder-created', function (index) {
 
@@ -115,7 +129,7 @@ ProductListController.prototype = {
 
 	destroy : function () {
 
-
+		this.scrollManager.removeListener('load-more');
 	}
 };
 

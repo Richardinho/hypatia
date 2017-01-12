@@ -32,6 +32,24 @@ DataService.prototype = {
 		});
 	},
 
+	getProduct : function (id) {
+
+		return this.fetchBooks('').then(data => {
+			return new Promise((resolve) => {
+				setTimeout(function () {
+					resolve(this.getProductById(id, data.products));
+				}.bind(this), 1000)
+			});
+		});
+	},
+
+	getProductById : function (id, products) {
+
+		return products.find(product  => {
+			return parseInt(product.id, 10) == parseInt(id, 10);
+		});
+	},
+
 	getProducts : function (offset, limit) {
 
 		return this.fetchBooks('').then(data => {

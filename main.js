@@ -9,6 +9,7 @@ injector.register('router', Router, Diogenes.CACHE_INSTANCE);
 injector.register('injector', injector, Diogenes.VALUE);
 injector.register('requestObjectFactory', RequestObject.factory, Diogenes.FACTORY_FUNCTION);
 injector.register('productListController', ProductListController, Diogenes.INSTANCE);
+injector.register('productDetailController', ProductDetailController, Diogenes.INSTANCE);
 injector.register('scrollManager', ScrollManager, Diogenes.CACHE_INSTANCE);
 injector.register('config', config, Diogenes.VALUE);
 injector.register('dataService', DataService, Diogenes.CACHE_INSTANCE);

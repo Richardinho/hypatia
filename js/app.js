@@ -8,6 +8,7 @@ App.prototype = {
 	start : function () {
 
 		this.router.route('', 'productListController');
+		this.router.route('book/:id', 'productDetailController');
 
 		Backbone.history.start({ pushState : true });
 	}

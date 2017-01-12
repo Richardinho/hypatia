@@ -8,12 +8,7 @@ let ProductListView = Backbone.View.extend({
 
 	template : _.template(`
 
-		<h2><%= title %></h2>
-
-		<a data-internal href="list?filters[]=apple&offset=3&limit=20&filters[]=banana">hello world</a>
-		<a data-internal href="book/4">book</a>
-
-		<h2 data-component="number-of-results"></h2>
+		<h2 class="number-of-results" data-component="number-of-results"></h2>
 		<div id="page-container"></div>
 		<h2 data-component="number-of-results"></h2>
 		<button data-action="load-more">load more</button>
@@ -60,12 +55,22 @@ let ProductListView = Backbone.View.extend({
 
 	},
 
+	placeholderTemplate : _.template(`
+
+		<img class="spinner" src="/images/spinner.svg">
+	`),
+
 	createPlaceholderGroup : function (groupIndex) {
 
 	    let el = document.createElement('div');
 	    el.className = 'placeholder-group';
 	    el.style.height = this.viewModel.groupHeight + 'px';
-	    el.innerHTML = groupIndex;
+	    for(let i = 0; i < 4; i++) {
+	    	let productEl = document.createElement('div');
+	    	productEl.innerHTML = this.placeholderTemplate();
+	    	productEl.className = 'book';
+	    	el.appendChild(productEl);
+	    }
 	    return el;
 
 	},

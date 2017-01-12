@@ -1,7 +1,7 @@
 {
   "searchCriteria" : {},
   "metadata" :  {
-    "totalItems" : 30
+    "totalItems" : 60
   },
   "products" : [{
       "id" : 1,
@@ -14,7 +14,7 @@
       "title" : "Why nations fail",
       "author" : "Acemoglu and Robinson",
       "image" : "why-nations-fail.jpg",
-      "description" : "Why are some nations more prosperous than others? Why Nations Fail sets out to answer this question, with a compelling and elegantly argued new theory: that it is not down to climate, geography or culture, but because of institutions. Drawing on an extraordinary range of contemporary and historical examples, from ancient Rome through the Tudors to modern-day China, leading academics Daron Acemoglu and James A. Robinson show that to invest and prosper, people need to know that if they work hard, they can make money and actually keep it - and this means sound institutions that allow virtuous circles of innovation, expansion and peace.Based on fifteen years of research, and answering the competing arguments of authors ranging from Max Weber to Jeffrey Sachs and Jared Diamond, Acemoglu and Robinson step boldly into the territory of Francis Fukuyama and Ian Morris. They blend economics, politics, history and current affairs to provide a new, powerful and persuasive way of understanding wealth and poverty."
+      "description" : "Why are some nations more prosperous than others? Why Nations Fail sets out to answer this question, with a compelling and elegantly argued new theory: that it is not down to climate, geography or culture, but because of institutions. Drawing on an extraordinary range of contemporary and historical examples, from ancient Rome through the Tudors to modern-day China, leading academics Daron Acemoglu and James A."
     },{
       "id" : 3,
       "title" : "Five Dialogues: Euthyphro, Apology, Crito, Meno, Phaedo",
@@ -27,14 +27,14 @@
       "title" : "Counterpath",
       "author" : "Catherine Malabou and Jacques Derrida" ,
       "image" : "counterpath.jpg",
-      "description" : "Counterpath is a collaborative work by Catherine Malabou and Jacques Derrida that answers to the gamble inherent in the idea of \"travelling with\" the philosopher of deconstruction. Malabou's readerly text of quotations and commentary demonstrates how Derrida's work, while appearing to be anything but a travelogue, is nevertheless replete with references to geographical and topographical locations, and functions as a kind of counter-Odyssey through meaning, theorizing, and thematizing notions of arrival, drifting, derivation, and catastrophe. In fact, by going straight to the heart of the Derridean idea of \"spacing,\" she finally makes it seem as though Derrida has never written about anything but travel. Malabou's text is punctuated by a series of postcards received by Derrida from destinations such as Istanbul and Porto, Laguna Beach and Athens, which are inspired by his reading of her evolving discussion. Writing in a familiar and unguarded manner, as if he were \"on vacation\" from his own writing, Derrida still remains totally faithful to that work and invites the reader to reflect on much of what haunts his texts as well as his daily life, questions of distance and death, the relation to the other, and exile.."
+      "description" : "Counterpath is a collaborative work by Catherine Malabou and Jacques Derrida that answers to the gamble inherent in the idea of \"travelling with\" the philosopher of deconstruction. Malabou's readerly text of quotations and commentary demonstrates how Derrida's work, while appearing to be anything but a travelogue, is nevertheless replete with references to geographical and topographical locations, and functions as a kind of counter-Odyssey through meaning, theorizing, and thematizing notions of arrival, drifting, derivation, and catastrophe."
     },
     {
       "id" : 5,
       "title" : "The essence of human-computer interaction",
       "author" : "Christine Faulkner",
       "image" : "human-computer-interaction.jpg",
-      "description" : "The Prentice Hall Essence of Computer Science Series provides a concise, practical and uniform introduction to the core components of an undergraduate Computer Science degree. Acknowledging recent changes within higher education, this approach uses a variety of pedagogical tools - case-studies, worked examples and self-test questions - to underpin the student's learning.The Essence of Human-Computer Interaction provides a concise, no-nonsense introduction to studying HCI. It covers all of the essential elements of a standard Human-Computer Interaction course, including Artificial Intelligence, Psychology and Cognitive Science, and suggests ways in which to further develop areas of interest in the subject. It provides examples from everyday life as well as computer systems, such as \"real\" interfacing problems and solutions. It also includes practical \"experiments\" for the reader to try, through an examination of subjects such as ergonomics and other HCI issues."
+      "description" : "The Prentice Hall Essence of Computer Science Series provides a concise, practical and uniform introduction to the core components of an undergraduate Computer Science degree. Acknowledging recent changes within higher education, this approach uses a variety of pedagogical tools - case-studies, worked examples and self-test questions - to underpin the student's learning."
     },
     {
       "id" : 6,
@@ -48,7 +48,7 @@
       "title" : "Mediaeval Europe: A Textbook of European History, 1095-1254",
       "author" : "Kenneth Bell",
       "image" : "mediaeval-europe.jpg",
-      "description" : "The strength of the baronage came from their hold on the land. The whole of early mediaeval society was based on the land, from which it was fed. The peasants tilled it as the serfs of the lord of their village. That lord had himself become the vassal of some greater man, who might himself be the vassal of the King. Each vassal was bound to his lord by the necessity of doing service either on the field of battle or on the land. The only man who had no subject was the serf. The one man who had no lord was the King, or, more strictly speaking, the Emperor. Such was the feudal system a pyramid of part-owners of the land, which was tilled by the lowest tier of the structure. In theory the actual owner of the land came to be the King. In practice it was the man who could best prevent others from interfering with his exploitation of it. The weak point of the baronage was finance. War and the chase are both expensive amusements if practised on a grand scale. Mediaeval agriculture was not a very lucrative enterprise. The baronage was, therefore, always bank rupt. Hence, if the great lord's display and magnificence kept the labouring classes in perpetual misery, they made the fortune of the money-lender. Usury was forbidden to Christians by the Church, and this and their own genius left the career open to the Jews. It is as great a mistake to forget the Jew as to forget the peasant in a picture of the mediaeval baronage. Between them they were the foundations on which rested its power."
+      "description" : "The strength of the baronage came from their hold on the land. The whole of early mediaeval society was based on the land, from which it was fed. The peasants tilled it as the serfs of the lord of their village. That lord had himself become the vassal of some greater man, who might himself be the vassal of the King. Each vassal was bound to his lord by the necessity of doing service either on the field of battle or on the land. The only man who had no subject was the serf. The one man who had no lord was the King, or, more strictly speaking, the Emperor."
     },
     {
       "id" : 8,
@@ -61,7 +61,7 @@
       "id" : 9,
       "title" : "Confessions",
       "author" : "Saint Augustine",
-      "image" : "",
+      "image" : "st-augustine.jpg",
       "description" : ""
     },
     {
@@ -75,7 +75,7 @@
       "id" : 11,
       "title" : "Seven Languages in Seven Weeks",
       "author" : "Bruce Tate",
-      "image" : "",
+      "image" : "seven-languages.jpg",
       "description" : ""
     },
     {
@@ -163,7 +163,7 @@
       "title" : "Building Microservices",
       "author" : "Sam Newman",
       "image" : "building-microservices.jpg",
-      "description" : "Distributed systems have become more fine-grained in the past 10 years, shifting from code-heavy monolithic applications to smaller, self-contained microservices. But developing these systems brings its own set of headaches. With lots of examples and practical advice, this book takes a holistic view of the topics that system architects and administrators must consider when building, managing, and evolving microservice architectures.Microservice technologies are moving quickly. Author Sam Newman provides you with a firm grounding in the concepts while diving into current solutions for modeling, integrating, testing, deploying, and monitoring your own autonomous services. You’ll follow a fictional company throughout the book to learn how building a microservice architecture affects a single domain.Discover how microservices allow you to align your system design with your organization’s goals"
+      "description" : "Distributed systems have become more fine-grained in the past 10 years, shifting from code-heavy monolithic applications to smaller, self-contained microservices. But developing these systems brings its own set of headaches. With lots of examples and practical advice, this book takes a holistic view of the topics that system architects and administrators must consider when building, managing, and evolving microservice architectures."
 
     },
     {
@@ -213,7 +213,7 @@
       "title" : "Developing Web Components: UI from jQuery to Polymer",
       "author" : "Jarrod Overson",
       "image" : "web-components",
-      "description" : "Although web components are still on the bleeding edge—barely supported in modern browsers—the technology is also moving extremely fast. This practical guide gets you up to speed on the concepts underlying W3C’s emerging standard and shows you how to build custom, reusable HTML5 Web Components.Regardless of your experience with libraries such as jQuery and Polymer, this book teaches JavaScript developers the DOM manipulations these libraries perform. You’ll learn how to build a basic widget with vanilla JavaScript and then convert it into a web component that’s semantic, declarative, encapsulated, consumable, and maintainable. With custom components, the Web can finally fulfill its potential as a natively extensible application platform. This book gets you in at the right time."
+      "description" : "Although web components are still on the bleeding edge—barely supported in modern browsers—the technology is also moving extremely fast. This practical guide gets you up to speed on the concepts underlying W3C’s emerging standard and shows you how to build custom, reusable HTML5 Web Components."
     },
     {
       "id" : 32,
@@ -227,7 +227,7 @@
       "title" : "Exploring History in the Scottish Borders",
       "author" : "Ian James Douglas",
       "image" : "border-history",
-      "description" : "The Scottish border is steeped in history. “Exploring History in the Scottish Borders” provides an overview of the history of this turbulent area. This didn't produce Robin Hood characters, it produced a tough and often violent people, the border reivers. In the 16th century the Scottish borderland made the American wild west of the 19th century look like a kindergarten. But its past has also left its mark in splendid castles, beautiful ruined abbeys, and a depth of history few other areas can match. From the time of the Romans the borderland was the crossroads between the north and south of Britain. The often fraught relationship between England and Scotland left its mark on the area and the people. This book tells the story of the of the English/Scottish borderland from the time of the Romans, through the Scottish wars of independence, the turbulent 16th century and Henry VIII’s “rough wooing”, up until the reopening of part of the Waverley Line by Queen Elizabeth in 2015. Illustrated by many full colour photographs, Exploring History in the Scottish Borders provides an overview of Border history, and a guide to key historical sites in the borderland."
+      "description" : "The Scottish border is steeped in history. “Exploring History in the Scottish Borders” provides an overview of the history of this turbulent area. This didn't produce Robin Hood characters, it produced a tough and often violent people, the border reivers. In the 16th century the Scottish borderland made the American wild west of the 19th century look like a kindergarten. But its past has also left its mark in splendid castles, beautiful ruined abbeys, and a depth of history few other areas can match. "
     },
     {
       "id" : 34,
@@ -256,7 +256,7 @@
       "title" : "SurviveJS - Webpack and React: From apprentice to master",
       "author" : "Juho Vepsäläinen",
       "image" : "webpack-and-react.jpg",
-      "description" : "Facebook's React powers an increasing amount of sites. There is a good reason for this. It simplifies frontend development greatly. Combined with Webpack, a bundling tool, you have a powerful frontend development environment in your hands.      SurviveJS - Webpack and React shows you how to build a simple Kanban application based on these technologies. During the process you will learn to:Set up a Webpack based development and production environment. You will learn to get most out of babel-plugin-hot-transform and Babel for development. Improve the quality of your code by using ESLint and friends to spot possible mistakes earlier. Get into the React mindset while learning the basics of Alt, an implementation of the Flux Application Architecture.Style your React application in various emerging ways. Implement drag and drop for your application using React DnD.In addition the Amazon edition contains exclusive chapters showing you how to:Deal with typing in React. Test your React application in various ways. The book assumes you know basics of JavaScript and understand how to use npm. Most of the book content is available online at survivejs.com. By buying this book you support the development of further content."
+      "description" : "Facebook's React powers an increasing amount of sites. There is a good reason for this. It simplifies frontend development greatly. Combined with Webpack, a bundling tool, you have a powerful frontend development environment in your hands.      SurviveJS - Webpack and React shows you how to build a simple Kanban application based on these technologies. During the process you will learn to:Set up a Webpack based development and production environment. You will learn to get most out of babel-plugin-hot-transform and Babel for development."
     },
     {
       "id" : 38,
@@ -284,7 +284,7 @@
       "title" : "ppk on JavaScript (Voices That Matter)",
       "author" : "Peter Paul Koch",
       "image" : "ppk-javascript.jpg",
-      "description" : "Whether you're an old-school scripter who needs to modernize your JavaScripting skills or a standards-aware Web developer who needs best practices and code examples, you'll welcome this guide from a JavaScript master.Other JavaScript books use example scripts that have little bearing on real-world Web development and are useful only in the chapter at hand. In contrast, Peter-Paul Koch's book uses eight real-world scripts he created for real-world clients in order to earn real-world money. That means the scripts are guaranteed to do something useful (and sellable!) that enhances the usability of the page they're used on.The book's example scripts include one that sorts a data table according to the user's search queries, a form validation script, a script that shows form fields only when the user needs them, a drop-down menu, and a data retrieval script that uses simple Ajax and shows the data in an animation.After an overview of JavaScript's purpose, Peter-Paul provides theoretical chapters on the context (jobs for JavaScript, CSS vs. JavaScript), the browsers (debugging, the arcana of the browser string), and script preparation. Then follow practical chapters on Core, BOM, Events, DOM, CSS Modification, and Data Retrieval, all of which are explained through a combination of theoretical instruction and the taking apart of the relevant sections of the example scripts."
+      "description" : "Whether you're an old-school scripter who needs to modernize your JavaScripting skills or a standards-aware Web developer who needs best practices and code examples, you'll welcome this guide from a JavaScript master.Other JavaScript books use example scripts that have little bearing on real-world Web development and are useful only in the chapter at hand. In contrast, Peter-Paul Koch's book uses eight real-world scripts he created for real-world clients in order to earn real-world money."
     },
     {
       "id" : 42,
@@ -305,7 +305,7 @@
       "title" : "Beethoven: The Man and the Artist, as Revealed in His Own Words",
       "author" : "Beethoven",
       "image" : "beethoven.jpg",
-      "description" : "This long-esteemed book offers the reader a highly interesting glimpse of Beethoven, the man. There are a number of biographical studies of Beethoven, but nowhere else will you find such a convenient classified collection of his utterances and opinions. Through his own words emerges an image of a man, torn by personal problems and a tragic affliction, yet impelled by a keen sense of his destiny and place in the history of music.Included are over 300 of Beethoven's reflections on the art of composing: \"The startling effects which many credit to the natural genius of the composer, are often achieved with the greatest ease by the use and resolution of the diminished seventh chords\"; on his own temperament and character: \"Many a vigorous and unconsidered word drops from my mouth, for which reason I am considered mad\"; and on other composers: \"Rossini would have become a great composer if his teacher had frequently applied some blows ad posteriora\"; on performers: \"These pianoforte players have their coteries whom they often join; there they are praised continually and there's an end of art!\"; on his own suffering: \"My defective hearing appeared everywhere before me like a ghost; I fled from the presence of men, was obliged to appear to be a misanthrope although I am so little such.\" There are also his views on art and artists, on his own works, on education, nature, poetry, God and other matters. Friedrich Kerst originally gleaned this material from various sources, such as Beethoven's diary, the famous conversation-books, the Heiligenstadt Will, and his correspondence with the Archduke Rudolf, Ferdinand Ries, Dr. Wegeler, Cherubini, the \"Immortal Beloved,\" and many others. Altogether it forms the handiest compilation of Beethoven's recorded remarks in existence. Out of print for years, this annotated translation by a renowned American music authority, Henry Edward Krehbiel, is once more made available for the illumination and enjoyment of scholars, students, and music lovers."
+      "description" : "This long-esteemed book offers the reader a highly interesting glimpse of Beethoven, the man. There are a number of biographical studies of Beethoven, but nowhere else will you find such a convenient classified collection of his utterances and opinions. Through his own words emerges an image of a man, torn by personal problems and a tragic affliction, yet impelled by a keen sense of his destiny and place in the history of music.Included are over 300 of Beethoven's reflections on the art of composing: \"The startling effects which many credit to the natural genius of the composer, are often achieved with the greatest ease by the use and resolution of the diminished seventh chords"
     },
     {
       "id" : 45,
@@ -361,21 +361,21 @@
       "title" : "Byzantium Triumphant: The Military History of the Byzantines 959-1025",
       "author" : "Julian Romane",
       "image" : "byzantine.jpg",
-      "description" : "Byzantium Triumphant describes in detail the wars of the Byzantine emperors Nicephorus II Phocas, his nephew and assassin John I Tzimiskes, and Basil II. The operations, battles and drama of their various bitter struggles unfold, depicting the new energy and improved methods of warfare developed in the late tenth century. These emperors were at war on all fronts, fighting for survival and dominance against enemies including the Arab caliphates, Bulgars (Basil II was dubbed by later authors 'the Bulgar Slayer') and the Holy Roman Empire, not to mention dealing with civil wars and rebellions. Julian Romane's careful research, drawing particularly on the evidence of Byzantine military manuals, allows him to produce a gripping narrative underpinned by a detailed understanding of the Byzantine tactics, organization, training and doctrine. While essentially a military history, there is, inevitably with the Byzantine emperors, a healthy dose of court intrigue, assassination and political skulduggery too."
+      "description" : "Byzantium Triumphant describes in detail the wars of the Byzantine emperors Nicephorus II Phocas, his nephew and assassin John I Tzimiskes, and Basil II. The operations, battles and drama of their various bitter struggles unfold, depicting the new energy and improved methods of warfare developed in the late tenth century. These emperors were at war on all fronts, fighting for survival and dominance against enemies including the Arab caliphates, Bulgars (Basil II was dubbed by later authors 'the Bulgar Slayer')"
     },
     {
       "id" : 51,
       "title" : "The Nicomachean Ethics",
       "author" : "Aristotle",
       "image" : "nicomachean-ethics.jpg",
-      "description" : "Previously published as Ethics, Aristotle's The Nicomachean Ethics addresses the question of how to live well, and originates the concept of cultivating a virtuous character as the basis of his ethical system. This Penguin Classics edition is translated from the Greek by J.A.K. Thomson with revisions and notes by Hugh Tredennick, and an introduction and bibliography by Jonathan Barnes. 'One swallow does not make a summer; neither does one day. Similarly neither can one day, or a brief space of time, make a man blessed and happy' In The Nicomachean Ethics, Aristotle sets out to examine the nature of happiness. He argues that happiness consists in 'activity of the soul in accordance with virtue', for example with moral virtues, such as courage, generosity and justice, and intellectual virtues, such as knowledge, wisdom and insight. The Ethics also discusses the nature of practical reasoning, the value and the objects of pleasure, the different forms of friendship, and the relationship between individual virtue, society and the State. Aristotle's work has had a profound and lasting influence on all subsequent Western thought about ethical matters. Aristotle (384-22 BC) studied at the Academy of Plato for 20 years and then established his own school and research institute, 'The Lyceum'. His writings, which were of extraordinary range, profoundly affected the whole course of ancient and medieval philosophy and are still eagerly studied and debated by philosophers today."
+      "description" : "Previously published as Ethics, Aristotle's The Nicomachean Ethics addresses the question of how to live well, and originates the concept of cultivating a virtuous character as the basis of his ethical system. This Penguin Classics edition is translated from the Greek by J.A.K. Thomson with revisions and notes by Hugh Tredennick, and an introduction and bibliography by Jonathan Barnes. 'One swallow does not make a summer; neither does one day. Similarly neither can one day, or a brief space of time, make a man blessed and happy'."
     },
     {
       "id" : 52,
       "title" : "Ethics",
       "author" : "Benedict Spinoza",
       "image" : "spinoza.jpg",
-      "description" : "A profoundly beautiful and uniquely insightful description of the universe, Benedict de Spinoza's Ethics is one of the masterpieces of Enlightenment-era philosophy. This Penguin Classics edition is edited and translated from the Latin by Edwin Curley, with an introduction by Stuart Hampshire. Published shortly after his death, the Ethics is undoubtedly Spinoza's greatest work - an elegant, fully cohesive cosmology derived from first principles, providing a coherent picture of reality, and a guide to the meaning of an ethical life. Following a logical step-by-step format, it defines in turn the nature of God, the mind, the emotions, human bondage to the emotions, and the power of understanding - moving from a consideration of the eternal, to speculate upon humanity's place in the natural order, the nature of freedom and the path to attainable happiness. A powerful work of elegant simplicity, the Ethics is a brilliantly insightful consideration of the possibility of redemption through intense thought and philosophical reflection. The Ethics is presented in the standard translation of the work by Edwin Curley. This edition also includes an introduction by Stuart Hampshire, outlining Spinoza's philosophy and placing it in context.Baruch Spinoza (1632-77), later known as Benedict de Spinoza, was born in Amsterdam, where his orthodox Jewish family had fled from persecution in Portugal. Ethics was published in 1677 after his death, and his influence spread to the nineteenth century: inspiring the Romantic poets, winning the respect of Flaubert and Matthew Arnold, and moving George Eliot, who admired him as the enemy of superstition and the hero of scientific rationalism, to begin a translation of his works."
+      "description" : "A profoundly beautiful and uniquely insightful description of the universe, Benedict de Spinoza's Ethics is one of the masterpieces of Enlightenment-era philosophy. This Penguin Classics edition is edited and translated from the Latin by Edwin Curley, with an introduction by Stuart Hampshire. Published shortly after his death, the Ethics is undoubtedly Spinoza's greatest work - an elegant, fully cohesive cosmology derived from first principles, providing a coherent picture of reality, and a guide to the meaning of an ethical life."
     },
     {
       "id" : 53,
@@ -389,14 +389,14 @@
       "title" : "A Treatise of Human Nature: Being an Attempt to Introduce the Experimental Method of Reasoning into Moral Subjects (Penguin Classics)",
       "author" : "David Hume",
       "image" : "hume.jpg",
-      "description" : "One of the most significant works of Western philosophy, Hume's Treatise was published in 1739-40, before he was thirty years old. A pinnacle of English empiricism, it is a comprehensive attempt to apply scientific methods of observation to a study of human nature, and a vigorous attack upon the principles of traditional metaphysical thought. With masterly eloquence, Hume denies the immortality of the soul and the reality of space; considers the manner in which we form concepts of identity, cause and effect; and speculates upon the nature of freedom, virtue and emotion. Opposed both to metaphysics and to rationalism, Hume's philosophy of informed scepticism sees man not as a religious creation, nor as a machine, but as a creature dominated by sentiment, passion and appetite."
+      "description" : "One of the most significant works of Western philosophy, Hume's Treatise was published in 1739-40, before he was thirty years old. A pinnacle of English empiricism, it is a comprehensive attempt to apply scientific methods of observation to a study of human nature, and a vigorous attack upon the principles of traditional metaphysical thought. With masterly eloquence"
     },
     {
       "id" : 55,
       "title" : "Critique of Pure Reason",
       "author" : "Immanuel Kant",
       "image" : "kant.jpg",
-      "description" : "Kant's Critique of Pure Reason. It presents a profound and challenging investigation into the nature of human reason, its knowledge and illusions. Reason, Kant argues, is the seat of certain concepts that precede experience and make it possible, but we are not therefore entitled to draw conclusions about the natural world from these concepts. The Critique brings together the two opposing schools of philosophy: rationalism, which grounds all our knowledge in reason, and empiricism, which traces all our knowledge to experience. Kant's transcendental idealism indicates a third way that goes far beyond these alternatives.Marcus Weigelt's lucid re-working of Max Muller's classic translation makes the Critique accessible to a new generation of readers. His informative introduction places the work in context and elucidates Kant's main arguments. This edition also contains a bibliography and explanatory notes.Immanuel Kant (1724-1804), born in Königsberg, East Prussia, was the most prominent thinker of the German Enlightenment, and one of the most influential philosophers of all time. His comprehensive and profound thinking on aesthetics, ethics and knowledge has had an immense impact on all subsequent philosophy."
+      "description" : "Kant's Critique of Pure Reason. It presents a profound and challenging investigation into the nature of human reason, its knowledge and illusions. Reason, Kant argues, is the seat of certain concepts that precede experience and make it possible, but we are not therefore entitled to draw conclusions about the natural world from these concepts. The Critique brings together the two opposing schools of philosophy: rationalism"
     },
     {
       "id" : 56,
@@ -410,7 +410,7 @@
       "title" : "The History of Islamic Political Thought: From the Prophet to the Present",
       "author" : "Antony Black",
       "image" : "islamic-thought.jpg",
-      "description" : "A complete history of Islamic political thought from early Islam (c.622-661) to the present. This comprehensive overview describes and interprets all schools of Islamic political thought, their origins, inter-connections and meaning. It examines the Qur'an, the early Caliphate, classical Islamic philosophy, and the political culture of the Ottoman and other empires. Major thinkers such as Averroes (Ibn Rushd) and Ibn Taymiyya are covered as well as numerous lesser authors, and Ibn Khaldun is presented as one of the most original political theorists ever. It draws on a wide range of sources including writings on religion, law, philosophy and statecraft expressed in treatises, handbooks and political rhetoric. The new edition discusses and analyses the connections between religion and politics. It incorporates recent developments in Islamic political thought before and after 9/11 and ends with a critical survey of reformism (or modernism) and Islamism (or fundamentalism) from the late nineteenth century up to the present day. Key Features of the Second Edition Revised and updated throughout A new final section on Islam and the West New bibliographies of primary and secondary sources Only book to cover the whole of Islamic political thought, past and present"
+      "description" : "A complete history of Islamic political thought from early Islam (c.622-661) to the present. This comprehensive overview describes and interprets all schools of Islamic political thought, their origins, inter-connections and meaning. It examines the Qur'an, the early Caliphate, classical Islamic philosophy, and the political culture of the Ottoman and other empires. Major thinkers such as Averroes (Ibn Rushd)"
     },
     {
       "id" : 58,
@@ -424,7 +424,7 @@
       "title" : "CSS Floating: Floats and Float Shapes",
       "author" : "Eric Meyer",
       "image" : "css-floats.jpg",
-      "description" : "While flowing text around images is certainly nothing new, with CSS you can float any element, from images to paragraphs to lists. In this practical guide, author Eric Meyer reveals some interesting-and surprising-ways to use CSS floats in your web design, including the latest capability to flow content past non-rectangular float shapes. Short and sweet, this book is an excerpt from the upcoming fourth edition of CSS: The Definitive Guide. When you purchase either the print or the ebook edition of CSS Floating, you'll receive a discount on the entire Definitive Guide once it's released. Why wait? Learn how to bring life to your web pages now. Learn the characteristics of floated elements, and CSS rules for using them Be aware of certain rule exceptions when applying floats to your design, including the use of negative margins Use the clear property to prevent floats from affecting elements in the next section of the document Create floating boxes in non-rectangular shapes, including rounded corners, circles, ellipses, and even polygons Define float shapes with transparent or opaque images"
+      "description" : "While flowing text around images is certainly nothing new, with CSS you can float any element, from images to paragraphs to lists. In this practical guide, author Eric Meyer reveals some interesting-and surprising-ways to use CSS floats in your web design, including the latest capability to flow content past non-rectangular float shapes. Short and sweet, this book is an excerpt from the upcoming fourth edition of CSS:"
     },
     {
       "id" : 60,

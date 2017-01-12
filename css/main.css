@@ -32,17 +32,68 @@ html {
     height : 120px;
 }
 
-.placeholder-group {
-    //background : lime;
-    //border : solid 3px red;
+.placeholder-group .book {
+    text-align : center;
+    padding-top : 40px;
+}
+.spinner {
+    width : 40px;
+    animation: spin 1s linear infinite;
+    display : inline-block;
+}
+@keyframes spin  {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .book {
-    border : solid 1px black;
+    border-bottom : solid 1px grey;
     height : 25%;
+    padding : 12px;
 
+}
+.book a {
+    text-decoration : none;
+    color : #777;
+}
+.book a h3 {
+    color : black;
+    font-weight : 600;
+    font-size : 18px;
+    padding : 12px 0;
+}
+.book a h4 {
+    font-weight : medium;
+    color : black;
+    line-height : 1.5;
+    font-size : 14px;
+    font-style : italic;
+}
+
+.book p {
+    font-size : 12px;
+}
+
+.number-of-results {
+    padding : 12px;
+    background : #ddd;
 }
 
 .thumbnail {
-    height : 50px;
+    max-height : 100%;
+    float : right;
 }
+
+.product-detail {
+    padding : 12px;
+}
+.product-detail h2 {
+    padding : 12px 0;
+    font-size : 18px;
+    font-weight : 600;
+}
+
