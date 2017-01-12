@@ -2,7 +2,6 @@ function ScrollManager() {
 
 	this.listeners = {};
 
-
 	var latestKnownScrollY = window.scrollY,
 		previousScroll,
 		ticking = false;

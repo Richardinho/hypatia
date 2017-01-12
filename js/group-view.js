@@ -14,7 +14,12 @@ let GroupView = Backbone.View.extend({
 
 	template : _.template(`
 		<% _.each(books, function(book) { %>
-			<li class="book"><h2>id: <%= id %></h2><%= book.title %> by <%= book.author %></li>
+			<li class="book">
+				<h2>id: <%= id %></h2>
+				<h3>productId : <%= book.id %></h3>
+				<%= book.title %> by <%= book.author %>
+				<img class="thumbnail" src="/images/<%= book.image %>">
+			</li>
 		<% }); %>
 	`),
 

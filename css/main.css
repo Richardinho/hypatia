@@ -1,14 +1,48 @@
-.book-list {
-    background : pink;
+html {
+}
+body {
+    font-family : helvetica;
+    scroll-behavior: smooth;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.header {
+
+    border : solid 1px black;
+    padding : 18px;
+}
+.header h1 {
+    font-size : 20px;
+    padding : 0 0 12px;
+}
+
+.intro {
+    font-size : 14px;
+    line-height : 1.2;
+}
+
+.footer {
+    background : cadetblue;
+    height : 120px;
+}
+
+.placeholder-group {
+    //background : lime;
+    //border : solid 3px red;
 }
 
 .book {
-
-    height : 100px; /*  height of item   */
     border : solid 1px black;
+    height : 25%;
+
 }
-ul {
-    padding : 0;
-    margin : 0;
-    list-style : none;
+
+.thumbnail {
+    height : 50px;
 }

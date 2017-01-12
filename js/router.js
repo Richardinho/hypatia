@@ -3,6 +3,8 @@ function Router (options) {
 	this.delegate = new Backbone.Router();
 	this.injector = options.injector;
 	this.requestObjectFactory = options.requestObjectFactory;
+
+	this.currentController = Router.nullController;
 }
 
 Router.prototype = {
@@ -16,13 +18,22 @@ Router.prototype = {
 
 		this.delegate.route(path, '',  function handleRequest () {
 
-			let controller = this.injector.get(handler);
+			this.currentController.destroy();
+			let newController = this.injector.get(handler);
 			let requestObj = this.requestObjectFactory(utils.toArray(arguments));
-			controller.handleRequest.call(controller, requestObj);
+			newController.handleRequest.call(newController, requestObj);
+
+			this.currentController = newController;
 
 		}.bind(this));
 
 	}
+};
+
+Router.nullController = {
+	//  no ops
+	handleRequest : function () {},
+	destroy : function () { console.log('destroy null controller'); }
 };
 
 Router.inject = [

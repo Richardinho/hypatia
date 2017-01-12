@@ -3,54 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Hypatia - load more implementation</title>
-    <link href='css/main.css' rel='stylesheet'>
+    <link href='/css/reset.css' rel='stylesheet'>
+    <link href='/css/main.css' rel='stylesheet'>
 
     <script>
+
         window.config = {
 
-            groupsPerPage : 10,
+            groupsPerPage : 5,
             itemsPerGroup : 4,
-            activeRegionRatio : 2,
-            groupHeight : 400
+            activeRegionRatio : 1,
+            groupHeight : 600
+
         };
 
     </script>
 </head>
 <body>
+<div class='header'>
+    <h1>Hypatia version 2</h1>
+    <div class='intro'>
+        <p>
+            This is a demonstration implementation of a product listings application. The goal is to adhere to the best
+            practises for such an application recommended by the Baymard Institution's report.
+        </p>
+    </div>
+</div>
+<div id='app'></div>
+<div class='footer'></div>
 
-    <h1>Hypatia</h1>
+<script src='/node_modules/richardUtils/src/sundry.js'></script>
+<script src='/node_modules/richardUtils/src/dom.js'></script>
+<script src='/node_modules/Diogenes/lib/injector.js'></script>
+<script src='/node_modules/jquery/dist/jquery.min.js'></script>
+<script src='/node_modules/underscore/underscore.js'></script>
+<script src='/node_modules/backbone/backbone.js'></script>
 
-    <div id='app'></div>
+<script src='/js/config.js'></script>
+<script src='/js/page-manager.js'></script>
+<script src='/js/request-object.js'></script>
+<script src='/js/router.js'></script>
+<script src='/js/scroll-manager.js'></script>
+<script src='/js/data-service.js'></script>
+<script src='/js/group-view.js'></script>
+<script src='/js/app.js'></script>
+<script src='/js/product-list-controller.js'></script>
+<script src='/js/product-list-view.js'></script>
+<script src='/js/view-model.js'></script>
+<script src='/main.js'></script>
 
-    <script id="book" type="text/html">
-        <h2>Book template</h2>
-        <%= book.title %>
-        <%=  book.author %>
-    </script>
-
-
-    <script src='node_modules/richardUtils/src/sundry.js'></script>
-    <script src='node_modules/richardUtils/src/dom.js'></script>
-    <script src='node_modules/Diogenes/lib/injector.js'></script>
-    <script src='node_modules/jquery/dist/jquery.min.js'></script>
-    <script src='node_modules/underscore/underscore.js'></script>
-    <script src='node_modules/backbone/backbone.js'></script>
-
-    <script src='js/config.js'></script>
-    <script src='js/page-manager.js'></script>
-    <script src='js/data-service.js'></script>
-    <script src='js/query-builder.js'></script>
-    <script src='js/request-object.js'></script>
-    <script src='js/controllers/book-list-controller.js'></script>
-    <script src='js/controllers/book-page-controller.js'></script>
-    <script src='js/scroll-manager.js'></script>
-    <script src='js/groups.js'></script>
-    <script src='js/views/book-list-view.js'></script>
-    <script src='js/views/book-view.js'></script>
-    <script src='js/views/group-view.js'></script>
-    <script src='js/search-criteria-service.js'></script>
-    <script src='js/router.js'></script>
-    <script src='js/app.js'></script>
-    <script src='js/main.js'></script>
 </body>
 </html>

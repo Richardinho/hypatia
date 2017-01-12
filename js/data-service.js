@@ -24,10 +24,22 @@ DataService.prototype = {
 
 	},
 
-	getBooks : function (offset, limit) {
+	getTotalProducts : function () {
+		return this.fetchBooks('').then(data => {
+			return {
+				totalProducts : data.metadata.totalItems
+			};
+		});
+	},
+
+	getProducts : function (offset, limit) {
 
 		return this.fetchBooks('').then(data => {
-			return data;
+			return new Promise((resolve) => {
+				setTimeout(function () {
+					resolve(data.products.slice(offset, offset + limit));
+				}, 1000)
+			});
 		});
 	},
 
