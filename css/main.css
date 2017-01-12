@@ -91,6 +91,10 @@ html {
 .product-detail {
     padding : 12px;
 }
+
+.product-detail p {
+    margin-bottom : 24px;
+}
 .product-detail h2 {
     padding : 12px 0;
     font-size : 18px;
