@@ -33,7 +33,7 @@ Router.prototype = {
 Router.nullController = {
 	//  no ops
 	handleRequest : function () {},
-	destroy : function () { console.log('destroy null controller'); }
+	destroy : function () {}
 };
 
 Router.inject = [

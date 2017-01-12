@@ -1,6 +1,6 @@
 function Config(config) {
 
-    _.extend(this, config);
+	_.extend(this, config);
 
 }
 Config.inject = [];

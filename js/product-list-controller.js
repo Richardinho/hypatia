@@ -67,22 +67,22 @@ ProductListController.prototype = {
 
 	},
 
-    //  returns distance of top of container from top of page
-    getContainerElTop : function (scrollY) {
+	//  returns distance of top of container from top of page
+	getContainerElTop : function (scrollY) {
 
-        let containerEl = this.productListView.getContainerEl();
-        return containerEl.getBoundingClientRect().top + scrollY ;
-    },
+		let containerEl = this.productListView.getContainerEl();
+		return containerEl.getBoundingClientRect().top + scrollY ;
+	},
 
-    getOffset : function () {
+	getOffset : function () {
 
-        return this.getWindowInnerHeight() * this.viewModel.activeRegionRatio;
-    },
+		return this.getWindowInnerHeight() * this.viewModel.activeRegionRatio;
+	},
 
-    getWindowInnerHeight : function () {
+	getWindowInnerHeight : function () {
 
-        return window.innerHeight;
-    },
+		return window.innerHeight;
+	},
 
 	calculateActiveGroups : function (scrollY) {
 
@@ -107,7 +107,7 @@ ProductListController.prototype = {
 		let result = [];
 
 		for(let i = indexOfFirstGroup; i <= indexOfLastGroup; i++)  {
-		    result.push(i);
+			result.push(i);
 		}
 
 		return result;
@@ -120,8 +120,8 @@ ProductListController.prototype = {
 };
 
 ProductListController.inject = [
-    'pageManager',
-    'scrollManager',
-    'config',
-    'dataService'
+	'pageManager',
+	'scrollManager',
+	'config',
+	'dataService'
 ];
