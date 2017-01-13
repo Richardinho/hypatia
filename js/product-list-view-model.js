@@ -44,9 +44,10 @@ ProductListViewModel.prototype = {
 		the server coming back.
 	*/
 
-	initialise : function (totalProducts) {
+	initialise : function (totalProducts, pageIndex) {
 
 		this.totalProducts = totalProducts;
+		this.pageIndex = pageIndex;
 
 		//  calculate derived values
 		this.initialiseGroups();
@@ -69,7 +70,7 @@ ProductListViewModel.prototype = {
 		i.e. the last group in the current page. If on last page,
 		this will be the last group of all.
 	*/
-	getMaxDisplayedGroupIndex : function () {
+	getIndexOfLastGroupOnPage : function () {
 
 		let indexOfLastGroup = this.getIndexOfLastGroup();
 
@@ -86,7 +87,7 @@ ProductListViewModel.prototype = {
 
 	getNumberOfLoadedProducts : function () {
 
-		return Math.min((this.getMaxDisplayedGroupIndex() + 1) * this.productsPerGroup, this.totalProducts);
+		return Math.min((this.getIndexOfLastGroupOnPage() + 1) * this.productsPerGroup, this.totalProducts);
 	},
 
 	getIndexOfLastGroup : function () {

@@ -37,7 +37,7 @@ describe('product-list-controller', () => {
 					},
 					viewModel : {
 						groupHeight : groupHeight,
-						getMaxDisplayedGroupIndex :  function () { return 9; }
+						getIndexOfLastGroupOnPage :  function () { return 9; }
 
 					}
 				}, scrollY);
@@ -74,7 +74,7 @@ describe('product-list-controller', () => {
 					},
 					viewModel : {
 						groupHeight : groupHeight,
-						getMaxDisplayedGroupIndex :  function () { return 9; }
+						getIndexOfLastGroupOnPage :  function () { return 9; }
 					}
 				}, scrollY);
 			});

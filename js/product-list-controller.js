@@ -6,6 +6,9 @@ function ProductListController(options) {
 	this.dataService = options.dataService;
 
 	this.scrollManager = options.scrollManager;
+	this.router = options.router;
+
+	this.saveUserScroll = options.saveUserScroll;
 
 	this.viewModel = new ProductListViewModel({
 		config : options.config
@@ -25,8 +28,7 @@ ProductListController.prototype = {
 			render out the basic containing structure of the product list page.
 		*/
 
-
-		this.pageManager.render(this.productListView);
+		let pageIndex = parseInt(request.param(0), 10);
 
 		/*
 			The total number of products is the first piece of information that we need.
@@ -34,13 +36,16 @@ ProductListController.prototype = {
 
 		this.dataService.getTotalProducts().then((data) => {
 
-			this.viewModel.initialise(data.totalProducts);
+			this.viewModel.initialise(data.totalProducts, pageIndex);
 			this.scrollManager.addListener('load-more', this);
+			this.scrollManager.addListener('save-user-scroll', this.saveUserScroll);
+
 
 			this.productListView.on('load-more', function () {
 
 				this.viewModel.incrementPageIndex();
 				this.onScroll(window.scrollY);
+				this.router.replaceSilently('/products/' + this.viewModel.pageIndex);
 
 			}, this);
 
@@ -61,8 +66,8 @@ ProductListController.prototype = {
 				});
 			}, this);
 
-			//  manually call the first time
-			this.onScroll(window.scrollY);
+			this.pageManager.render(this.productListView);
+
 		});
 	},
 
@@ -119,7 +124,7 @@ ProductListController.prototype = {
 		let indexOfFirstGroup = Math.max(minGroupIndex, Math.floor((upperLimit - containerElTop) / this.viewModel.groupHeight));
 
 		let indexOfLastGroup =  Math.min(
-			this.viewModel.getMaxDisplayedGroupIndex(),
+			this.viewModel.getIndexOfLastGroupOnPage(),
 			Math.floor((lowerLimit - containerElTop) / this.viewModel.groupHeight));
 
 		indexOfFirstGroup = Math.min(indexOfFirstGroup, indexOfLastGroup);
@@ -136,6 +141,7 @@ ProductListController.prototype = {
 	destroy : function () {
 
 		this.scrollManager.removeListener('load-more');
+		this.scrollManager.removeListener('save-user-scroll');
 	}
 };
 
@@ -143,5 +149,7 @@ ProductListController.inject = [
 	'pageManager',
 	'scrollManager',
 	'config',
-	'dataService'
+	'dataService',
+	'router',
+	'saveUserScroll'
 ];

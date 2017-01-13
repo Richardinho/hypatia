@@ -5,6 +5,38 @@ let ProductListView = Backbone.View.extend({
 		this.viewModel = options.viewModel;
 	},
 
+	render : function () {
+
+		this.el.innerHTML = this.template({
+
+			title : 'product list page'
+
+		});
+
+		let activeGroups = [];
+
+		let firstGroupIndex = this.viewModel.getIndexOfFirstGroupInCurrentPage();
+		let lastGroupIndex = this.viewModel.getIndexOfLastGroupOnPage();
+
+		for(let i = firstGroupIndex; i <= lastGroupIndex; i++){
+			activeGroups.push(i);
+		}
+
+		this.updateView(activeGroups);
+
+		setTimeout(() => {
+
+			if(history.state && history.state.scrollTop) {
+				let scrollTop = window.history.state.scrollTop;
+				window.scrollTo(0, scrollTop);
+			} else {
+				this.viewModel.groups[firstGroupIndex].el.scrollIntoView();
+			}
+
+		},0);
+
+		return this;
+	},
 
 	template : _.template(`
 
@@ -58,7 +90,10 @@ let ProductListView = Backbone.View.extend({
 	},
 
 	placeholderTemplate : _.template(`
-		<h2>groupIndex: <%= groupIndex %>, i: <%= productIndex %></h2>
+
+		<h2 data-product-link="<%= productIndex %>">
+			groupIndex: <%= groupIndex %>, i: <%= productIndex %>
+		</h2>
 		<img class="spinner" src="/images/spinner.svg">
 	`),
 
@@ -101,10 +136,6 @@ let ProductListView = Backbone.View.extend({
 		if(!!placeholderEl.parentElement) {
 			this.getContainerEl().replaceChild(el, placeholderEl);
 			this.revealGroup(el);
-			if(group.focus) {
-				el.querySelector('[data-product-link]').focus();
-				group.focus = false;
-			}
 		}
 		// cache new el
 		group.el = el;
@@ -152,16 +183,7 @@ let ProductListView = Backbone.View.extend({
 		this.el.querySelector('[data-action=load-more]').style.visibility = 'hidden';
 	},
 
-	render : function () {
 
-		this.el.innerHTML = this.template({
-
-			title : 'product list page'
-
-		});
-
-		return this;
-	},
 
 	numberOfResultsTemplate : _.template(`
 		1 - <%= numberOfLoadedResults %> results of <%= numberOfTotalResults %>
@@ -188,7 +210,7 @@ let ProductListView = Backbone.View.extend({
 
 		let items;
 
-		let remainingGroups = this.viewModel.getMaxDisplayedGroupIndex() - lastGroupIndex;
+		let remainingGroups = this.viewModel.getIndexOfLastGroupOnPage() - lastGroupIndex;
 
 		if(remainingGroups == 0) {
 			return 0;

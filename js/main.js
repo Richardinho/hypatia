@@ -7,6 +7,7 @@ let config = new Config(window.config);
 injector.register('app', App, Diogenes.INSTANCE);
 injector.register('router', Router, Diogenes.CACHE_INSTANCE);
 injector.register('injector', injector, Diogenes.VALUE);
+injector.register('saveUserScroll', SaveUserScroll, Diogenes.CACHE_INSTANCE);
 injector.register('requestObjectFactory', RequestObject.factory, Diogenes.FACTORY_FUNCTION);
 injector.register('productListController', ProductListController, Diogenes.INSTANCE);
 injector.register('productDetailController', ProductDetailController, Diogenes.INSTANCE);

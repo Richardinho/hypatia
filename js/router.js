@@ -14,6 +14,11 @@ Router.prototype = {
 		this.delegate.navigate(href, { trigger : true });
 	},
 
+	replaceSilently : function (href) {
+
+		this.delegate.navigate(href, {trigger: false, replace: true});
+	},
+
 	route : function (path, handler) {
 
 		this.delegate.route(path, '',  function handleRequest () {

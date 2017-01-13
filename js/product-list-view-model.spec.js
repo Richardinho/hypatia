@@ -49,7 +49,7 @@ describe('product list view model', () => {
 		});
 	});
 
-	describe('getMaxDisplayedGroupIndex()', () => {
+	describe('getIndexOfLastGroupOnPage()', () => {
 
 		beforeEach(() => {
 
@@ -68,7 +68,7 @@ describe('product list view model', () => {
 
 		it('should return the maximum displayed group index', () => {
 
-			expect(viewModel.getMaxDisplayedGroupIndex()).toBe(8);
+			expect(viewModel.getIndexOfLastGroupOnPage()).toBe(8);
 		});
 	});
 

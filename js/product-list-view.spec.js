@@ -14,7 +14,7 @@ describe('product-list-view', () => {
             groups : [{}, {
                 products : 3
             }],
-            getMaxDisplayedGroupIndex : function () {}
+            getIndexOfLastGroupOnPage : function () {}
         };
 
         productListView = new ProductListView({
@@ -30,7 +30,7 @@ describe('product-list-view', () => {
             beforeEach(() => {
 
                 spyOn(viewModel, 'onLastPage').and.returnValue(false);
-                spyOn(viewModel, 'getMaxDisplayedGroupIndex').and.returnValue(7);
+                spyOn(viewModel, 'getIndexOfLastGroupOnPage').and.returnValue(7);
             });
             it('should calculate bottom padding', () => {
                 expect(productListView.calculateBottomPadding(5)).toBe(184);
@@ -41,7 +41,7 @@ describe('product-list-view', () => {
             beforeEach(() => {
 
                 spyOn(viewModel, 'onLastPage').and.returnValue(true);
-                spyOn(viewModel, 'getMaxDisplayedGroupIndex').and.returnValue(7);
+                spyOn(viewModel, 'getIndexOfLastGroupOnPage').and.returnValue(7);
             });
             it('should calculate bottom padding', () => {
                 expect(productListView.calculateBottomPadding(5)).toBe(161);
