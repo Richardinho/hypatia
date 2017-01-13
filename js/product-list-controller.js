@@ -49,10 +49,10 @@ ProductListController.prototype = {
 				to make the real group.
 			*/
 
-			this.productListView.on('placeholder-created', function (index) {
+			this.productListView.on('placeholder-created', function (index, l) {
 
 				let offset = index * this.viewModel.productsPerGroup;
-				let limit = this.viewModel.productsPerGroup;
+				let limit = l;
 
 				this.dataService.getProducts(offset, limit).then(groupData => {
 
@@ -113,7 +113,7 @@ ProductListController.prototype = {
 		let indexOfFirstGroup = Math.max(minGroupIndex, Math.floor((upperLimit - containerElTop) / this.viewModel.groupHeight));
 
 		let indexOfLastGroup =  Math.min(
-			this.viewModel.currentMaxGroupIndex,
+			this.viewModel.getMaxDisplayedGroupIndex(),
 			Math.floor((lowerLimit - containerElTop) / this.viewModel.groupHeight));
 
 		indexOfFirstGroup = Math.min(indexOfFirstGroup, indexOfLastGroup);

@@ -11,7 +11,6 @@ let ProductDetailView = Backbone.View.extend({
 		<h2><%= book.title %></h2>
 		<p><%= book.description %></p>
 		<img src='/images/<%= book.image %>'>
-
 	`),
 
 	events : {

@@ -18,7 +18,11 @@ Router.prototype = {
 
 		this.delegate.route(path, '',  function handleRequest () {
 
+			/*
+				call destroy() on old controller  to allow clean up to be carried out.
+			*/
 			this.currentController.destroy();
+
 			let newController = this.injector.get(handler);
 			let requestObj = this.requestObjectFactory(utils.toArray(arguments));
 			newController.handleRequest.call(newController, requestObj);

@@ -10,6 +10,8 @@ function ViewModel(options) {
 
 	/*
 		number of products contained within a group
+		The last group may have less products in it if the total products is not a multiple of the number
+		of products in the group.
 	*/
 	this.productsPerGroup = this.config.itemsPerGroup;
 
@@ -22,7 +24,9 @@ function ViewModel(options) {
 	/*
 		the height of a group of products
 	*/
-	this.groupHeight = this.config.groupHeight;
+	this.groupHeight = this.config.groupHeight;  //  deprecate, use itemHeight instead
+
+	this.itemHeight = this.config.itemHeight;
 	/*
 		cache group elements and store metadata
 	*/
@@ -36,7 +40,13 @@ ViewModel.prototype = {
 	incrementPageIndex : function () {
 
 		this.pageIndex++;
-		this.setCurrentMaxGroupIndex();
+	},
+
+	getMaxDisplayedGroupIndex : function () {
+
+		return  Math.min(
+			this.getIndexOfLastGroup(),  // don't go beyond max group index
+			(this.pageIndex + 1) * (this.groupsPerPage) -1 );
 	},
 
 	hasProductsToLoad : function () {
@@ -44,8 +54,15 @@ ViewModel.prototype = {
 		return this.getNumberOfLoadedResults() < this.totalProducts;
 	},
 
+	onLastPage : function () {
+
+		return !this.hasProductsToLoad();
+
+	},
+
 	getNumberOfLoadedResults : function () {
-		return Math.min((this.currentMaxGroupIndex + 1) * this.productsPerGroup, this.totalProducts);
+
+		return Math.min((this.getMaxDisplayedGroupIndex() + 1) * this.productsPerGroup, this.totalProducts);
 	},
 
 	initialise : function (totalProducts) {
@@ -53,11 +70,18 @@ ViewModel.prototype = {
 		this.totalProducts = totalProducts;
 
 		//  calculate derived values
-		this.totalGroups = Math.ceil(this.totalProducts / this.productsPerGroup);
 		this.initialiseGroups();
-		this.ultimateMaxGroupIndex = this.totalGroups - 1;
-		this.setCurrentMaxGroupIndex();
 
+	},
+
+	getIndexOfLastGroup : function () {
+
+		return this.getTotalGroups() -1;
+	},
+
+	getTotalGroups : function () {
+
+		return Math.ceil(this.totalProducts / this.productsPerGroup);
 	},
 
 	resetDisplayPropertyOfGroups : function () {
@@ -69,13 +93,22 @@ ViewModel.prototype = {
 
 	initialiseGroups : function () {
 
-		for(let i = 0; i < this.totalGroups; i++) {
+		for(let i = 0; i < this.getTotalGroups(); i++) {
 			this.groups[i] = {
 				el : null,
 				data : null,
+				products : this.productsPerGroup,
 				displayed : false
 			};
 		}
+		this.groups[this.getTotalGroups() - 1].products = this.calculateProductsInLastGroup();
+
+	},
+
+	calculateProductsInLastGroup : function () {
+
+		return this.productsPerGroup - ((this.getTotalGroups() * this.productsPerGroup) - this.totalProducts);
+
 	},
 
 	areGroupsDisplayed : function (groups) {
@@ -89,17 +122,7 @@ ViewModel.prototype = {
 			return areDisplayed;
 
 		}, true)
-	},
-
-	/*
-		set index of last loaded group
-	*/
-	setCurrentMaxGroupIndex : function () {
-
-		this.currentMaxGroupIndex = Math.min(
-						this.ultimateMaxGroupIndex,
-						(this.pageIndex + 1) * this.groupsPerPage );
-
-
 	}
+
+
 };

@@ -30,15 +30,15 @@ function ScrollManager() {
 
 		var scrollingDown = latestKnownScrollY > previousScroll;
 
+		/*
+			call onScroll method on all listeners
+		*/
 		Object.keys(self.listeners).forEach(key => {
 			let listener = self.listeners[key];
 			listener.onScroll(latestKnownScrollY, scrollingDown);
 
 		});
-		// read offset of DOM elements
-		// and compare to the currentScrollY value
-		// then apply some CSS classes
-		// to the visible items
+
 	}
 
 	window.addEventListener('scroll', onScroll);

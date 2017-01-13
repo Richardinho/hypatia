@@ -52,7 +52,6 @@ html {
 
 .book {
     border-bottom : solid 1px grey;
-    height : 25%;
     padding : 12px;
 
 }
@@ -70,6 +69,7 @@ html {
     font-weight : medium;
     color : black;
     line-height : 1.5;
+    margin-bottom : 12px;
     font-size : 14px;
     font-style : italic;
 }

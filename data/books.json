@@ -1,7 +1,7 @@
 {
   "searchCriteria" : {},
   "metadata" :  {
-    "totalItems" : 60
+    "totalItems" : 54
   },
   "products" : [{
       "id" : 1,
@@ -350,84 +350,84 @@
       "description" : "Cascading Style Sheets (CSS) is a powerful tool that transforms the presentation of a document or a collection of documents, and it’s spread to nearly every corner of the Web—as well as many non-web environments. In this free introduction to Cascade Style Sheets, you’ll learn how CSS makes it possible for you to completely change the way document elements are presented by a user agent. You’ll discover the origins of this specification and how CSS styles work with HTML.Learn how you can choose style sheets based on the features of a given media type, including desktop screens, web-enabled phones, digital projectors, TVs, Braille devices, print documents, and even various audio renderings of a document. CSS and Documents is an excerpt from the forthcoming 4th edition of CSS: The Definitive Guide."
     },
     {
-      "id" : 50,
+      "id" : 51,
       "title" : "Sumerians: A History From Beginning to End",
       "author" : "Henry Freeman",
       "image" : "sumerians.jpg",
       "description" : "A legendary civilization vanished under the Fertile Crescent and escaped a fate worse than death until Sumerologists questioned widely accepted truths. The Sumerians reemerged onto the extraordinary timeline of human history. Their tales of kings and gods, including the Epic of Gilgamesh, and their fearless trade in distant lands, during the remarkable Bronze Age, centered in the world’s first city-states that chronicled ancient rivalries and their enduring impact."
     },
     {
-      "id" : 50,
+      "id" : 52,
       "title" : "Byzantium Triumphant: The Military History of the Byzantines 959-1025",
       "author" : "Julian Romane",
       "image" : "byzantine.jpg",
       "description" : "Byzantium Triumphant describes in detail the wars of the Byzantine emperors Nicephorus II Phocas, his nephew and assassin John I Tzimiskes, and Basil II. The operations, battles and drama of their various bitter struggles unfold, depicting the new energy and improved methods of warfare developed in the late tenth century. These emperors were at war on all fronts, fighting for survival and dominance against enemies including the Arab caliphates, Bulgars (Basil II was dubbed by later authors 'the Bulgar Slayer')"
     },
     {
-      "id" : 51,
+      "id" : 53,
       "title" : "The Nicomachean Ethics",
       "author" : "Aristotle",
       "image" : "nicomachean-ethics.jpg",
       "description" : "Previously published as Ethics, Aristotle's The Nicomachean Ethics addresses the question of how to live well, and originates the concept of cultivating a virtuous character as the basis of his ethical system. This Penguin Classics edition is translated from the Greek by J.A.K. Thomson with revisions and notes by Hugh Tredennick, and an introduction and bibliography by Jonathan Barnes. 'One swallow does not make a summer; neither does one day. Similarly neither can one day, or a brief space of time, make a man blessed and happy'."
     },
     {
-      "id" : 52,
+      "id" : 54,
       "title" : "Ethics",
       "author" : "Benedict Spinoza",
       "image" : "spinoza.jpg",
       "description" : "A profoundly beautiful and uniquely insightful description of the universe, Benedict de Spinoza's Ethics is one of the masterpieces of Enlightenment-era philosophy. This Penguin Classics edition is edited and translated from the Latin by Edwin Curley, with an introduction by Stuart Hampshire. Published shortly after his death, the Ethics is undoubtedly Spinoza's greatest work - an elegant, fully cohesive cosmology derived from first principles, providing a coherent picture of reality, and a guide to the meaning of an ethical life."
     },
     {
-      "id" : 53,
+      "id" : 55,
       "title" : "Discourse on Metaphysics and Other Essays",
       "author" : "Freiherr von Gottfried Wilhelm Leibniz ",
       "image" : "leibniz.jpg",
       "description" : "Discourse on Metaphysics and Other Essays contains complete translations of the two essays that constitute the best introductions to Leibniz's complex thought: Discourse on Metaphysics of 1686 and Monadology of 1714. These are supplemented with two essays of special interest to the student of modern philosophy, On the Ultimate Origination of Things of 1697 and the Preface to his New Essays of 1703-1705."
     },
     {
-      "id" : 54,
+      "id" : 56,
       "title" : "A Treatise of Human Nature: Being an Attempt to Introduce the Experimental Method of Reasoning into Moral Subjects (Penguin Classics)",
       "author" : "David Hume",
       "image" : "hume.jpg",
       "description" : "One of the most significant works of Western philosophy, Hume's Treatise was published in 1739-40, before he was thirty years old. A pinnacle of English empiricism, it is a comprehensive attempt to apply scientific methods of observation to a study of human nature, and a vigorous attack upon the principles of traditional metaphysical thought. With masterly eloquence"
     },
     {
-      "id" : 55,
+      "id" : 57,
       "title" : "Critique of Pure Reason",
       "author" : "Immanuel Kant",
       "image" : "kant.jpg",
       "description" : "Kant's Critique of Pure Reason. It presents a profound and challenging investigation into the nature of human reason, its knowledge and illusions. Reason, Kant argues, is the seat of certain concepts that precede experience and make it possible, but we are not therefore entitled to draw conclusions about the natural world from these concepts. The Critique brings together the two opposing schools of philosophy: rationalism"
     },
     {
-      "id" : 56,
+      "id" : 58,
       "title" : "CSS Mastery",
       "author" : "Andy Budd",
       "image" : "css-mastery.jpg",
       "description" : "Fully updated to the latest CSS modules, make the journey to CSS mastery as simple and painless as possible. This book dives into advanced aspects of CSS-based design, such as responsive design, modular CSS, and CSS typography. Through a series of easy-to-follow tutorials, you will learn practical CSS techniques you can immediately start using in your daily work."
     },
     {
-      "id" : 57,
+      "id" : 59,
       "title" : "The History of Islamic Political Thought: From the Prophet to the Present",
       "author" : "Antony Black",
       "image" : "islamic-thought.jpg",
       "description" : "A complete history of Islamic political thought from early Islam (c.622-661) to the present. This comprehensive overview describes and interprets all schools of Islamic political thought, their origins, inter-connections and meaning. It examines the Qur'an, the early Caliphate, classical Islamic philosophy, and the political culture of the Ottoman and other empires. Major thinkers such as Averroes (Ibn Rushd)"
     },
     {
-      "id" : 58,
+      "id" : 60,
       "title" : "The Second World War",
       "author" : "Martin Gilbert",
       "image" : "second-world-war.jpg",
       "description" : "A history of the Second World War that covers all the war fronts, the fighting on land, at sea and in the air, the activities of resistance and partisan groups, espionage, secret intelligence, strategy and tactics, war leaders, generals, admirals and air marshals, individual acts of heroism on all the war fronts and behind the lines, the fate of prisoners of war, the bombing of cities, the submarine war, and the aftermath of the war."
     },
     {
-      "id" : 59,
+      "id" : 61,
       "title" : "CSS Floating: Floats and Float Shapes",
       "author" : "Eric Meyer",
       "image" : "css-floats.jpg",
       "description" : "While flowing text around images is certainly nothing new, with CSS you can float any element, from images to paragraphs to lists. In this practical guide, author Eric Meyer reveals some interesting-and surprising-ways to use CSS floats in your web design, including the latest capability to flow content past non-rectangular float shapes. Short and sweet, this book is an excerpt from the upcoming fourth edition of CSS:"
     },
     {
-      "id" : 60,
+      "id" : 62,
       "title" : "The Origins of the Second World War",
       "author" : "A.J.P. Taylor",
       "image" : "origins-of-ww2.jpg",

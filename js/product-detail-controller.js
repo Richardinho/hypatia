@@ -2,7 +2,6 @@ function ProductDetailController(options) {
 
 	this.pageManager = options.pageManager;
 	this.dataService = options.dataService;
-
 }
 
 ProductDetailController.prototype = {
@@ -18,14 +17,10 @@ ProductDetailController.prototype = {
             });
 
             this.pageManager.render(this.productDetailView);
-
         });
-
     },
 
     destroy : function () {
-
-
 
     }
 };

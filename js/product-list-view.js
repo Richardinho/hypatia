@@ -36,11 +36,11 @@ let ProductListView = Backbone.View.extend({
 
         	} else {
 
-				let placeholderEl = this.createPlaceholderGroup(groupIndex);
+				let placeholderEl = this.createPlaceholderGroup(groupIndex, this.viewModel.groups[groupIndex].products );
 				frag.appendChild(placeholderEl);
 				this.viewModel.groups[groupIndex].el = placeholderEl;
 				this.viewModel.groups[groupIndex].placeholder = true;
-				this.trigger('placeholder-created', groupIndex);
+				this.trigger('placeholder-created', groupIndex, this.viewModel.groups[groupIndex].products );
 
         	}
 
@@ -56,19 +56,22 @@ let ProductListView = Backbone.View.extend({
 	},
 
 	placeholderTemplate : _.template(`
-
+		<h2>groupIndex: <%= groupIndex %>, i: <%= productIndex %></h2>
 		<img class="spinner" src="/images/spinner.svg">
 	`),
 
-	createPlaceholderGroup : function (groupIndex) {
+	createPlaceholderGroup : function (groupIndex, productsPerGroup) {
 
 	    let el = document.createElement('div');
 	    el.className = 'placeholder-group';
-	    el.style.height = this.viewModel.groupHeight + 'px';
-	    for(let i = 0; i < 4; i++) {
+	    for(let i = 0; i < productsPerGroup; i++) {
 	    	let productEl = document.createElement('div');
-	    	productEl.innerHTML = this.placeholderTemplate();
+	    	productEl.innerHTML = this.placeholderTemplate({
+	    		groupIndex : groupIndex,
+	    		productIndex : 1 + (groupIndex * 4) + (i )
+	    	});
 	    	productEl.className = 'book';
+	    	productEl.style.height = this.viewModel.itemHeight + 'px';
 	    	el.appendChild(productEl);
 	    }
 	    return el;
@@ -88,9 +91,9 @@ let ProductListView = Backbone.View.extend({
 			groupId : groupIndex,
 			books : groupData
 
-		})).render();
+		})).render(this.viewModel.itemHeight);
 
-		el.style.height = this.viewModel.groupHeight + 'px';
+
 
 		// if the placeholder is currently in the DOM
 		if(!!placeholderEl.parentElement) {
@@ -123,10 +126,12 @@ let ProductListView = Backbone.View.extend({
 	},
 
 	loadMore : function () {
+
 		this.trigger('load-more');
 	},
 
 	backToTop : function () {
+
 	    window.scrollTo(0,0);
 	},
 
@@ -137,6 +142,7 @@ let ProductListView = Backbone.View.extend({
 	},
 
 	hideLoadMoreButton : function () {
+
 		this.el.querySelector('[data-action=load-more]').style.visibility = 'hidden';
 	},
 
@@ -148,8 +154,6 @@ let ProductListView = Backbone.View.extend({
 
 		});
 
-
-
 		return this;
 	},
 
@@ -158,6 +162,7 @@ let ProductListView = Backbone.View.extend({
 	`),
 
 	updateNumberOfResults : function () {
+
 		let componentEls = this.el.querySelectorAll('[data-component=number-of-results]');
 
 		componentEls.forEach(componentEl => {
@@ -169,12 +174,33 @@ let ProductListView = Backbone.View.extend({
 	},
 
     setPaddingTop : function (firstGroupIndex) {
+
 		this.getContainerEl().style.paddingTop =  firstGroupIndex * this.viewModel.groupHeight + 'px';
     },
 
     setPaddingBottom : function (lastGroupIndex) {
 
-    	let padding = (this.viewModel.currentMaxGroupIndex - lastGroupIndex) * this.viewModel.groupHeight;
+
+		let padding = (
+            this.viewModel.getMaxDisplayedGroupIndex() - lastGroupIndex)
+            * (this.viewModel.itemHeight * this.viewModel.productsPerGroup);
+
+		if(this.viewModel.onLastPage()) {
+			let lastGroup = this.viewModel.groups[this.viewModel.groups.length - 1];
+			let productsInLastGroup = lastGroup.products;
+			let diff = this.viewModel.productsPerGroup - productsInLastGroup;
+			let remainingGroups = (this.viewModel.getMaxDisplayedGroupIndex() - lastGroupIndex);
+			if(!remainingGroups) {
+				padding = 0;
+			} else {
+
+				let items = (remainingGroups * this.viewModel.productsPerGroup) - diff;
+				padding = items * this.viewModel.itemHeight;
+			}
+
+
+		}
+
     	this.getContainerEl().style.paddingBottom = padding + 'px';
     }
 

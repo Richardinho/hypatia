@@ -30,6 +30,38 @@ describe('view model', () => {
 		});
 	});
 
+	describe('calculateProductsInLastGroup()', () => {
+
+		let result;
+
+		beforeEach(() => {
+			result = ViewModel.prototype.calculateProductsInLastGroup.call({
+
+				productsPerGroup : 4,
+				getTotalGroups : function () { return 4; },
+				totalProducts : 15
+			});
+		});
+		it('should...', () => {
+			expect(result).toBe(3);
+		});
+	});
+	describe('calculateProductsInLastGroup()', () => {
+
+		let result;
+
+		beforeEach(() => {
+			result = ViewModel.prototype.calculateProductsInLastGroup.call({
+
+				productsPerGroup : 3,
+				getTotalGroups : function () { return 4; },
+				totalProducts : 11
+			});
+		});
+		it('should...', () => {
+			expect(result).toBe(2);
+		});
+	});
 	describe('areGroupsDisplayed()', () => {
 		describe('when ALL groups are displayed', () => {
 			it('should return TRUE', () => {
