@@ -1,4 +1,4 @@
-function ViewModel(options) {
+function ProductListViewModel(options) {
 
 	/*
 		cache group elements and store metadata
@@ -37,7 +37,7 @@ function ViewModel(options) {
 
 }
 
-ViewModel.prototype = {
+ProductListViewModel.prototype = {
 
 	/*
 		We do initialisation later as we need to wait for the data from

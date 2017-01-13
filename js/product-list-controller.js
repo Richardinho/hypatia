@@ -7,7 +7,7 @@ function ProductListController(options) {
 
 	this.scrollManager = options.scrollManager;
 
-	this.viewModel = new ViewModel({
+	this.viewModel = new ProductListViewModel({
 		config : options.config
 	});
 

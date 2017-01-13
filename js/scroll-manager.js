@@ -2,17 +2,19 @@ function ScrollManager() {
 
 	this.listeners = {};
 
-	var latestKnownScrollY = window.scrollY,
+	let latestKnownScrollY = window.scrollY,
 		previousScroll,
 		ticking = false;
 
 	function onScroll() {
+
 		previousScroll = latestKnownScrollY;
 		latestKnownScrollY = window.scrollY;
 		requestTick();
 	}
 
 	function requestTick() {
+
 		if(!ticking) {
 			requestAnimationFrame(update);
 		}

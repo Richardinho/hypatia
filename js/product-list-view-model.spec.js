@@ -1,4 +1,4 @@
-describe('view model', () => {
+describe('product list view model', () => {
 
 	let viewModel;
 
@@ -6,7 +6,7 @@ describe('view model', () => {
 
 		beforeEach(() => {
 
-			viewModel = new ViewModel({
+			viewModel = new ProductListViewModel({
 				config : {
 					groupsPerPage : 2,
 					itemsPerGroup : 6,
@@ -33,7 +33,7 @@ describe('view model', () => {
 
 		beforeEach(() => {
 
-			viewModel = new ViewModel({
+			viewModel = new ProductListViewModel({
 				config : {
 					groupsPerPage : 5
 				}
@@ -55,7 +55,7 @@ describe('view model', () => {
 
 			let totalProducts = 41;
 
-			viewModel = new ViewModel({
+			viewModel = new ProductListViewModel({
 				config : {
 					groupsPerPage : 3,
 					itemsPerGroup : 4
@@ -78,7 +78,7 @@ describe('view model', () => {
 
 			let totalProducts = 17;
 
-			viewModel = new ViewModel({
+			viewModel = new ProductListViewModel({
 				config : {
 					groupsPerPage : 2,
 					itemsPerGroup : 4
@@ -108,7 +108,7 @@ describe('view model', () => {
 
 			let totalProducts = 17;
 
-			viewModel = new ViewModel({
+			viewModel = new ProductListViewModel({
 				config : {
 					groupsPerPage : 2,
 					itemsPerGroup : 4
@@ -145,7 +145,7 @@ describe('view model', () => {
 
 			let totalProducts = 17;
 
-			viewModel = new ViewModel({
+			viewModel = new ProductListViewModel({
 				config : {
 					groupsPerPage : 2,
 					itemsPerGroup : 4
@@ -165,7 +165,7 @@ describe('view model', () => {
 
 			let totalProducts = 17;
 
-			viewModel = new ViewModel({
+			viewModel = new ProductListViewModel({
 				config : {
 					groupsPerPage : 2,
 					itemsPerGroup : 4
@@ -189,7 +189,7 @@ describe('view model', () => {
 
 			let totalProducts = 17;
 
-			viewModel = new ViewModel({
+			viewModel = new ProductListViewModel({
 				config : {
 					groupsPerPage : 2,
 					itemsPerGroup : 4
@@ -206,7 +206,7 @@ describe('view model', () => {
 		describe('when ALL groups are displayed', () => {
 			it('should return TRUE', () => {
 				let groups = [2, 3, 4];
-				result = ViewModel.prototype.areGroupsDisplayed.call({
+				result = ProductListViewModel.prototype.areGroupsDisplayed.call({
 
 					groups : [
 						{  displayed : false },
@@ -224,7 +224,7 @@ describe('view model', () => {
 		describe('when any group is NOT displayed', () => {
 			it('should return FALSE', () => {
 				let groups = [2, 3, 4];
-				result = ViewModel.prototype.areGroupsDisplayed.call({
+				result = ProductListViewModel.prototype.areGroupsDisplayed.call({
 
 					groups : [
 						{  displayed : false },
