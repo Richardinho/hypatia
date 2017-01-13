@@ -42,7 +42,7 @@ ProductListController.prototype = {
 				this.viewModel.incrementPageIndex();
 				this.onScroll(window.scrollY);
 
-				this.viewModel.groups[this.viewModel.getIndexOfFirstGroupInCurrentPage()].focus = true;
+				//this.viewModel.groups[this.viewModel.getIndexOfFirstGroupInCurrentPage()].focus = true;
 
 
 			}, this);
@@ -91,7 +91,7 @@ ProductListController.prototype = {
 				let id = activeElement.getAttribute('data-product-link');
 				let link = document.querySelector('[data-product-link="' + id + '"]');
 				setTimeout(function () {
-					link.focus();
+					//link.focus();
 				}, 0);
 
 			}

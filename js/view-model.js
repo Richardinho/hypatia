@@ -1,5 +1,12 @@
 function ViewModel(options) {
 
+	/*
+		cache group elements and store metadata
+	*/
+	this.groups = [];  //  zero based
+
+	this.pageIndex = 0;  //  zero based
+
 	this.config = options.config;
 
 	/*
@@ -27,49 +34,15 @@ function ViewModel(options) {
 	this.groupHeight = this.config.groupHeight;  //  deprecate, use itemHeight instead
 
 	this.itemHeight = this.config.itemHeight;
-	/*
-		cache group elements and store metadata
-	*/
-	this.groups = [];
 
-	this.pageIndex = 0;
 }
 
 ViewModel.prototype = {
 
-	incrementPageIndex : function () {
-
-		this.pageIndex++;
-	},
-
-	getIndexOfFirstGroupInCurrentPage : function () {
-
-		return this.pageIndex * this.groupsPerPage;
-
-	},
-
-	getMaxDisplayedGroupIndex : function () {
-
-		return  Math.min(
-			this.getIndexOfLastGroup(),  // don't go beyond max group index
-			(this.pageIndex + 1) * (this.groupsPerPage) -1 );
-	},
-
-	hasProductsToLoad : function () {
-
-		return this.getNumberOfLoadedResults() < this.totalProducts;
-	},
-
-	onLastPage : function () {
-
-		return !this.hasProductsToLoad();
-
-	},
-
-	getNumberOfLoadedResults : function () {
-
-		return Math.min((this.getMaxDisplayedGroupIndex() + 1) * this.productsPerGroup, this.totalProducts);
-	},
+	/*
+		We do initialisation later as we need to wait for the data from
+		the server coming back.
+	*/
 
 	initialise : function (totalProducts) {
 
@@ -80,9 +53,52 @@ ViewModel.prototype = {
 
 	},
 
+	incrementPageIndex : function () {
+
+		this.pageIndex++;
+	},
+
+	getIndexOfFirstGroupInCurrentPage : function () {
+
+		return this.pageIndex * this.groupsPerPage;
+	},
+
+	/*
+		returns index of last group that is displayed
+
+		i.e. the last group in the current page. If on last page,
+		this will be the last group of all.
+	*/
+	getMaxDisplayedGroupIndex : function () {
+
+		let indexOfLastGroup = this.getIndexOfLastGroup();
+
+		return  Math.min(((this.pageIndex + 1)  * this.groupsPerPage ) - 1, indexOfLastGroup);
+	},
+	/*
+		returns TRUE if we are not on the last page
+	*/
+	hasProductsToLoad : function () {
+
+		return this.getNumberOfLoadedProducts() < this.totalProducts;
+	},
+
+	/*
+		returns TRUE if we are on the last page
+	*/
+	onLastPage : function () {
+
+		return !this.hasProductsToLoad();
+	},
+
+	getNumberOfLoadedProducts : function () {
+
+		return Math.min((this.getMaxDisplayedGroupIndex() + 1) * this.productsPerGroup, this.totalProducts);
+	},
+
 	getIndexOfLastGroup : function () {
 
-		return this.getTotalGroups() -1;
+		return this.getTotalGroups() - 1;
 	},
 
 	getTotalGroups : function () {

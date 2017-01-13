@@ -173,7 +173,7 @@ let ProductListView = Backbone.View.extend({
 
 		componentEls.forEach(componentEl => {
 			componentEl.innerHTML = this.numberOfResultsTemplate({
-				numberOfLoadedResults : this.viewModel.getNumberOfLoadedResults(),
+				numberOfLoadedResults : this.viewModel.getNumberOfLoadedProducts(),
 				numberOfTotalResults : this.viewModel.totalProducts
 			})
 		});
