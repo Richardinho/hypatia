@@ -42,9 +42,6 @@ ProductListController.prototype = {
 				this.viewModel.incrementPageIndex();
 				this.onScroll(window.scrollY);
 
-				//this.viewModel.groups[this.viewModel.getIndexOfFirstGroupInCurrentPage()].focus = true;
-
-
 			}, this);
 
 			/*
@@ -77,29 +74,17 @@ ProductListController.prototype = {
 
 		let activeGroups = this.calculateActiveGroups(scrollY);
 		this.productListView.updateNumberOfResults();
-		if(this.viewModel.hasProductsToLoad()) {
-			this.productListView.showLoadMoreButton();
-		} else {
+
+		if(this.viewModel.onLastPage()) {
 			this.productListView.hideLoadMoreButton();
+		} else {
+			this.productListView.showLoadMoreButton();
 		}
+
 		if(!this.viewModel.areGroupsDisplayed(activeGroups)) {
 
-			//  get current focus if there is one.
-			let activeElement = document.activeElement;
-			if(this.isActiveElementProductLink(activeElement)) {
-				this.productListView.updateView(activeGroups);
-				let id = activeElement.getAttribute('data-product-link');
-				let link = document.querySelector('[data-product-link="' + id + '"]');
-				setTimeout(function () {
-					//link.focus();
-				}, 0);
-
-			}
 			this.productListView.updateView(activeGroups);
-
-
 		}
-
 	},
 
 	//  returns distance of top of container from top of page

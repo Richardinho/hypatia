@@ -1,9 +1,9 @@
 let ProductListView = Backbone.View.extend({
 
-    initialize : function (options) {
+	initialize : function (options) {
 
-        this.viewModel = options.viewModel;
-    },
+		this.viewModel = options.viewModel;
+	},
 
 
 	template : _.template(`
@@ -21,20 +21,20 @@ let ProductListView = Backbone.View.extend({
 	*/
 	updateView : function (activeGroups) {
 
-        let pageContainerEl = this.getContainerEl();
+		let pageContainerEl = this.getContainerEl();
 
-        pageContainerEl.innerHTML = '';
-        this.viewModel.resetDisplayPropertyOfGroups();
+		pageContainerEl.innerHTML = '';
+		this.viewModel.resetDisplayPropertyOfGroups();
 
-        let frag = document.createDocumentFragment();
+		let frag = document.createDocumentFragment();
 
-        activeGroups.forEach(groupIndex => {
+		activeGroups.forEach(groupIndex => {
 
-        	if(this.viewModel.groups[groupIndex].el) {
+			if(this.viewModel.groups[groupIndex].el) {
 
-        		frag.appendChild(this.viewModel.groups[groupIndex].el);
+				frag.appendChild(this.viewModel.groups[groupIndex].el);
 
-        	} else {
+			} else {
 
 				let placeholderEl = this.createPlaceholderGroup(groupIndex, this.viewModel.groups[groupIndex].products );
 				frag.appendChild(placeholderEl);
@@ -42,16 +42,16 @@ let ProductListView = Backbone.View.extend({
 				this.viewModel.groups[groupIndex].placeholder = true;
 				this.trigger('placeholder-created', groupIndex, this.viewModel.groups[groupIndex].products );
 
-        	}
+			}
 
-        	this.viewModel.groups[groupIndex].displayed = true;
+			this.viewModel.groups[groupIndex].displayed = true;
 
-        });
+		});
 
-        pageContainerEl.appendChild(frag);
+		pageContainerEl.appendChild(frag);
 
-        this.setPaddingTop(activeGroups[0]);
-        this.setPaddingBottom(activeGroups[activeGroups.length - 1]);
+		this.setPaddingTop(activeGroups[0]);
+		this.setPaddingBottom(activeGroups[activeGroups.length - 1]);
 
 
 
@@ -64,19 +64,19 @@ let ProductListView = Backbone.View.extend({
 
 	createPlaceholderGroup : function (groupIndex, productsPerGroup) {
 
-	    let el = document.createElement('div');
-	    el.className = 'placeholder-group';
-	    for(let i = 0; i < productsPerGroup; i++) {
-	    	let productEl = document.createElement('div');
-	    	productEl.innerHTML = this.placeholderTemplate({
-	    		groupIndex : groupIndex,
-	    		productIndex : 1 + (groupIndex * 4) + (i )
-	    	});
-	    	productEl.className = 'book';
-	    	productEl.style.height = this.viewModel.itemHeight + 'px';
-	    	el.appendChild(productEl);
-	    }
-	    return el;
+		let el = document.createElement('div');
+		el.className = 'placeholder-group';
+		for(let i = 0; i < productsPerGroup; i++) {
+			let productEl = document.createElement('div');
+			productEl.innerHTML = this.placeholderTemplate({
+				groupIndex : groupIndex,
+				productIndex : 1 + (groupIndex * 4) + (i )
+			});
+			productEl.className = 'book';
+			productEl.style.height = this.viewModel.itemHeight + 'px';
+			el.appendChild(productEl);
+		}
+		return el;
 
 	},
 
@@ -120,10 +120,10 @@ let ProductListView = Backbone.View.extend({
 
 	},
 
-    getContainerEl : function () {
+	getContainerEl : function () {
 
-        return this.el.querySelector('#page-container');
-    },
+		return this.el.querySelector('#page-container');
+	},
 
 	events : {
 
@@ -138,7 +138,7 @@ let ProductListView = Backbone.View.extend({
 
 	backToTop : function () {
 
-	    window.scrollTo(0,0);
+		window.scrollTo(0,0);
 	},
 
 	showLoadMoreButton : function () {
@@ -179,35 +179,39 @@ let ProductListView = Backbone.View.extend({
 		});
 	},
 
-    setPaddingTop : function (firstGroupIndex) {
+	setPaddingTop : function (firstGroupIndex) {
 
 		this.getContainerEl().style.paddingTop =  firstGroupIndex * this.viewModel.groupHeight + 'px';
-    },
+	},
 
-    setPaddingBottom : function (lastGroupIndex) {
+	calculateBottomPadding : function (lastGroupIndex) {
 
+		let items;
 
-		let padding = (
-            this.viewModel.getMaxDisplayedGroupIndex() - lastGroupIndex)
-            * (this.viewModel.itemHeight * this.viewModel.productsPerGroup);
+		let remainingGroups = this.viewModel.getMaxDisplayedGroupIndex() - lastGroupIndex;
 
-		if(this.viewModel.onLastPage()) {
-			let lastGroup = this.viewModel.groups[this.viewModel.groups.length - 1];
-			let productsInLastGroup = lastGroup.products;
-			let diff = this.viewModel.productsPerGroup - productsInLastGroup;
-			let remainingGroups = (this.viewModel.getMaxDisplayedGroupIndex() - lastGroupIndex);
-			if(!remainingGroups) {
-				padding = 0;
+		if(remainingGroups == 0) {
+			return 0;
+		} else {
+
+			if(this.viewModel.onLastPage()) {
+
+				let lastGroup = this.viewModel.groups[this.viewModel.groups.length - 1];
+				let productsInLastGroup = lastGroup.products;
+				let diff = this.viewModel.productsPerGroup - productsInLastGroup;
+
+				items = (remainingGroups * this.viewModel.productsPerGroup) - diff;
+
 			} else {
-
-				let items = (remainingGroups * this.viewModel.productsPerGroup) - diff;
-				padding = items * this.viewModel.itemHeight;
+				items = remainingGroups * this.viewModel.productsPerGroup;
 			}
-
-
+			return items * this.viewModel.itemHeight;
 		}
+	},
 
-    	this.getContainerEl().style.paddingBottom = padding + 'px';
-    }
+	setPaddingBottom : function (lastGroupIndex) {
+
+		this.getContainerEl().style.paddingBottom = this.calculateBottomPadding(lastGroupIndex) + 'px';
+	}
 
 });

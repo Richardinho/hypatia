@@ -72,7 +72,7 @@ describe('view model', () => {
 		});
 	});
 
-	describe('hasProductsToLoad()', () => {
+	describe('onLastPage()', () => {
 
 		beforeEach(() => {
 
@@ -88,21 +88,19 @@ describe('view model', () => {
 		});
 
 		describe('when on last page', () => {
-			it('should return FALSE', () => {
+			it('should return TRUE', () => {
 				viewModel.pageIndex = 2;
-				expect(viewModel.hasProductsToLoad()).toBe(false);
+				expect(viewModel.onLastPage()).toBe(true);
 			});
 		});
 
 		describe('when NOT on last page', () => {
-			it('should return TRUE', () => {
+			it('should return FALSE', () => {
 				viewModel.pageIndex = 1;
-				expect(viewModel.hasProductsToLoad()).toBe(true);
+				expect(viewModel.onLastPage()).toBe(false);
 			});
 		});
 	});
-	//  no point in testing this as it just negates the above function
-	//describe('onLastPage()', () => {});
 
 	describe('getNumberOfLoadedProducts()', () => {
 

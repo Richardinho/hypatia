@@ -75,20 +75,13 @@ ViewModel.prototype = {
 
 		return  Math.min(((this.pageIndex + 1)  * this.groupsPerPage ) - 1, indexOfLastGroup);
 	},
-	/*
-		returns TRUE if we are not on the last page
-	*/
-	hasProductsToLoad : function () {
-
-		return this.getNumberOfLoadedProducts() < this.totalProducts;
-	},
 
 	/*
 		returns TRUE if we are on the last page
 	*/
 	onLastPage : function () {
 
-		return !this.hasProductsToLoad();
+		return !(this.getNumberOfLoadedProducts() < this.totalProducts);
 	},
 
 	getNumberOfLoadedProducts : function () {
