@@ -1,5 +1,6 @@
 function RequestObject(params) {
-
+	//  a query param must be provided even if it's an empty string
+	//  should fix this
 	this.queryParams = this._parseQueryString(params.pop() || '');
 	this.params = params;
 
