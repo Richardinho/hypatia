@@ -25,6 +25,7 @@ ProductListController.prototype = {
 			render out the basic containing structure of the product list page.
 		*/
 
+
 		this.pageManager.render(this.productListView);
 
 		/*
@@ -40,6 +41,9 @@ ProductListController.prototype = {
 
 				this.viewModel.incrementPageIndex();
 				this.onScroll(window.scrollY);
+
+				this.viewModel.groups[this.viewModel.getIndexOfFirstGroupInCurrentPage()].focus = true;
+
 
 			}, this);
 
@@ -65,6 +69,10 @@ ProductListController.prototype = {
 		});
 	},
 
+	isActiveElementProductLink : function (activeElement) {
+		return activeElement && activeElement.getAttribute('data-product-link');
+	},
+
 	onScroll : function (scrollY) {
 
 		let activeGroups = this.calculateActiveGroups(scrollY);
@@ -76,7 +84,20 @@ ProductListController.prototype = {
 		}
 		if(!this.viewModel.areGroupsDisplayed(activeGroups)) {
 
+			//  get current focus if there is one.
+			let activeElement = document.activeElement;
+			if(this.isActiveElementProductLink(activeElement)) {
+				this.productListView.updateView(activeGroups);
+				let id = activeElement.getAttribute('data-product-link');
+				let link = document.querySelector('[data-product-link="' + id + '"]');
+				setTimeout(function () {
+					link.focus();
+				}, 0);
+
+			}
 			this.productListView.updateView(activeGroups);
+
+
 		}
 
 	},

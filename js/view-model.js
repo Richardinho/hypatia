@@ -42,6 +42,12 @@ ViewModel.prototype = {
 		this.pageIndex++;
 	},
 
+	getIndexOfFirstGroupInCurrentPage : function () {
+
+		return this.pageIndex * this.groupsPerPage;
+
+	},
+
 	getMaxDisplayedGroupIndex : function () {
 
 		return  Math.min(

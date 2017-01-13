@@ -13,7 +13,7 @@ let GroupView = Backbone.View.extend({
 	},
 
 	template : _.template(`
-		<a data-internal href="/book/<%= book.id %>">
+		<a data-product-link="<%= book.id %>" data-internal href="/book/<%= book.id %>">
 			<img class="thumbnail" src="/images/<%= book.image %>">
 			<h3><%= book.title %> <%= book.id %></h3>
 			<h5>group:<%= id %>, product:<%= book.id %></h5>

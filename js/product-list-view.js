@@ -53,6 +53,8 @@ let ProductListView = Backbone.View.extend({
         this.setPaddingTop(activeGroups[0]);
         this.setPaddingBottom(activeGroups[activeGroups.length - 1]);
 
+
+
 	},
 
 	placeholderTemplate : _.template(`
@@ -99,6 +101,10 @@ let ProductListView = Backbone.View.extend({
 		if(!!placeholderEl.parentElement) {
 			this.getContainerEl().replaceChild(el, placeholderEl);
 			this.revealGroup(el);
+			if(group.focus) {
+				el.querySelector('[data-product-link]').focus();
+				group.focus = false;
+			}
 		}
 		// cache new el
 		group.el = el;
