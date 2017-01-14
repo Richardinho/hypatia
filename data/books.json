@@ -68,7 +68,7 @@
       "id" : 10,
       "title" : "Javascript Patterns",
       "author" : "Stoyan Stefanov" ,
-      "image" : "",
+      "image" : "javascript-patterns.jpg",
       "description" : ""
     },
     {
@@ -82,53 +82,53 @@
       "id" : 12,
       "title" : "The History of Greek Vases",
       "author" : "John Boardman" ,
-      "image" : "",
+      "image" : "greek-vases.jpg",
       "description" : ""
     },
     {
       "id" : 13,
       "title" : "Clean Code",
       "author" : "Robert C. Martin" ,
-      "image" : "",
+      "image" : "clean-code.jpg",
       "description" : ""
     },
     {
       "id" : 14,
       "title" : "Version Control with Git",
       "author" : "Jon Loeliger",
-      "image" : "",
+      "image" : "git.jpg",
       "description" : ""
     },
     {
       "id" : 15,
       "title" : "Politics",
       "author" : "Aristotle",
-      "image" : "",
+      "image" : "politics.jpg",
       "description" : "" },
     {
       "id" : 16,
       "title" : "The Greek Philosophers",
       "author" : "Rex Warner",
-      "image" : "",
+      "image" : "philosophers.jpg",
       "description" : "" },
     {
       "id" : 17,
       "title" : "Semiotics",
       "author" : "Daniel Chandler",
-      "image" : "",
+      "image" : "semiotics.jpg",
       "description" : "" },
     {
       "id" : 18,
       "title" : "The Mobile Handbook",
       "author" : "Peter-Paul Koch",
-      "image" : "",
+      "image" : "mobile-handbook.jpg",
       "description" : ""
     },
     {
       "id" : 19,
       "title" : "ASP.NET Core and Angular 2",
       "author" : "Valerio De Sanctis",
-      "image" : "",
+      "image" : "angular-dot-net.jpg",
       "description" : "" },
     {
       "id" : 20,
@@ -141,7 +141,7 @@
       "id" : 21,
       "title" : "Learning Angular 2",
       "author" : "Pablo Deeleman",
-      "image" : "",
+      "image" : "learning-angular.jpg",
       "description" : ""
     },
     {
@@ -170,21 +170,21 @@
       "id" : 25,
       "title" : "CSS Master",
       "author" : "Tiffany B. Brown",
-      "image" : "",
+      "image" : "css-mastery.jpg",
       "description" : ""
     },
     {
       "id" : 26,
       "title" : "Logical Chess: Move by Move: Every Move Explained ",
       "author" : "Irving Chernev",
-      "image" : "",
+      "image" : "logical-chess.jpg",
       "description" : ""
     },
     {
       "id" : 27,
       "title" : "Unraveling Angular 2: The Ultimate Beginners Guide with over 130 Complete Samples: Volume 8 ",
       "author" : "Istvan Novak",
-      "image" : "",
+      "image" : "unraveling-angular-2.jpg",
       "description" : ""
     },
     {
@@ -226,7 +226,7 @@
       "id" : 33,
       "title" : "Exploring History in the Scottish Borders",
       "author" : "Ian James Douglas",
-      "image" : "border-history",
+      "image" : "scottish-borders.jpg",
       "description" : "The Scottish border is steeped in history. “Exploring History in the Scottish Borders” provides an overview of the history of this turbulent area. This didn't produce Robin Hood characters, it produced a tough and often violent people, the border reivers. In the 16th century the Scottish borderland made the American wild west of the 19th century look like a kindergarten. But its past has also left its mark in splendid castles, beautiful ruined abbeys, and a depth of history few other areas can match. "
     },
     {
