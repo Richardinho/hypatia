@@ -1,7 +1,7 @@
 let express = require('express');
 let app = express();
 
-let port = 5000;
+let port = 5500;
 
 app.use('/js', express.static(__dirname + '/js'));
 app.use('/images', express.static(__dirname + '/images'));
