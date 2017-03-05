@@ -20,16 +20,33 @@
     <script src='injector.js'></script>
     <script src='data-service.js'></script>
     <script src='scroll-manager.js'></script>
+    <script src='scroll-recorder.js'></script>
     <script src='loadmore.js'></script>
     <script src='app.js'></script>
     <script>
 
+        let containerHeight,
+            anchoredItem;
+
+        if (history.state && history.state.scrollTop ) {
+            containerHeight = window.history.state.containerHeight;
+            anchoredItem = window.history.state.anchoredItem;
+        }
+
+        let loadMoreConfig = {
+
+            containerHeight : containerHeight,
+            anchoredItem : anchoredItem,
+            container : document.getElementById('item-container')
+        };
+
         let injector = new Diogenes();
 
         injector.register('app', App, Diogenes.INSTANCE);
-        injector.register('loadMore', LoadMore, Diogenes.INSTANCE, document.getElementById('item-container'));
+        injector.register('loadMore', LoadMore, Diogenes.INSTANCE, loadMoreConfig);
         injector.register('scrollManager', ScrollManager, Diogenes.INSTANCE);
         injector.register('dataService', DataService, Diogenes.CACHE_INSTANCE);
+        injector.register('scrollRecorder', ScrollRecorder, Diogenes.INSTANCE);
 
         injector.start('app', function (app) {
             app.start();

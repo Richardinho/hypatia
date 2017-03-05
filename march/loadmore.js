@@ -1,22 +1,75 @@
 var ITEMS_PER_PAGE = 20;
 var BUFFER_ZONE = 500;
 
-function LoadMore (options, container) {
+function getPosition(element) {
+    var xPosition = 0;
+    var yPosition = 0;
 
-    this.container = container;
+    while(element) {
+        xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+        element = element.offsetParent;
+    }
+
+    return { x: xPosition, y: yPosition };
+}
+
+function LoadMore (options, config) {
+
+    this.container = config.container;
+    this.anchoredItem = config.anchoredItem;
+    this.initialContainerHeight = config.containerHeight;
     this.scrollManager = options.scrollManager;
     this.dataService = options.dataService;
+    this.scrollRecorder = options.scrollRecorder;
     this.items = [];
     this.placeholderHeight;
     this.renderInitialPage();
     this.scrollManager.addListener('lm', this);
+    this.scrollRecorder.loadMore = this;
+    this.scrollManager.addListener('save-scroll', this.scrollRecorder);
     this.focusedItem;
+console.log(this.anchoredItem);
+
 }
 
 LoadMore.prototype = {
 
     setContainerHeight : function (height) {
         this.container.style.height = height + 'px';
+    },
+
+    getAnchoredItem : function () {
+
+
+        let anchoredItem = {
+            index : 0,
+            offset : 0
+        };
+
+        let containerTop = (this.container.getBoundingClientRect().top);
+
+        if (containerTop < 0) {
+
+            containerTop *= -1;
+
+            //  look for anchored item index
+            for (let i = 0; i < this.items.length; i++) {
+
+                let offset = this.items[i].offset + this.items[i].height;
+
+                if (offset > containerTop) {
+                    anchoredItem.index = i;
+                    anchoredItem.offset = this.items[i].height - (offset - containerTop);
+                    break;
+                }
+            }
+        }
+
+        this.anchoredItem = anchoredItem;
+
+        return anchoredItem;
+
     },
 
     getFocusableItem : function () {
@@ -33,9 +86,24 @@ LoadMore.prototype = {
 
         this.calculatePlaceholderHeight();
         this.recalculateOffsets();
+
+        if (this.anchoredItem) {
+            let anchoredItem = this.items[this.anchoredItem.index];
+
+            let containerPosition = getPosition(this.container).y;
+            let scroll = containerPosition + anchoredItem.offset;
+            window.scrollTo(0, scroll);
+
+        }
+
         this.onScroll();
 
         let container = this.container;
+
+        if (this.initialContainerHeight) {
+            this.setContainerHeight(this.initialContainerHeight);
+        }
+
 
 
         this.container.addEventListener('focus', event => {
@@ -130,7 +198,7 @@ LoadMore.prototype = {
 
 
 
-    onScroll : function () {
+    onScroll : function (a, b, diff) {
 
         let containerTop = (this.container.getBoundingClientRect().top * -1);
 
@@ -189,6 +257,9 @@ LoadMore.prototype = {
                 }
             }
         }
+        if(diff) {
+            window.scrollTo(0, window.pageYOffset + diff);
+        }
     },
 
     recalculateOffsets : function () {
@@ -225,14 +296,24 @@ LoadMore.prototype = {
 
         this.dataService.fetchData(id).then(itemData => {
 
+
             let item = this.items[id];
+            let oldHeight = item.height;
             item.el = this.createItemEl(id, itemData);
             item.reified = true;
 
             this.calculateHeightOfItem(item);
 
             this.recalculateOffsets();
-            this.onScroll();
+
+            if(id < this.anchoredItem.index) {
+                let newHeight = item.height;
+                this.onScroll(null, null, newHeight - oldHeight);
+            } else {
+                this.onScroll(null, null, 0);
+            }
+
+            console.log('reified!', window.scrollY);
 
         });
 
@@ -293,5 +374,6 @@ LoadMore.prototype = {
 };
 LoadMore.inject = [
     'scrollManager',
-    'dataService'
+    'dataService',
+    'scrollRecorder'
     ];

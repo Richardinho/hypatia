@@ -5,7 +5,16 @@ function App(options) {
 App.prototype = {
 
 	start : function () {
-        console.log('starting app!');
+        console.log('starting app!', window.scrollY);
+
+        if ('scrollRestoration' in history) {
+          // Back off, browser, I got this...
+          history.scrollRestoration = 'manual';
+        }
+
+
+
+
 
 	}
 };

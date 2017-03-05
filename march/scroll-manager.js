@@ -37,7 +37,7 @@ function ScrollManager() {
 		*/
 		Object.keys(self.listeners).forEach(key => {
 			let listener = self.listeners[key];
-			listener.onScroll(latestKnownScrollY, scrollingDown);
+			listener.onScroll.call(listener, latestKnownScrollY, scrollingDown);
 
 		});
 
