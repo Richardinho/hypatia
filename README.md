@@ -1,47 +1,58 @@
-# Hypatia
-###An implementation of 'load-more' which follows best practises
+One of the UX challenges in web development is how best to present a list of items to the users without having to load all the items
+onto the page at once. Having faced this problem myself, I decided to attempt to study it and see if I could come up with a solution.
 
-The best way for a web page to present a long list of search results has been the subject of much discussion in the web developer community. Pagination which was the traditional technique developed in the early days of the web was followed, later on, by approaches such as 'infinite-scroll' and 'load-more'. All of these techniques have perceived shortcomings, as well as virtues, and thus debates as to which is the superior method are fierce.
+### Pagination and Infinite Scroll
+The traditional solution is Pagination; where only a 'page' of items is loaded into the browser at a time and some form of navigation, usually buttons, are provided to allow the user to navigate between pages.
 
-[The Baymard institute](http://baymard.com/), a world leader in web usabilty, published their research on product lists and concluded that 'load more' was the best technique, with the caveat that a careful implementation that addressed a variety of usability issues was essential to its effectiveness.
+Pagination has the drawback of interrupting the user as she scrolls through the results (usually at an arbitrary point) and forcing her to perform an action - for example, pressing a button -  in order to resume. To address this shortcoming, Infinite Scroll was developed. 
 
-The goal of this project is to produce an implementation of 'load more' which follows the recommendations of the Baymard institute.
+Infinite Scroll appears to the user as a single page of results so that she can continue scrolling through the items uninterrupted until reaching the end. All the items are not loaded onto the page at once; instead items are loaded on the fly using Javascript as the user scrolls. Infinite scroll is somewhat controversial and there are technical and usability issues regarding it as well.
 
-#### Benefits of Load More
-'Load more' addresses some of the drawbacks of pagination and infinite scroll implementations. According to the Baymard report, pagination is perceived by users to be a slow way of reading list results. Infinite scroll goes to the other extreme and allows the user to scroll through large amounts of results but at the cost of focusing on individual list results. Load more hits a happy medium and allows the user to quickly move through a large number of results whilst giving them regular 'breaks', giving them a chance to examine the list in greater detail.
+For example, users may not stop to look closely at any of the items , always hoping to see 'something more interesting' just below. Also the  page footer may never be seen unless the user scrolls right down to the bottom of the items list.
 
-### Acceptance Criteria
+### A third solution: Load More
+A third option, which once again tries to fix the issues of its predecessors, is what I will call 'Load More' . Load More is a kind of hybrid of Infinite Scroll and Pagination. As with Infinite Scroll, items are loaded in on the fly as the user scrolls the page, but the items are still grouped into pages and when the user reaches the end of a page of items, there is a single 'load more' button which when pressed will result in the next page being loaded. The user is not able to navigate to different pages as with Pagination. The number of items in a Load More page should be more than with Pagination. The idea is that the user can scroll through the items - but not for ever - and so they don't get a sense of 'never reaching their destination', and they are able to reach the page footer. 
+Load more hits a happy medium and allows the user to quickly move through a large number of results whilst giving them regular 'breaks', giving them a chance to examine the list in greater detail.
 
-**GIVEN** the user has scrolled downwards
-**AND** the user has scrolled past the bottom page limit
-**THEN** the 'load more' button should be displayed
+### sidebar
+A very good analysis of the problems concerning these two techniques was carried out by the [The Baymard institute](http://baymard.com/), an organization which specialises in Web usability testing. I will draw on their report heavily in this article. As well as presenting the problems of these techniques, Baymard also recommended what they thought was the best solution to the problem of long lists. My solution is heavily indebted to theirs.
 
-**GIVEN** the user clicks on the 'load more' button
-**THEN**  the next page of items should be added to the list
+### Load more requirements
+
+When the user navigates away from the list of items then hits the back button, she should be brought back to exactly the same place in the list of items as she was before she navigated.
+
+The vertical scroll bar should report correctly the user's position within the items. The scroll bar should behave the same as if all
+the items were present in the DOM.
+
+There should be a fallback for when Javascript is not available.
+
+The list should be navigable via the keyboard as well as by the mouse.
+
+items should be bookmarkable. 
+
+The user should be able to jump ahead several pages
+
+The user should be able to switch to normal pagination if they don't like load more
+
+Out of bound pages should return a 404 page.
+
+items should be lazy loaded. placeholders should be provided before the actual item is loaded.
+
+items can be of any height. The height of an item will be unknown until it is actually loaded.
+
+handle resize events
 
 
-### Other requirements
-At all times, the height of the list should be equal to what it would be if all current pages were displayed within it. This is so that the scroll bar remains usable for the user.
+#### implementation
 
-As well as through manual scrolling by the user, scrolling can occur programmatically both by user code and by the browser itself. The solution must behave in an expected way under these circumstances.
+The runway contains all the items. Every DOM element in the runway should be promoted to its own layer. This means that the runway layer itself is completely empty and thus the browser can optimize an element that is perhaps hundreds of thousands of pixels high, for example by not having to store the layer's texture in the graphics card.
 
-### configurable options
-* number of items within a **_group_**
-* number of groups within a **_page_**
-* active region in which to display groups before switching some out; specified as a ratio of the viewport height
 
-#### definitions
-<dl>
-  <dt>item</dt><dd>a.k.a 'list-item'. The individual search result or product to display. For example a product or a search result</dd>
 
-  <dt>list</dt><dd>The container for all items </dd>
-  
-  <dt>page</dt> <dd>The list is split up into pages. When the user reaches the bottom of the last displayed page in the list, a 'load more' button is displayed if there are more items on the server</dd>
-  
-  <dt>group</dt><dd>A page is split into groups of items.The user is not aware of groups but individual groups can be loaded in and swapped out in order to achieve performance benefits.</dd>
-  
-  <dt>universal set</dt><dd>The entire set of items that can be displayed. Normally these exist on the server with only a subset existing on the client side at any one time, although not necessarily being displayed.</dd>
-</dl>
+
+
+
+
 
 
 

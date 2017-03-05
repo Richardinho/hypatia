@@ -1,0 +1,68 @@
+body {
+    margin : 0;
+    background : #eee;
+}
+* {
+    box-sizing : box-model;
+}
+
+.header {
+    background : lime;
+    padding : 24px;
+}
+.footer {
+    background : pink;
+    padding : 24px;
+}
+
+.item-container {
+    contain: layout;
+    will-change: transform;
+    margin : auto;
+    width : 500px;
+
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.item {
+
+    position : absolute;
+    width : 100%;
+    padding : 24px;
+    background : oldlace;
+
+}
+
+.item  {
+    display : block;
+    text-decoration : none;
+    color : grey;
+
+}
+.item:hover {
+    background : pink;
+}
+
+.item .id {
+    margin-bottom : 12px;
+}
+
+.placeholder {
+    background : lightblue;
+    position : absolute;
+    border : solid 20px white;
+    width : 100%;
+    padding : 24px;
+}
+
+.image {
+    height : 150px;
+    width : 200px;
+    float : left;
+    margin-right : 12px;
+}

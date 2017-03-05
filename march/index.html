@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>load more demo</title>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/reset.css" rel="stylesheet">
+</head>
+<body>
+    <div tabindex="0" class="header">
+        <h1>This is the header</h1>
+    </div>
+    <div id='item-container' tabindex="0" class="item-container " >
+
+
+    </div>
+    <div tabindex="0" class="footer">
+        <h2>This is the footer</h2>
+    </div>
+    <script src='injector.js'></script>
+    <script src='data-service.js'></script>
+    <script src='scroll-manager.js'></script>
+    <script src='loadmore.js'></script>
+    <script src='app.js'></script>
+    <script>
+
+        let injector = new Diogenes();
+
+        injector.register('app', App, Diogenes.INSTANCE);
+        injector.register('loadMore', LoadMore, Diogenes.INSTANCE, document.getElementById('item-container'));
+        injector.register('scrollManager', ScrollManager, Diogenes.INSTANCE);
+        injector.register('dataService', DataService, Diogenes.CACHE_INSTANCE);
+
+        injector.start('app', function (app) {
+            app.start();
+        });
+
+    </script>
+</body>
+</html>
+

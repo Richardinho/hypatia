@@ -20,13 +20,13 @@ module.exports = function(config) {
       'node_modules/jquery/dist/jquery.min.js',
       'node_modules/underscore/underscore.js',
       'node_modules/backbone/backbone.js',
-      'js/**/*.js'
+      'march/main.js'
     ],
 
 
     // list of files to exclude
     exclude: [
-      'js/main.js'
+      'js2/main.js'
     ],
 
 

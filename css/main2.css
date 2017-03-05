@@ -1,0 +1,105 @@
+.header {
+    padding : 12px;
+    background : pink;
+}
+
+.footer {
+    padding : 12px;
+    background  : cadetblue;
+}
+
+.tombstone {
+    display : block;
+    padding : 56px 12px;
+    text-align : center;
+}
+
+.spinner {
+    width : 40px;
+    height : 40px;
+    animation: spin 1s linear infinite;
+    display : inline-block;
+}
+@keyframes spin  {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* item */
+
+.item  {
+
+    background : white;
+    border-top : solid 24px grey;
+    border-right : solid 24px grey;
+    border-left : solid 24px grey;
+    border-bottom : none;
+}
+.item:last-child {
+}
+
+.item a {
+
+    display : block;
+    cursor : pointer;
+    padding : 24px;
+    text-decoration : none;
+    color : #777;
+    font-family : helvetica;
+}
+
+.item h3 {
+
+    display :  block;
+    color : #444;
+    font-weight : bold;
+    padding-bottom : 12px;
+}
+
+.item h4 {
+
+    padding-bottom : 12px;
+    font-style : italic;
+    color : #444;
+}
+
+.item .thumbnail {
+
+    float : left;
+    margin-right : 12px;
+    height : 400px;
+}
+
+.buttons {
+    padding : 20px;
+    text-align : center;
+}
+
+.load-more, .back-to-top {
+
+    border : 0;
+    padding : 12px 24px;
+}
+.load-more:active,
+.back-to-top:active {
+
+    position : relative;
+    top : 3px;
+}
+
+.back-to-top {
+    background :  #35a5ca;
+    color : white;
+    margin-left : 1px;
+}
+
+.load-more {
+    background : #2bbc2b;
+    color : white;
+    margin-right : 1px;
+    display : none;
+}
