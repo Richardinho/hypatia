@@ -17,18 +17,18 @@
     <div tabindex="0" class="footer">
         <h2>This is the footer</h2>
     </div>
-    <script src='injector.js'></script>
-    <script src='data-service.js'></script>
-    <script src='scroll-manager.js'></script>
-    <script src='scroll-recorder.js'></script>
-    <script src='loadmore.js'></script>
-    <script src='app.js'></script>
+    <script src='/js/injector.js'></script>
+    <script src='/js/data-service.js'></script>
+    <script src='/js/scroll-manager.js'></script>
+    <script src='/js/scroll-recorder.js'></script>
+    <script src='/js/loadmore.js'></script>
+    <script src='/js/app.js'></script>
     <script>
 
         let containerHeight,
-            anchoredItem;
+            anchoredItem = { index : 0};
 
-        if (history.state && history.state.scrollTop ) {
+        if (history.state && history.state ) {
             containerHeight = window.history.state.containerHeight;
             anchoredItem = window.history.state.anchoredItem;
         }
@@ -39,6 +39,8 @@
             anchoredItem : anchoredItem,
             container : document.getElementById('item-container')
         };
+
+
 
         let injector = new Diogenes();
 

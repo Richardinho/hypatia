@@ -27,9 +27,22 @@ function LoadMore (options, config) {
     this.renderInitialPage();
     this.scrollManager.addListener('lm', this);
     this.scrollRecorder.loadMore = this;
-    this.scrollManager.addListener('save-scroll', this.scrollRecorder);
+    //this.scrollManager.addListener('save-scroll', this.scrollRecorder);
     this.focusedItem;
-console.log(this.anchoredItem);
+
+    window.addEventListener("beforeunload", (event) => {
+
+        let anchoredItem = this.getAnchoredItem();
+
+        history.replaceState(
+            Object.assign(history.state || {}, {
+                anchoredItem : anchoredItem,
+                containerHeight : document.querySelector('#item-container').offsetHeight
+            }),
+            document.title,
+            window.location
+        );
+    });
 
 }
 
@@ -66,7 +79,6 @@ LoadMore.prototype = {
             }
         }
 
-        this.anchoredItem = anchoredItem;
 
         return anchoredItem;
 
@@ -87,6 +99,10 @@ LoadMore.prototype = {
         this.calculatePlaceholderHeight();
         this.recalculateOffsets();
 
+        if (this.initialContainerHeight) {
+            this.setContainerHeight(this.initialContainerHeight);
+        }
+
         if (this.anchoredItem) {
             let anchoredItem = this.items[this.anchoredItem.index];
 
@@ -100,9 +116,7 @@ LoadMore.prototype = {
 
         let container = this.container;
 
-        if (this.initialContainerHeight) {
-            this.setContainerHeight(this.initialContainerHeight);
-        }
+
 
 
 

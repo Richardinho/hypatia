@@ -3,15 +3,12 @@ let app = express();
 
 port = process.env.PORT || 5000;
 
-app.use('/js', express.static(__dirname + '/js'));
-app.use('/js2', express.static(__dirname + '/js2'));
-app.use('/images', express.static(__dirname + '/images'));
-app.use('/css', express.static(__dirname + '/css'));
-app.use('/node_modules', express.static(__dirname + '/node_modules'));
-app.use('/data', express.static(__dirname + '/data'));
+app.use('/js', express.static(__dirname + '/march/js'));
+app.use('/images', express.static(__dirname + '/march/images'));
+app.use('/css', express.static(__dirname + '/march/css'));
 
 app.get('*', function(req, res){
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/march/index.html');
 });
 
 app.listen(port, function () {

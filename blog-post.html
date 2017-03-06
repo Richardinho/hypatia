@@ -1,100 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <style>
-        img {
-            display : block;
-            margin : auto;
-        }
+<h3>intro</h3>
+<p>
+Presenting long lists of items to a user in a web page has been a challenge to developers, 
+    designers, and UX engineers alike since the advent of the web itself.
 
-        .active-region-img {
-            width : 300px;
-        }
+    This is because web sites have to cater for a variety of user behaviour and there are technical limitations on what solutions are possible.
 
-    </style>
-</head>
-<body>
-<h1>Hypatia</h1>
+No two websites are alike and the purpose of a list in one place may be different from another list elsewhere. For example, you might have a list of search results and a catalogue of product items. In the first instance a user most likely is interested mainly in the items that appear at the top of the list. In the second instance she is less likely to favour one item over another and likely to view more items in a session. A solution that works well in one instance may not be optimal for another. (This shows the value of custom web development!) </p>
 
 <p>
-Presenting paged content in a web browser has been  a challenge since the advent of the web and various approaches have been developed for meeting it.The traditional technique is 'pagination. Content is split up into separate web pages and controls are provided for navigating through these.
-    Another approach is called 'infinite scroll'. As the user scrolls down the page content is added to the bottom on the fly so that the user never reaches the end of the page until all the content has been loaded. Both these techniques have their drawbacks in terms of user experience and the Baymard Institute instead recommends a third technique which we will call 'load more'.
+    Much analysis has been carried out on this subject. In the course of writing this article I drew heavily on a study into product lists by the Baymard Institute, an organization that specialises in research into the usability of commercial web sites. Other sources that I consulted are listed in the links at the bottom of this page.</p>
+<p>
+<h3>Techniques</h3>
+<p>
+    There are three techniques that are in common use.
+        The most traditional technique is pagination, where content is split up into separate web pages and controls are provided for navigating through each of these.
 </p>
 
-<h2>Description of 'load more'</h2>
 <p>
+  A more recent technique is 'Infinite Scroll'. As the user scrolls down the page, content is added to the bottom on the fly so that she never reaches the end of the page until all the content has been loaded.
 </p>
+
+<p>
+  A third technique, aimed at addressing the shortcomings of the others, is  'Load More', a sort of hybrid, combining Infinite Scroll with pagination.
+</p>
+
+<p>
+Pagination is sometimes regarded as being a slow way to navigate since the user is interrupted when she reaches the end of a page, at which point she has to carry out some action to load the next page. The advantage however of pagination is that it is easy to implement and doesn't even necessarily require javascript.
+</p>
+
+<p> 
+ The idea of Infinite Scroll is that it removes this arbitrary interruption altogether and the user experiences the list exactly as if its entirety were loaded into the browser from the start. But it turns out that interrupting the user at certain points can be a good idea: If the user is able to constantly scroll a list of items, they may just do that, never actually stopping to focus on a particular item.
+    </p>
+
+<p>
+    Infinite Scroll also favours results somewhere in the middle of the list over those at the top. If this list has been sorted by relevance first, this is obviously undesirable.</p>
+
+
+
+<p> Infinite Scroll can be hard to implement well, particularly if you care about accessibity and performance.</p>
+<p>
+    The Baymard Institute recommend Load More, as it takes the best features of the preceding techniques and (supposedly) mitigates their shortcomings. Load More implementations however face many of the same technical challenges that Infinite Scroll does.
+</p>
+<h2>Hypatia</h2>
+<p>
+    I set myself the project of trying to create a successful implementation of the Load More technique. This is an ongoing project and I will update this article as I progress. The name 'Hypatia' is abitrary, but honors the Alexandrian mathematician of that name.
+
+The github repository is in the links below.
+</p>
+
+<h3>Requirements</h3>
+<p>The main requirements are as follows:</p>
+
+<ul>
+    <li>When navigating back to a page, the scroll position should be preserved.</li>
+    <li>Content should be navigable using the keyboard</li>
+    <li>Memory footprint of the page should not expand infinitely</li>
+    <li>placeholder content should be provided whilst awaiting content from network</li>
+</ul>
+<p>And some nice to haves:</p>
+<ul>
+    <li> Fall back for non-javascript users</li>
+    <li>Different parts of the list should have a url associated with them so that they can be 'bookmarkable'.</li>
+</ul>
+
+
 <h3>Implementation</h3>
-<p>Having described the behavioural requirements of the application, I will now discuss the implementation details.We have drawn from various resources for inspiration including Paul Lewis's implemntation of infinite scroll.
-The techniques that we have used are lazy loading, DOM node recycling, and scroll anchoring. We will discuss these in turn.</p>
-<h2>Lazy loading</h2>
-<p>
-    Normally, only a fraction of the page content will be viewed by the user at any one time. Some content may never be viewed at all. For performance reasons it is therefore a good idea to only load in the content that the user wants to see at the present time. As the user scrolls down the page we can load in the rest of the content.
-    Ideally this process should be transparent to the user: That is, the page should appear to the user as if all the content is there from the very start. Since loading takes time and users can scroll fast, (possibly faster than we are able to load in data), we need to display placeholder content to show to the user that actual content is on its way.  The placeholder content should give an indication of the type of content that they will eventually see as well as how much of it there is. Even when the user doesn't actually see the place holder content, the scrollbars will give an indication of its size.
 
+
+<h4>Lazy loading</h4>
+<p>
+   When content needs to be dynamically loaded across a network, it is good practise to provide placeholder content in order to show that something is happening and that the actual content is on its way, instead of just showing a blank screen and a revolving spinner. When the content is partially loaded, the page can be made usable enough so that the user can interact with the loaded content, even if it intermixed with placeholder items. This means that the page is initially rendered with placeholder items, and as the real content is loaded from the network, the placeholder items are swapped in for items rendered with real data. I call this process 'reification'. This presents various technical challenges. For instance the reified items are likely a different height from their placeholders. This means the position of all the other items below them will have to be recalculated.
 </p>
-<h3>Implementing Lazy Loading</h3>
+<h4>Keeping memory footprint low</h4>
 <p>
-    On first render, a placholder is rendered into the container. This placeholder is called a 'tombstone'. It has generic content and styles since it's purpose is to take up approximately the same space as the real content would and to give the user an indication of the content to come. Once the tombstone is rendered, a call is made to the server for the actual content. When this returns we 'reify' the item by replacing the placeholder with the real content.  The reified item is likely to be a different size to the placeholder. This causes a problem where if the current scroll position of the page is below the reified content, it will change, causing disruption to the user. We will discuss the solution to this problem later.
-</p>
-
-<h3>Recycling Dom Nodes</h3>
-<p>
-
-    As well as loading in content on the fly, it is also beneficial to remove content from the page when the user isn't looking at it. This is because there is a performance cost to maintaining the DOM. The more nodes in the DOM, the worse the page will perform.
-    In a long list of search results, as more nodes are added the performance will degrade.
-    If we remove nodes that are not currently being seen by the user, we can limit the number of nodes in the DOM, even in a list that scrolls down forever!
-</p>
-
-<h3>Implementing DOM recycling</h3>
-<p>
-We need to work out the area that the user is interacting  with. Let us call this the 'active region'.
-    Technically, the active region is the rectangular area which all loaded items should intersect with.
-    The idea is that items that fall within the region should be loaded into the container, whilst items that are outside the region should not be loaded in.
-
-
-<img class="active-region-img" src="active-region.jpeg">
-    The size of the active region should comprise the viewport and some padding above and below,
-    constrained at the top and bottom by the container. The purpose of the padding is to take up the equivalent space of unloaded content so that the scroll bar will behave as the user expects.
-    The amount of padding is somewhat arbitrary and may be an absolute value or a proportion of the viewport height. It is recommended to be a configurable value so that different values can be experimented with.</p>
-<p>
-    The top of the container is easy enough to discover as it is simply a matter of measuring in the DOM the distance from the top of the container to the top of the page. The bottom of the container is more difficult. Clearly, it should be height of the container added to the container top value, however the height of the container element obtained from the DOM is not necessarily the one that we need. The size of the container needs to be the same as if all the items were loaded into it, but since they aren't, we need to work out what size the container would be if they were.
-    We can do this by associating with all items a height value. If an item has been loaded into the DOM we can measure its height and use that. If an item has not been loaded yet into the DOM then we give it the height of a tombstone element.   To find the height of the container, we iterate through all the items and add all the heights together.
-    <img class="" src="measuring-container.jpeg">
+    There are limits to how many dom nodes can be supported at once in the browser. If the user loads a long enough list of items, this could obviously be a problem. We address this by only maintaining the nodes in the dom that are currently visible in the viewport (plus a little extra for padding). As the user scrolls, the nodes for items leaving the viewport are removed from the DOM, whilst nodes for items about to enter it are added in. This means that we have to manage the layout of elements and the behaviour of the scroll bar. All the nodes are positioned absolutely at the top of the container and are positioned manually using transforms. We keep track behind the scenes of each item's offset from the top of the container.
 
 </p>
 
-
-<h2>Scroll Anchoring</h2>
-<p>
-    Changes can occur which change the size of the content of the page such as when items are reified or when the user changes the width of the viewport.
-    The best user experience in both cases is where the point on the page that they are looking at before the change remains in the same place afterwards. The scrollbar will change to reflect the changing content.
-
+<h4>Preserving scroll position</h4>
+<p>When the user returns to the page via the back or forwards button from another page the content visible on the page should be the same as when she left it. In theory browsers actually do this but with SPAs it tends not to work very well. What we need to do is store the scroll state of the page when the user navigates away from it. We need to consider the ways in which she can do this: By clicking on a link or by navigating through the history using the back and forward buttons. The best place to store this information is in the history state object which is available when we navigate back to the page. We can save this in a beforeUnload event handler which will run before the user navigates away from the page.
 </p>
 <p>
-    The technique to achieve this effect is called 'scroll anchoring'. It works by having a scroll event handler which records two properties: the current item that the user is viewing, and it's offset from the top of the viewport. After changes to the page take effect, we calculate the scroll value necessary for the new values of these properties to be equal to the saved ones.
-
-
+    We do not actually store the scroll position. Instead we store the index of the item that was at the top of the viewport when navigation occurred along with an offset of how much of this was visible. This is because if we are lazy loading content in, the scroll position of this item may change as content is loaded in above it. We don't want to content to move as she is reading it.
+    To achieve this effect we use a technique called 'scroll anchoring'. As new content is loaded in above the anchored item, we alter the scroll value so that the anchored item always remains fixed in position relative to the viewport.
 </p>
 
-<h3>Calculating the scroll anchor</h3>
-<p>The scroll anchor item should be the first item, going from first item to last, whose
-bottom edge is below the top of the viewport. We also record the amount which this bottom edge lies below the top of the viewport. This is enough information to restore the page later.
-
-    The process to calculate the scroll anchor needs to run on every scroll event.
-    in this implementation when we reify an item we measure its height and cache this value. It is important that once the image is inserted into the DOM it has its final height. Thus any images within the image must have a height set within the stylesheet.
-</p>
-<h2>Accessibility</h2>
+<h4>Keyboard navigable content</h4>
 <p>
-    A key goal of every web page is that it meets commonly agreed standards of accessibility. Specific behavioural requirements for this component relating to this were as follows:
-    <ul>
-        <li>
-            The user should be able to tab through the list as well as use load more and back to top
-            buttons via the keyboard
-        </li>
-    </ul>
+    In a simple HTML page, we can set the tab order by applying tabindex to all of our items to '0' and let the browser do the work. This will not work here because the items do not necessarily appear in the DOM in tab order. We need to handle keyboard events ourselves. This is a simple case of keeping track of the item to be focused and applying the focus programmatically. The browser scrolls automatically to items with focus.
+
 </p>
-</body>
-</html>
+
+<h2>Conclusions</h2>
+<p>
+
+    A LoadMore implementation poses many challenges which include issues of accessibility, SEO, usability, and performance.
+    I have started a project which aims to meet these challenges and will continue to work on it and update this article as I make progress.
+
+</p>
+<h2>Links</h2>
+<div class='links'>
+<a href='https://baymard.com/'>Baymard Institute</a>
+<a href='http://blog.adrianroselli.com/2014/05/so-you-think-you-built-good-infinite.html'>Adrian Roselli - So you think you've built a good Infinite Scroll</a>
+    <a href='https://github.com/Richardinho/hypatia'>Github repository</a>
+    <a href='https://www.nngroup.com/articles/infinite-scrolling/'>Infinite scroll is not for every website</a>
+    <a href='https://developers.google.com/web/updates/2015/09/history-api-scroll-restoration'>scroll restoration property</a>
+    <a href='https://developers.google.com/web/updates/2016/07/infinite-scroller'>complexities of an infinite scroller: Google blog</a>
+    </div>
+
